@@ -1,7 +1,7 @@
 export const Styles = {
     mainContainer: {
-        width: '80%',
-        margin: 'auto',
+        width: '100%',
+        // margin: 'auto',
         backgroundColor: '#000000'
     },
     mainWatchTxt: {
