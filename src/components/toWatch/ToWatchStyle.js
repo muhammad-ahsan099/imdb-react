@@ -10,4 +10,7 @@ export const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
         fontSize: 32
     },
+    topSpace: {
+        paddingTop:  50,
+    }
 }))
