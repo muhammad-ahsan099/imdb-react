@@ -1,31 +1,30 @@
 export const Styles = {
     container : {
-        backgroundColor : '#000000',
+        width : '100%',
     },
     icons : {
-        listStyleType:'none',
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center',
-        padding:'20px 0px'
+        margin:'18px',
+        cursor:'grab'
     },
-    iconColor : {
-        color : '#fff',
-        margin : '0px 15px',
-        cursor:'grab',
+    listContainer : {
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    listDiv: {
+        margin: '0px 13px',
+        color: '#fff',
         fontSize : '15px',
+        display: 'flex',
+        alignItems: 'center',
+        cursor:'grab',
     },
-    list : {
-        listStyleType:'none',
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center',
-    },
-    listIcon : {
-        fontSize : '12px'
+    linkTag : {
+        textDecoration:'none',
+        color:'#fff'
     },
     imgMargin : {
         marginLeft:'5px',
+        height : '10px'
     },
     amazonTxt : {
         fontWeight : 'bold',

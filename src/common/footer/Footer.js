@@ -1,80 +1,98 @@
 import React from 'react'
 import { Styles } from "./FooterStyle";
-import FacebookIcon from '@material-ui/icons/Facebook';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import YouTubeIcon from '@material-ui/icons/YouTube';
 import listIcon from "../../assets/images/listIcon.svg";
-import icon from "../../assets/images/icon.svg";
+import { footerData, footerIconsData } from "./UseFooter";
 
 export default function Footer() {
     return (
         <>
             <div style={Styles.container}>
                 {/* icons */}
-                <ul style={Styles.icons}>
-                    <li style={Styles.iconColor}>
-                        <FacebookIcon />
-                    </li>
-                    <li style={Styles.iconColor}>
-                        <InstagramIcon />
-                    </li>
-                    <li style={Styles.iconColor}>
-                        <img src={icon} alt="icon not found" />
-                    </li>
-                    <li style={Styles.iconColor}>
-                        <TwitterIcon />
-                    </li>
-                    <li style={Styles.iconColor}>
-                        <YouTubeIcon />
-                    </li>
-                </ul>
+                <div style={{ display: 'flex', justifyContent: 'center', }}>
+                    {
+                        footerIconsData?.map((items, index) => {
+                            return (
+                                <>
+                                    <a href={items.link}>
+                                        <img src={items.icon} alt="icon not found" style={Styles.icons} />
+                                    </a>
+                                </>
+                            )
+                        })
+                    }
+                </div>
 
-                {/* list */}
+                {/* list One */}
+                <div style={Styles.listContainer}>
+                    {
+                        footerData?.map((items) => {
+                            return (
+                                items?.heading === 'Ist Links' ?
+                                    <>
+                                        {
+                                            items?.subLinks?.map((items, index) => {
+                                                return (
+                                                    <>
+                                                        <div key={index} style={Styles.listDiv}>
+                                                            <div>
+                                                                <p>
+                                                                    <a href={items.link} style={Styles.linkTag} target={'_blank'}>
+                                                                        {items.title}
+                                                                    </a>
+                                                                </p>
+                                                            </div>
+                                                            <div>
+                                                                <a href={items.link} target={'_blank'}>
+                                                                    <img src={listIcon} alt="icon not found" style={Styles.imgMargin} />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </> :
+                                    <></>
+                            )
+                        })
+                    }
+                </div>
 
-                <ul style={Styles.list}>
-                    <li style={Styles.iconColor}>
-                        Get the IMDb App
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                    <li style={Styles.iconColor}>
-                        Help
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                    <li style={Styles.iconColor}>
-                        Site Index
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                    <li style={Styles.iconColor}>
-                        IMDbPro
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                    <li style={Styles.iconColor}>
-                        Box Office Mojo
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                    <li style={Styles.iconColor}>
-                        IMDb Developer
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                </ul>
-                <ul style={Styles.list}>
-                    <li style={Styles.iconColor}>Press Room</li>
-                    <li style={Styles.iconColor}>
-                        Advertising
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                    <li style={Styles.iconColor}>
-                        Jobs
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                    <li style={Styles.iconColor}>Condition of Use</li>
-                    <li style={Styles.iconColor}>Privacy Policy</li>
-                    <li style={Styles.iconColor}>
-                        Interst-Based Ads
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                </ul>
+                {/* list Two */}
+                <div style={Styles.listContainer}>
+                    {
+                        footerData?.map((items) => {
+                            return (
+                                items?.heading === '2nd Links' ?
+                                    <>
+                                        {
+                                            items?.subLinks?.map((items, index) => {
+                                                return (
+                                                    <>
+                                                        <div key={index} style={Styles.listDiv}>
+                                                            <div>
+                                                                <p>
+                                                                    <a href={items.link} style={Styles.linkTag} target={'_blank'}>
+                                                                        {items.title}
+                                                                    </a>
+                                                                </p>
+                                                            </div>
+                                                            <div>
+                                                                <a href={items.link} target={'_blank'}>
+                                                                    <img src={listIcon} alt="icon not found" style={Styles.imgMargin} />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </> :
+                                    <></>
+                            )
+                        })
+                    }
+                </div>
 
 
                 {/* heading 1 */}
