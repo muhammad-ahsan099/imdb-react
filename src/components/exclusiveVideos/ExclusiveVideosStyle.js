@@ -1,10 +1,9 @@
 import { makeStyles } from "@material-ui/core";
 import { commonColor } from "../../constants/colors";
 
-export const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles ((theme) => ({
     mainContainer : {
         width : '100%',
-        marginTop: 20,
         padding: '0px 4%',
         backgroundColor : commonColor.black,
         "@media (max-width: 960px)": {
@@ -12,7 +11,7 @@ export const useStyles = makeStyles((theme) => ({
             padding: '0px 0px 0px 2%',
         },
     },
-    newsContainer : {
+    watchContainer : {
         display:'flex',
         alignItems:'center',
     },
@@ -25,37 +24,49 @@ export const useStyles = makeStyles((theme) => ({
         color:'#fff',
         marginLeft : '5px'
     },
-    headingIcon : {
-        marginLeft:'6px'
+    titleDes : {
+        color : '#adb5bd',
+        fontSize : '15px',
+    },
+    watchButtonsDiv : {
+        display : 'flex',
+        margin : '15px 0px 50px 0px'
+    },
+    watchButton : {
+        backgroundColor : '#000000',
+        textTransform: 'none',
+        color : '#fff',
+        borderColor : '#fff',
+        width : '270px',
+        margin : '0px 25px 0px 0px'
+    },
+    mainWatchTxt : {
+        fontSize : '30px',
+        color : '#ffbe0b'
     },
     cardDiv : {
-        display:'flex',
-        width : '100%',
+        width : '99%',
+        margin : '20px 0px 35px 0px' 
     },
-    desDiv : {
-        marginLeft : '12px'
+    cardHeader : {
+        position: 'relative'
     },
-    cardDes : {
+    iconDiv : {
+        position:'absolute',
+        bottom:'5px',
+        left:'10px',
+        cursor:'grab',
+        display : 'flex',
+        alignItems:'center'
+    },
+    iconTxt : {
         color : '#fff',
+        margin : '15px 10px',
         fontSize : '14px'
     },
-    cardAuth : {
-        fontSize : '12px',
-        color : '#fff'
-    },
-    buttonDiv : {
-        margin : '10px 5px',
-        paddingBottom: 20,
-        // width: 30em;
-        // overflowX: 'scroll',
-        // whiteSpace: 'nowrap'    
-    },
-    buttons : {
-        color : '#e9ecef',
-        textTransform: 'none',
-        borderColor : '#6c757d',
-        borderRadius : '50px 50px',
-        margin : '0px 4px'
+    cardTxt : {
+        color : '#fff',
+        fontSize : '15px'
     },
     arrows: {
         color: '#fff',
@@ -102,5 +113,4 @@ export const useStyles = makeStyles((theme) => ({
             display: 'none'
         },
     }
-    
 }))

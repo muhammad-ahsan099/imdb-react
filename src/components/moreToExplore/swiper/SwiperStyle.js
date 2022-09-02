@@ -1,10 +1,10 @@
 import { makeStyles } from "@material-ui/core";
-import { commonColor } from "../../constants/colors";
+import { commonColor } from "../../../constants/colors";
+
 
 export const useStyles = makeStyles((theme) => ({
-    mainContainer : {
-        width : '100%',
-        marginTop: 20,
+    mainContainer: {
+        width: '100%',
         padding: '0px 4%',
         backgroundColor : commonColor.black,
         "@media (max-width: 960px)": {
@@ -12,50 +12,50 @@ export const useStyles = makeStyles((theme) => ({
             padding: '0px 0px 0px 2%',
         },
     },
-    newsContainer : {
-        display:'flex',
-        alignItems:'center',
+    mainExploreTxt: {
+        fontSize: '30px',
+        color: '#ffbe0b',
+        padding: '0px 4%',
+        "@media (max-width: 960px)": {
+            padding: '0px 0px 0px 2%',
+        },
     },
-    sideLine : {
-        height : '34px',
-        width : '4px',
-        backgroundColor : '#ffbe0b',
+    exploreContainer: {
+        display: 'flex',
+        alignItems: 'center',
     },
-    heading : {
-        color:'#fff',
-        marginLeft : '5px'
+    sideLine: {
+        height: '34px',
+        width: '4px',
+        backgroundColor: '#ffbe0b',
     },
-    headingIcon : {
-        marginLeft:'6px'
+    heading: {
+        color: '#fff',
+        marginLeft: '5px'
     },
-    cardDiv : {
-        display:'flex',
-        width : '100%',
+    cardDiv: {
+        width: '100%',
+        paddingBottom: '15px'
     },
-    desDiv : {
-        marginLeft : '12px'
+    cardHeader: {
+        position: 'relative'
     },
-    cardDes : {
-        color : '#fff',
-        fontSize : '14px'
+    iconDiv: {
+        position: 'absolute',
+        bottom: '5px',
+        left: '10px',
+        cursor: 'grab',
+        display: 'flex',
+        alignItems: 'center'
     },
-    cardAuth : {
-        fontSize : '12px',
-        color : '#fff'
+    iconTxt: {
+        color: '#fff',
+        margin: '0px 10px',
+        fontSize: '14px'
     },
-    buttonDiv : {
-        margin : '10px 5px',
-        paddingBottom: 20,
-        // width: 30em;
-        // overflowX: 'scroll',
-        // whiteSpace: 'nowrap'    
-    },
-    buttons : {
-        color : '#e9ecef',
-        textTransform: 'none',
-        borderColor : '#6c757d',
-        borderRadius : '50px 50px',
-        margin : '0px 4px'
+    cardTxt: {
+        color: '#fff',
+        fontSize: '15px'
     },
     arrows: {
         color: '#fff',

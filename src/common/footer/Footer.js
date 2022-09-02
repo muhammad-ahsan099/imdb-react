@@ -6,84 +6,89 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import listIcon from "../../assets/images/listIcon.svg";
 import icon from "../../assets/images/icon.svg";
+import UseWindowDimensions from '../customHooks/UseWindowDimensions'
+import { useStyles } from './FooterStyle';
 
 export default function Footer() {
+    const width = UseWindowDimensions()
+    const Styles = useStyles()
     return (
         <>
-            <div style={Styles.container}>
+            <div className={Styles.container}>
                 {/* icons */}
-                <ul style={Styles.icons}>
-                    <li style={Styles.iconColor}>
+                <ul className={Styles.icons}>
+                    <li className={Styles.iconColor}>
                         <FacebookIcon />
                     </li>
-                    <li style={Styles.iconColor}>
+                    <li className={Styles.iconColor}>
                         <InstagramIcon />
                     </li>
-                    <li style={Styles.iconColor}>
+                    <li className={Styles.iconColor}>
                         <img src={icon} alt="icon not found" />
                     </li>
-                    <li style={Styles.iconColor}>
+                    <li className={Styles.iconColor}>
                         <TwitterIcon />
                     </li>
-                    <li style={Styles.iconColor}>
+                    <li className={Styles.iconColor}>
                         <YouTubeIcon />
                     </li>
                 </ul>
 
                 {/* list */}
-
-                <ul style={Styles.list}>
-                    <li style={Styles.iconColor}>
-                        Get the IMDb App
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                    <li style={Styles.iconColor}>
-                        Help
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                    <li style={Styles.iconColor}>
-                        Site Index
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                    <li style={Styles.iconColor}>
-                        IMDbPro
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                    <li style={Styles.iconColor}>
-                        Box Office Mojo
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                    <li style={Styles.iconColor}>
-                        IMDb Developer
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                </ul>
-                <ul style={Styles.list}>
-                    <li style={Styles.iconColor}>Press Room</li>
-                    <li style={Styles.iconColor}>
+                <div className={Styles.div}>
+                    <ul className={Styles.list}>
+                        <span className={Styles.hideiconColor}>
+                            Get the IMDb App
+                            <img src={listIcon} alt="icon not found" height={'11px'} className={Styles.imgMargin} />
+                        </span>
+                        <span className={Styles.iconColor}>
+                            Help
+                            <img src={listIcon} alt="icon not found" height={'11px'} className={Styles.imgMargin} />
+                        </span>
+                        <span className={Styles.iconColor}>
+                            Site Index
+                            <img src={listIcon} alt="icon not found" height={'11px'} className={Styles.imgMargin} />
+                        </span>
+                        <span className={Styles.iconColor}>
+                            IMDbPro
+                            <img src={listIcon} alt="icon not found" height={'11px'} className={Styles.imgMargin} />
+                        </span>
+                        <span className={Styles.iconColor}>
+                            Box Office Mojo
+                            <img src={listIcon} alt="icon not found" height={'11px'} className={Styles.imgMargin} />
+                        </span>
+                        <span className={Styles.iconColor}>
+                            IMDb Developer
+                            <img src={listIcon} alt="icon not found" height={'11px'} className={Styles.imgMargin} />
+                        </span>
+                    </ul>
+                </div>
+                <ul className={Styles.list}>
+                    <span className={Styles.iconColor}>Press Room</span>
+                    <span className={Styles.iconColor}>
                         Advertising
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                    <li style={Styles.iconColor}>
+                        <img src={listIcon} alt="icon not found" height={'11px'} className={Styles.imgMargin} />
+                    </span>
+                    <span className={Styles.iconColor}>
                         Jobs
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
-                    <li style={Styles.iconColor}>Condition of Use</li>
-                    <li style={Styles.iconColor}>Privacy Policy</li>
-                    <li style={Styles.iconColor}>
+                        <img src={listIcon} alt="icon not found" height={'11px'} className={Styles.imgMargin} />
+                    </span>
+                    <span className={Styles.iconColor}>Condition of Use</span>
+                    <span className={Styles.iconColor}>Privacy Policy</span>
+                    <span className={Styles.iconColor}>
                         Interst-Based Ads
-                        <img src={listIcon} alt="icon not found" height={'11px'} style={Styles.imgMargin} />
-                    </li>
+                        <img src={listIcon} alt="icon not found" height={'11px'} className={Styles.imgMargin} />
+                    </span>
                 </ul>
 
 
                 {/* heading 1 */}
-                <p style={Styles.headingOne}>
-                    an <span style={Styles.amazonTxt}>amazon</span> company
+                <p className={Styles.headingOne}>
+                    an <span className={Styles.amazonTxt}>amazon</span> company
                 </p>
 
                 {/* heading 2 */}
-                <p style={Styles.headingTwo}>
+                <p className={Styles.headingTwo}>
                     &copy; 1990-2022 by IMDb.com.Inc.
                 </p>
             </div>

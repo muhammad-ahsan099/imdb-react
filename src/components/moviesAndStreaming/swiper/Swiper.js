@@ -17,17 +17,29 @@ import { Button } from '@material-ui/core';
 
 export default function SwiperComponent(props) {
 
-    const { isSwiper, heading, subHeading } = props;
+    const { isSwiper, heading, subHeading , btn } = props;
     const classes = useStyles()
     const swiper1Ref = useRef();
 
 
     return (
-        <div>
+        <div className={classes.root}>
+            {
+             !btn ? 
             <div className={classes.topPicks}>
                 <div className={classes.line} />
                 <h1 className={classes.h3}>{heading}</h1>
+                <ArrowNextIcon className={classes.nextIcon} />
             </div>
+            :
+            <Button
+                variant='outlined'
+                className={classes.primeBtn}
+                // disabled
+            >
+                {heading}
+            </Button>
+            }
             <p className={classes.topPicksText}>{subHeading}</p>
             {
                 isSwiper ?
@@ -35,19 +47,17 @@ export default function SwiperComponent(props) {
                         onSwiper={(swiper) => {
                             swiper1Ref.current = swiper;
                         }}
+
                         slidesPerView={6}
                         slidesPerGroup={6}
                         loop={false}
                         loopFillGroupWithBlank={false}
-                        pagination={{
-                            clickable: true,
-                        }}
                         modules={[Navigation]}
-                        // navigation={{
-                        //     nextEl: '.swiper-button-next',
-                        //     prevEl: '.swiper-button-prev',
-                        //     disabledClass: 'disabled_swiper_button'
-                        // }}
+                        navigation={{
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                            disabledClass: 'disabled_swiper_button'
+                        }}
                         allowTouchMove={false}
                         className={classes.swiper}
                         breakpoints={{
@@ -56,7 +66,7 @@ export default function SwiperComponent(props) {
                                 slidesPerGroup: 1,
                                 speed: 1200,
                                 allowTouchMove: true,
-                                
+
                             },
                             600: {
                                 slidesPerView: 4.2,
@@ -66,7 +76,7 @@ export default function SwiperComponent(props) {
                             },
                             960: {
                                 slidesPerView: 6,
-                                slidesPerGroup:6,
+                                slidesPerGroup: 6,
                                 allowTouchMove: false,
                             },
                         }}

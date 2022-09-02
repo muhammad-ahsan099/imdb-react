@@ -1,12 +1,9 @@
 import React, { useRef } from 'react'
-import { Styles } from "./ComingSoonStyle";
-import newsIcon from "../../assets/images/newsIcon.svg";
+import { useStyles } from "./ExclusiveVideosStyle";
 import videoIcon from "../../assets/images/videoIcon.svg";
-import bookIcon from "../../assets/images/bookIcon.svg";
-import { comingSoonData } from "./UseComingSoon";
+import { UseExclusiveVideos } from "./UseExclusiveVideos";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useStyles } from './ComingSoonStyle';
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -15,25 +12,28 @@ import ArrowBackIcon from '@material-ui/icons/NavigateBefore';
 import ArrowNextIcon from '@material-ui/icons/NavigateNext';
 
 
-// import "./styles.css";
-
 // import required modules
 import { Navigation } from "swiper";
 
-export default function ComingSoon() {
-    const swiperRef = useRef();
-    const Styles = useStyles()
-
+export default function ExclusiveVideos() {
+    const Styles = useStyles();
+    const swiperRef = useRef()
+    const [{ exclusiveVideos }] = UseExclusiveVideos();
     return (
         <>
             <div className={Styles.mainContainer}>
-                {/* coming soon container */}
-                <div className={Styles.soonContainer}>
+                {/* heading */}
+                <h1 className={Styles.mainWatchTxt}>
+                    Exclusive videos
+                </h1>
+
+
+                {/* Imdb origanls container */}
+                <div className={Styles.watchContainer}>
                     <div className={Styles.sideLine}></div>
                     <div>
                         <h1 className={Styles.heading}>
-                            Coming soon to theaters
-                            <img src={newsIcon} alt="Icon Not Found" height={'18px'} className={Styles.headingIcon} />
+                            IMDb Originals
                         </h1>
                     </div>
                 </div>
@@ -41,36 +41,31 @@ export default function ComingSoon() {
 
                 {/* description */}
                 <span className={Styles.titleDes}>
-                    Trailers for upcoming releases
+                    Celebrity interviews, trending entertainment stories, and expert analysis
                 </span>
 
-                {/* Slider */}
+                {/* slider */}
                 <Swiper
                     slidesPerView={3}
                     spaceBetween={20}
                     slidesPerGroup={3}
                     loop={false}
-                    // loopFillGroupWithBlank={true}
                     onSwiper={(swiper) => {
                         swiperRef.current = swiper;
                     }}
                     navigation={true}
                     modules={[Navigation]}
-                    className={Styles.swiper}
-                    style={{
-                        "--swiper-navigation-color": "#f8f9fa",
-                    }}
                     breakpoints={{
                         0: {
-                            slidesPerView: 1.1,
-                            spaceBetween:10,
+                            slidesPerView: 1.2,
+                            spaceBetween: 10,
                             slidesPerGroup: 1,
                             speed: 1200,
                             allowTouchMove: true
                         },
                         600: {
-                            slidesPerView: 2.4,
-                            spaceBetween:10,
+                            slidesPerView: 2.3,
+                            spaceBetween: 16,
                             slidesPerGroup: 1,
                             speed: 1200,
                             allowTouchMove: true
@@ -83,7 +78,7 @@ export default function ComingSoon() {
                     }}
                 >
                     {
-                        comingSoonData?.map((items, index) => {
+                        exclusiveVideos?.map((items, index) => {
                             return (
                                 <>
                                     <SwiperSlide key={index}>
@@ -99,19 +94,10 @@ export default function ComingSoon() {
                                                     </p>
                                                 </div>
                                             </div>
-
-                                            <div className={Styles.cardFooter}>
-                                                <div>
-                                                    <img src={bookIcon} alt="Image Not Found" height={'70px'} width={'70px'} />
-                                                </div>
-
-                                                <div className={Styles.footerDesDiv}>
-                                                    <span className={Styles.cardYear}>{items.year}</span>
-                                                    <br />
-                                                    <span className={Styles.cardTxt}>
-                                                        {items.des}
-                                                    </span>
-                                                </div>
+                                            <div>
+                                                <p className={Styles.cardTxt}>
+                                                    {items.des}
+                                                </p>
                                             </div>
                                         </div>
                                     </SwiperSlide>

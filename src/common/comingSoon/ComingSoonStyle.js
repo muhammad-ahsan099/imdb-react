@@ -1,8 +1,15 @@
-export const Styles = {
+import { commonColor } from "../../constants/colors";
+import { makeStyles } from "@material-ui/core";
+
+export const useStyles = makeStyles((theme) => ({
     mainContainer : {
         width : '100%',
-        // margin : 'auto',
-        backgroundColor : '#000000'
+        padding: '0px 4%',
+        "@media (max-width: 960px)": {
+            padding: '0px 0px 0px 2%',
+            backgroundColor : commonColor.appBar,
+        },
+        backgroundColor : commonColor.black,
     },
     soonContainer : {
         display:'flex',
@@ -19,6 +26,11 @@ export const Styles = {
     },
     headingIcon : {
         marginLeft:'6px'
+    },
+    swiper: {
+        // backgroundColor: commonColor.appBar,
+        padding: 0,
+        margin: 0,
     },
     titleDes : {
         color : '#adb5bd',
@@ -57,5 +69,51 @@ export const Styles = {
     cardTxt : {
         color : '#fff',
         fontSize : '14px'
+    },
+    arrows: {
+        color: '#fff',
+        fontSize: 50,
+    },
+    swiper_button_next: {
+        margin: 0,
+        width: 47, 
+        height: 63,
+        borderRadius: '4px',
+        border: '1px solid #848484',
+        color: 'transparent', 
+        backgroundColor: 'rgba(102,102,103, 0.2)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'absolute',
+        right: 0,
+        top: '25.5%',
+        zIndex: 1000,
+        cursor: 'pointer',
+        [theme.breakpoints.down('sm')]: {
+            display: 'none'
+        },
+
+      },
+    swiper_button_prev: {
+        margin: 0,
+        width: 47, 
+        height: 63,
+        borderRadius: '4px',
+        border: '1px solid #848484',
+        color: 'transparent', 
+        backgroundColor: 'rgba(102,102,103, 0.2)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'absolute',
+        left: 0,
+        top: '25.5%',
+        zIndex: 1000,
+        cursor: 'pointer',
+        [theme.breakpoints.down('sm')]: {
+            display: 'none'
+        },
     }
-}
+
+}))

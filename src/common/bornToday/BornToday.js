@@ -1,5 +1,5 @@
-import React from 'react'
-import { Styles } from "./BornTodayStyle";
+import React, { useRef } from 'react'
+import { useStyles } from "./BornTodayStyle";
 import newsIcon from "../../assets/images/newsIcon.svg";
 import { bornCardData } from "./UseBornToday";
 // Import Swiper React components
@@ -9,6 +9,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import ArrowBackIcon from '@material-ui/icons/NavigateBefore';
+import ArrowNextIcon from '@material-ui/icons/NavigateNext';
+
 
 // import "./styles.css";
 
@@ -16,37 +19,69 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 
 export default function BornToday() {
+
+    const swiperRef = useRef();
+    const Styles = useStyles()
+
     return (
         <>
-            <div style={Styles.mainContainer}>
+            <div className={Styles.mainContainer}>
                 {/* Born Today container */}
-                <div style={Styles.bornContainer}>
-                    <div style={Styles.sideLine}></div>
+                <div className={Styles.bornContainer}>
+                    <div className={Styles.sideLine}></div>
                     <div>
-                        <h1 style={Styles.heading}>
+                        <h1 className={Styles.heading}>
                             Born today
-                            <img src={newsIcon} alt="Icon Not Found" height={'18px'} style={Styles.headingIcon} />
+                            <img src={newsIcon} alt="Icon Not Found" height={'18px'} className={Styles.headingIcon} />
                         </h1>
                     </div>
                 </div>
 
 
                 {/* description */}
-                <span style={Styles.titleDes}>
+                <span className={Styles.titleDes}>
                     People born on August 29
                 </span>
 
                 {/* slider */}
                 <Swiper
-                    slidesPerView={5}
                     spaceBetween={2}
-                    slidesPerGroup={5}
+                    // style={{
+                    //     "--swiper-navigation-color": "#f8f9fa",
+                    // }}
+                    onSwiper={(swiper) => {
+                        swiperRef.current = swiper;
+                    }}
+                    slidesPerView={6}
+                    slidesPerGroup={6}
                     loop={false}
-                    // loopFillGroupWithBlank={true}
-                    navigation={true}
+                    loopFillGroupWithBlank={false}
+                    pagination={{
+                        clickable: true,
+                    }}
                     modules={[Navigation]}
-                    style={{
-                        "--swiper-navigation-color": "#f8f9fa",
+                    allowTouchMove={false}
+                    className={Styles.swiper}
+                    breakpoints={{
+                        0: {
+                            slidesPerView: 2.2,
+                            allowTouchMove: true,
+                            slidesPerGroup: 1,
+                            speed: 1200
+                        },
+                        600: {
+                            slidesPerView: 4.2,
+                            allowTouchMove: true,
+                            slidesPerGroup: 1,
+                            speed: 1200
+
+                        },
+                        960: {
+                            slidesPerView: 6,
+                            allowTouchMove: false,
+                            slidesPerGroup: 6,
+
+                        },
                     }}
                 >
                     {
@@ -54,15 +89,15 @@ export default function BornToday() {
                             return (
                                 <>
                                     <SwiperSlide key={index}>
-                                        <div style={Styles.cardDiv}>
+                                        <div className={Styles.cardDiv}>
                                             <div>
-                                                <img src={items.img} alt="Image Not Found" style={Styles.img} />
+                                                <img src={items.img} alt="Image Not Found" className={Styles.img} />
                                             </div>
-                                            <div style={Styles.cardTxtDiv}>
-                                                <h2 style={Styles.cardHeading}>
+                                            <div className={Styles.cardTxtDiv}>
+                                                <h2 className={Styles.cardHeading}>
                                                     {items.title}
                                                 </h2>
-                                                <p style={Styles.cardDes}>
+                                                <p className={Styles.cardDes}>
                                                     {items.rate}
                                                 </p>
                                             </div>
@@ -72,6 +107,9 @@ export default function BornToday() {
                             )
                         })
                     }
+                    <div className={Styles.swiper_button_next} onClick={() => swiperRef.current.slideNext()} ><ArrowNextIcon className={Styles.arrows} /></div>
+                    <div className={Styles.swiper_button_prev} onClick={() => swiperRef.current.slidePrev()} ><ArrowBackIcon className={Styles.arrows} /></div>
+
                 </Swiper>
             </div>
         </>

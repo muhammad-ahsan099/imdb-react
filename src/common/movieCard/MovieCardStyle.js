@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme)=> ({
         // [theme.breakpoints.down('xs')]: {
         //     width: '40%',
         // },
-        backgroundColor: commonColor.appBar,
+        backgroundColor: commonColor.cardBg,
         textAlign: 'left',
         margin: 0,
     },

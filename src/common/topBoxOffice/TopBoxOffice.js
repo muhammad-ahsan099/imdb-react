@@ -1,50 +1,52 @@
 import React from 'react'
-import { Styles } from "./TopBoxOfficeStyle";
 import newsIcon from "../../assets/images/newsIcon.svg";
 import bookIcon from "../../assets/images/bookIcon.svg";
 import { boxOfficeData } from "./UseTopBoxOffice";
+import { useStyles } from './TopBoxOfficeStyle'
 
 export default function TopBoxOffice() {
+
+    const Styles = useStyles()
     return (
         <>
-            <div style={Styles.mainContainer}>
+            <div className={Styles.mainContainer}>
                 {/* Top Box Office container */}
-                <div style={Styles.officeContainer}>
-                    <div style={Styles.sideLine}></div>
+                <div className={Styles.officeContainer}>
+                    <div className={Styles.sideLine}></div>
                     <div>
-                        <h1 style={Styles.heading}>
+                        <h1 className={Styles.heading}>
                             Top box office (US)
-                            <img src={newsIcon} alt="Icon Not Found" height={'18px'} style={Styles.headingIcon} />
+                            <img src={newsIcon} alt="Icon Not Found" height={'18px'} className={Styles.headingIcon} />
                         </h1>
                     </div>
                 </div>
 
 
                 {/* description */}
-                <span style={Styles.titleDes}>
+                <span className={Styles.titleDes}>
                     Weekend of August 26-28
                 </span>
 
                 {/* small card */}
-                <div style={Styles.cardContainer}>
+                <div className={Styles.cardContainer}>
                     {
-                        boxOfficeData?.map((items,index) => {
+                        boxOfficeData?.map((items, index) => {
                             return (
                                 <>
-                                    <div style={Styles.cardDiv}>
-                                        <div style={Styles.cardHeader}>
-                                            <p style={Styles.headerSrNo}>
+                                    <div className={Styles.cardDiv}>
+                                        <div className={Styles.cardHeader}>
+                                            <p className={Styles.headerSrNo}>
                                                 {index + 1}
                                             </p>
-                                            <div style={Styles.headerSideLine}></div>
-                                            <img src={bookIcon} alt="Image Not Found" style={Styles.headerIcon} />
+                                            <div className={Styles.headerSideLine}></div>
+                                            <img src={bookIcon} alt="Image Not Found" className={Styles.headerIcon} />
                                         </div>
-                                        <div style={Styles.cardFooter}>
-                                            <span style={Styles.footerHeading}>
+                                        <div className={Styles.cardFooter}>
+                                            <span className={Styles.footerHeading}>
                                                 {items.title}
                                             </span>
                                             <br />
-                                            <span style={Styles.footerDes}>
+                                            <span className={Styles.footerDes}>
                                                 {items.review}
                                             </span>
                                         </div>

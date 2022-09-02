@@ -2,6 +2,16 @@ import { makeStyles } from "@material-ui/core";
 import { commonColor } from "../../../constants/colors";
 
 export const useStyles = makeStyles((theme) => ({
+    root: {
+        paddingTop: 14,
+        backgroundColor : commonColor.black,
+        padding: '0px 4%',
+        "@media (max-width: 960px)": {
+            backgroundColor: commonColor.appBar,
+            padding: '0px 2%',
+        },
+
+    },
     h1: {
         color:commonColor.themeColor,
         textAlign: 'left',
@@ -9,11 +19,40 @@ export const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
         fontSize: 32
     },
+    topPicks: {
+        marginTop: 10,
+        display: 'flex',
+        alignItems: 'center',
+    },
+    line: {
+        width: 4,
+        height: 30,
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: commonColor.themeColor,
+        borderRadius: 50,
+        marginRight: 12
+    },
+
+    h3: {
+        margin: 0,
+        color:commonColor.white,
+        fontSize: 26,
+        textAlign: 'left',
+        fontFamily: 'Roboto-SemiBold',
+        fontWeight: 'bold',
+    },
+    topPicksText: {
+        textAlign: 'left',
+        fontSize: 16,
+        fontWeight: '500',
+        color: '#848484',
+        marginTop: 10,
+    },
     swiper: {
         width: '100%',
         padding: 0,
         margin: 0,
-        // backgroundColor: commonColor.appBar,
     },
     swiper_slide: {
         paddingLeft: 0,
@@ -70,12 +109,11 @@ export const useStyles = makeStyles((theme) => ({
     btnContainer: {
         display: 'flex',
         justifyContent: 'flex-start',
-        [theme.breakpoints.down('xs')]: {
-            flexDirection: 'column'
-        },
     },
     menuButton: {
+        marginRight: 26,
         textTransform: 'none',
+        padding: '4px 95px',
         color: '#fff',
         border: '1.5px solid #fff',
         fontWeight: 'bold',
@@ -84,16 +122,18 @@ export const useStyles = makeStyles((theme) => ({
             color: '#ffffff',
             backgroundColor: 'rgba(158, 158, 158, 0.1)'
         },
-        marginRight: 26,
-        padding: '4px 95px',
-        "@media (max-width: 750px)": {
-            padding: '4px 55px',
-        },
-        "@media (max-width: 600px)": {
-            padding: '4px 10px',
-            width: '65%',
-            marginRight: 0,
-            marginBottom: 10
-        },
+    },
+    nextIcon: {
+        color : '#fff',
+        fontSize: 40,
+        fontWeight: 'bold'
+    },
+    primeBtn: {
+        color: '#fff',
+        borderBottom: `3px solid ${commonColor.themeColor}`,
+        margin: 0,
+        borderRadius: '0px',
+        paddingTop: '9px',
+        paddingBottom: '9px'
     },
 }))

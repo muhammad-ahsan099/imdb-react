@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: commonColor.appBar,
         height: 54,
         width: '100%',
-        // padding: '0px 4%',
+        padding: '0px 4%',
         "@media (max-width: 960px)": {
             padding: '0px 1%',
         },

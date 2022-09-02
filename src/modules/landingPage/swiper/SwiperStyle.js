@@ -7,13 +7,25 @@ export const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         marginTop: 10,
-        padding: '0px 4%',
         minHeight: 550,
+        padding: '0px 4%',
+        [theme.breakpoints.down('sm')]: {
+            padding: '0px 1%'
+        },
+
     },
+    // overLay: {
+    //     pointer: 'cursor',
+    //     '&:hover': {
+    //         backgroundColor:'rgba(0,0,0,.75)',
+    //     },
+
+    // },
     swiper: {
         width: '100%',
         height: 550,
         padding: 0,
+        cursor: 'pointer'
     },
     swiper_slide: {
         backgroundImage: `url(${Two})`,
@@ -31,16 +43,22 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
         alignItems: 'flex-end',
         justifyContent: 'space-between',
-        // backgroundColor: 'pink'
 
     },
     inner_poster: {
         backgroundImage: `url(${TwoS})`,
-        width: '200px',
-        height: '225px',
+        width: '150px',
+        height: '215px',
+        [theme.breakpoints.down('sm')]: {
+            width: '132px',
+            height: '195px',
+        },
+        [theme.breakpoints.down('xs')]: {
+            width: '90px',
+            height: '133px'
+        },
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundColor: 'orange',
         display: 'flex',
         alignItems: 'flex-start'
     },
@@ -55,17 +73,35 @@ export const useStyles = makeStyles((theme) => ({
         marginTop: -8,
         marginLeft: -4,
         borderRadius: 0,
-        // backgroundColor: 'pink'
     },
     bottomMiddleSection: {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
+        width: '80%',
+        "@media (min-width: 790px)": {
+            width: '85%',
+        },
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: 'column',
+            width: '85%',
+        },
+    },
+    textContent: {
+        width: '75%',
+        [theme.breakpoints.down('xs')]: {
+            width: '100%',
+        },
+
     },
     bottomRightSection: {
         width: '20%',
         display: 'flex',
         justifyContent: 'center',
+        [theme.breakpoints.down('sm')]: {
+            width: 'auto',
+            backgroundColor: 'pink'
+        },
     },
     playIcon: {
         marginTop: -16,
@@ -75,7 +111,23 @@ export const useStyles = makeStyles((theme) => ({
         '&:hover': {
             color: commonColor.themeColor,
         },
+        [theme.breakpoints.down('xs')]: {
+            display: 'none'
+        },
 
+    },
+    playIconHidden: {
+        marginTop: -16,
+        borderRadius: 50,
+        color: '#fff',
+        fontWeight: '400',
+        '&:hover': {
+            color: commonColor.themeColor,
+        },
+        "@media (max-width: 600px)": {
+            fontSize: 50,
+            // marginTop: -6,
+        },
     },
     movieHeading: {
         fontSize: 30,
@@ -85,7 +137,11 @@ export const useStyles = makeStyles((theme) => ({
         margin: 0,
         marginLeft: 14,
         padding: 0,
-        lineHeight: 'normal'
+        lineHeight: 'normal',
+        "@media (max-width: 600px)": {
+            fontSize: 24,
+            marginLeft: 12,
+        },
     },
     movieDetail: {
         color: '#afafaf',
@@ -95,11 +151,32 @@ export const useStyles = makeStyles((theme) => ({
         margin: 0,
         marginLeft: 14,
     },
+    hiddenMob: {
+        display: 'flex',
+        [theme.breakpoints.up('sm')]: {
+            display: 'none'
+        },
+        alignItems: 'flex-end',
+        marginLeft: 8,
+    },
     time: {
         color: '#afafaf',
         fontSize: 20,
         fontWeight: '500',
-        paddingLeft: 30
+        paddingLeft: 30,
+        [theme.breakpoints.down('xs')]: {
+            display: 'none'
+        },
+    },
+    timeHidden: {
+        color: '#afafaf',
+        fontSize: 20,
+        fontWeight: '500',
+        paddingLeft: 30,
+        "@media (max-width: 600px)": {
+            paddingLeft: 16,
+        },
+
     },
     rightGrid: {
         height: 'auto',
@@ -128,22 +205,33 @@ export const useStyles = makeStyles((theme) => ({
         width: '100%',
         height: 440,
         padding: 0,
-        backgroundColor: 'black',
+    },
+    bgDiv: {
+        backgroundColor: commonColor.appBar,
+        height: 160,
+        width: '30%',
+        marginLeft: 10,
+        zIndex: 0,
+        position: 'absolute',
+        // left: '70%',
+        // right: 5
     },
     verticalSliderSlide: {
         display: 'flex',
-        backgroundColor: commonColor.appBar,
-        paddingTop: 16,
+        // backgroundColor: commonColor.appBar,
+        paddingTop: 4,
+        marginTop: 12,
         paddingLeft: 16,
         paddingRight: 16,
         marginLeft: 10,
+        zIndex: 1000,
     },
     activeVerticalSlide: {
-        backgroundColor: commonColor.appBar
+        // backgroundColor: commonColor.appBar
     },
     smallImg: {
-        width: 90,
-        height: 140,
+        width: 94,
+        height: 130,
     },
     movieSmallHeading: {
         fontSize: 16,
@@ -209,7 +297,7 @@ export const useStyles = makeStyles((theme) => ({
         borderRadius: '4px',
         border: '1px solid #848484',
         color: 'transparent', 
-        backgroundColor: '#666667',
+        backgroundColor: 'rgba(102,102,103, 0.2)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -217,7 +305,10 @@ export const useStyles = makeStyles((theme) => ({
         right: 0,
         top: '29.5%',
         zIndex: 1000,
-        cursor: 'pointer'
+        cursor: 'pointer',
+        [theme.breakpoints.down('sm')]: {
+            display: 'none'
+        },
       },
     swiper_button_prev: {
         margin: 0,
@@ -234,7 +325,10 @@ export const useStyles = makeStyles((theme) => ({
         left: 0,
         top: '29.5%',
         zIndex: 1000,
-        cursor: 'pointer'
+        cursor: 'pointer',
+        [theme.breakpoints.down('sm')]: {
+            display: 'none'
+        },
     }
 
 

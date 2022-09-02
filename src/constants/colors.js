@@ -1,5 +1,6 @@
 export const commonColor = {
   appBar: '#121212',
+  cardBg: '#1a1a1a',
   themeColor: '#f6cd00',
   black: '#000000',
   placeholderTextColor: '#5A5A5A',

@@ -20,7 +20,7 @@ import ArrowBackIcon from '@material-ui/icons/NavigateBefore';
 import ArrowNextIcon from '@material-ui/icons/NavigateNext';
 import { useSwiper, useSwiperSlide } from 'swiper/react';
 import { useStyles } from "./SwiperStyle";
-import { BsFillBookmarkCheckFill , BsFillBookmarkPlusFill } from "react-icons/bs";
+import { BsFillBookmarkCheckFill, BsFillBookmarkPlusFill } from "react-icons/bs";
 
 
 export default function SwiperComponent() {
@@ -28,8 +28,7 @@ export default function SwiperComponent() {
     const [slideIndex, setSlideIndex] = useState(0)
     const swiper1Ref = useRef();
     const swiper2Ref = useRef();
-    console.log('swiper2Ref', swiper2Ref.current?.activeIndex);
-    console.log('slideIndex', slideIndex);
+    console.log('swiper2Ref', swiper2Ref)
 
     useLayoutEffect(() => {
         swiper1Ref.current.controller.control = swiper2Ref.current;
@@ -40,12 +39,13 @@ export default function SwiperComponent() {
     return (
         <div className={classes.root}>
             <Grid container spacing={0}>
-                <Grid item xs={12} sm={12} md={8} lg={8}>
+                <Grid item xs={12} sm={12} md={8} lg={8} className={classes.overLay}>
+                    
                     <Swiper
                         onSwiper={(swiper) => {
                             swiper1Ref.current = swiper;
                         }}
-                        autoplay = {{
+                        autoplay={{
                             delay: 2000
                         }}
                         className={classes.swiper}
@@ -60,18 +60,26 @@ export default function SwiperComponent() {
                                         <div className={classes.swiper_slide}>
                                             <div className={classes.bottomSection}>
                                                 <div className={classes.inner_poster}>
-                                                <BsFillBookmarkCheckFill className={classes.wishListIcon} />
-                                                <BsFillBookmarkPlusFill className={classes.wishListIcon} />
+                                                    <BsFillBookmarkCheckFill className={classes.wishListIcon} />
+                                                    <BsFillBookmarkPlusFill className={classes.wishListIcon} />
                                                 </div>
+
+
                                                 <div className={classes.bottomMiddleSection}>
+                                                    {/* Mobile View  */}
+                                                    <div className={classes.hiddenMob}>
+                                                        <IoPlayCircleOutline className={classes.playIconHidden} />
+                                                        <p className={classes.timeHidden}>2:30</p>
+                                                    </div>
+                                                    {/* Web View */}
                                                     <IoPlayCircleOutline size={90} className={classes.playIcon} />
-                                                    <div>
+                                                    <div className={classes.textContent}>
                                                         <h1 className={classes.movieHeading}>'The Inivation' Stars Ask Each Other Anything</h1>
                                                         <p className={classes.movieDetail}>Watch the Interview</p>
                                                     </div>
-                                                </div>
-                                                <div className={classes.bottomRightSection}>
                                                     <p className={classes.time}>2:30</p>
+                                                    {/* </div>
+                                                <div className={classes.bottomRightSection}> */}
                                                 </div>
                                             </div>
                                         </div>
@@ -91,21 +99,20 @@ export default function SwiperComponent() {
                     item xs={0} sm={0} md={4} lg={4} className={classes.rightGrid}>
                     <div className={classes.verticalSliderContainer}>
                         <h2 className={classes.smallHeadingTop}>Up next</h2>
-
+                        <div className={classes.bgDiv} />
                         <Swiper
                             onSwiper={(swiper) => {
                                 swiper2Ref.current = swiper;
                             }}
-                            autoplay = {{
+                            autoplay={{
                                 delay: 2000
-                            }}    
-                            effect={'fade'}
+                            }}
                             loop={true}
                             direction={"vertical"}
                             scrollbar={{ draggable: false }}
                             slidesPerView={3}
                             className={classes.verticalSwiper}
-                            modules={[Pagination, Navigation, Controller]}
+                            modules={[Controller]}
                             onSlideChange={() => setSlideIndex(swiper2Ref.current?.activeIndex)}
                             navigation={{
                                 nextEl: '.swiper-button-next',
@@ -113,6 +120,8 @@ export default function SwiperComponent() {
                                 disabledClass: 'disabled_swiper_button'
                             }}
                             allowTouchMove={false}
+                            effect={"fade"}
+                            // fadeEffect={true}
                         >
                             {
                                 [1, 2, 3, 4, 5, 6, 7].map((item, index) => {
@@ -128,7 +137,6 @@ export default function SwiperComponent() {
                                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                                         <IoPlayCircleOutline size={40} className={classes.playSmallIcon} />
                                                         <p className={classes.smallTime}>2:30</p>
-
                                                     </div>
 
                                                     <div>
