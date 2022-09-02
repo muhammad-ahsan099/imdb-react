@@ -1,0 +1,17 @@
+
+.swiper-button-prev {
+  display: none;
+  background-color: transparent;
+  color: transparent;
+}
+.swiper-button-next {
+  display: none;
+  color: transparent; 
+  background-color: transparent;
+} 
+
+.disabled_swiper_button {
+  opacity: 0;
+  cursor: auto;
+  pointer-events: none;
+}

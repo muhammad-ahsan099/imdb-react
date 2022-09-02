@@ -1,26 +1,73 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { commonColor } from '../../constants/colors';
+import imgBG from '../../assets/images/imgBG.jpg'
+
 const drawerWidth = '100%';
 const mobileDrawerWidth = 280
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        [theme.breakpoints.up('md')]: {
-            display: 'flex'
+        backgroundColor: commonColor.appBar,
+        height: 54,
+        width: '100%',
+        padding: '0px 4%',
+        "@media (max-width: 960px)": {
+            padding: '0px 1%',
         },
-        backgroundColor: '#F4F6F8',
-        minHeight: '100vh',
-
+        "@media (max-width: 600px)": {
+            padding: '0px 0px',
+        },
+    },
+    logoDiv: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'row-reverse'
+        },
     },
     menuButton: {
-        color: '##824ED2',
-        marginRight: theme.spacing(2),
+        marginLeft: 6,
+        marginRight: 6,
+        paddingTop: 6,
+        paddingBottom: 6,
+        textTransform: 'none',
+        color: '#848484',
+        border: 'none',
+        fontWeight: 'bold',
+        background: commonColor.appBar,
+
+        '&:hover': {
+            color: '#ffffff',
+            backgroundColor: 'rgba(158, 158, 158, 0.2)'
+        },
+        [theme.breakpoints.down('sm')]: {
+            display: 'none'
+        },
+
         // [theme.breakpoints.up('md')]: {
         //     display: 'none',
         // },
 
     },
+    smallMenuScreen: {
+        color: '#fff',
+        [theme.breakpoints.up('md')]: {
+            display: 'none'
+        },
+
+    },
+    menuText: {
+        margin: 0,
+        padding: 0,
+        color: '#ffffff',
+        [theme.breakpoints.down('sm')]: {
+            display: 'none'
+        },
+    },
     drawer: {
         width: mobileDrawerWidth,
+        backgroundColor: commonColor.appBar,
         [theme.breakpoints.up('sm')]: {
             width: drawerWidth,
             flexShrink: 0,
@@ -29,22 +76,42 @@ const useStyles = makeStyles((theme) => ({
     },
     drawerWeb: {
         width: drawerWidth,
+        backgroundColor: commonColor.appBar,
         height: '100vh'
     },
     drawerPaper: {
         width: mobileDrawerWidth,
+        backgroundColor: commonColor.appBar,
     },
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
-        width:'100%'
+        width: '100%'
     },
-    sideToolbar: {
-        padding: theme.spacing(1, 1),
-        [theme.breakpoints.up('md')]: {
-            padding: theme.spacing(5, 1)
+    list: {
+        backgroundColor: commonColor.appBar,
+    },
+    headingContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        // backgroundColor: 'orange'
+    },
+    h2: {
+        color: commonColor.white,
+        marginLeft: 13,
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: -18,
+            fontSize: 16,
+            fontWeight: 500,
         },
     },
+    h2Active: {
+        color: commonColor.themeColor,
+        marginLeft: -18,
+        fontSize: 16,
+        fontWeight: 500,
+    },
+
     toolbar: {
         display: 'flex',
         alignItems: 'center',
@@ -55,24 +122,6 @@ const useStyles = makeStyles((theme) => ({
             padding: 20
         },
     },
-    active: {
-        background: 'linear-gradient(#824ED2, #B07DFF)',
-        borderRadius: 5,
-    },
-    nonActive: {
-        backgroundColor: 'orange',
-        borderRadius: 5,
-    },
-    drawerOnHover: {
-        borderRadius: 50,
-    },
-    icons: {
-        marginRight: '19px',
-        color: 'red'
-    },
-    iconRoot: {
-        textAlign: 'center',
-    },
     listItemText: {
         marginLeft: '15px',
         fontSize: '25px !important',
@@ -81,134 +130,139 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Poppins-Medium !important'
 
     },
-    TypoText: {
-        color: '#00688B',
-        marginTop: '7px',
-    },
-    logoImg: {
-        width: 140,
-        // marginLeft:30,
-    },
+
     RouterLink: {
         display: 'flex',
         textDecoration: 'none',
     },
     appBar: {
         zIndex: `${theme.zIndex.drawer + 1}!important`,
-        backgroundColor: '#ffffff !important',
-        borderBottom: '1px solid '
+        backgroundColor: commonColor.appBar,
+        width: '100%',
+        paddingLeft: 0,
+        paddingRight: 0,
+        height: 54
     },
-    activeImg: {
-        color: '#ffffff',
-
-    },
-    activeText: {
-        color:'RED',
-        color: '#ffffff'
-    },
-    sidrbarBottomCard: {
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 15,
-        paddingBottom: 15,
+    Toolbar: {
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        backgroundColor: '#F4F6F8',
-        borderRadius: 10,
-        height: 128,
-        marginBottom: 30,
-    },
-    sidrbarBottomCardText: {
-        margin: 0,
-        fontStyle: 'normal',
-        fontWeight: '600',
-        fontSize: 14,
-        color: '#5B6773',
-        fontFamily: 'Roboto-SemiBold'
-    } ,
-    formControl: {
-        minWidth: 200,
-    },
-    selectRoot: {
-        '&:focus': {
-            backgroundColor: 'transparent'
-        }
-    },
-    sidrbarBottomDiv: {
-        marginTop: 80,
-        marginBottom: 50,
-        display: 'flex',
-        justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: 10,
-        border: '1px solid #D4DDE4',
-        paddingRight: 12,
-        backgroundColor: '#F4F6F8',
-
+        justifyContent: 'space-between'
     },
-    sidrbarBottomDivLeft: {
-        backgroundColor: '#fff',
-        width: '85%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        borderRight: '1px solid #D4DDE4',
-        borderRadius: '10px 0 0 10px'
-
+    badge: {
+        marginLeft: 16,
+        marginRight: 8,
+        paddingLeft: 2,
+        paddingRight: 2,
+        color: commonColor.black
     },
-    sidrbarBottomDivInner: {
-        paddingRight: 10,
-        paddingLeft: 10,
-        display: 'flex',
-        justifyContent: 'space-between',
-        borderBottom: '1px solid #D4DDE4'
+    colorPrimary: {
+        backgroundColor: commonColor.themeColor,
+        color: commonColor.black,
+        fontWeight: '400s'
     },
-    sidrbarBottomDivInnerTwo: {
-        paddingRight: 10,
-        paddingLeft: 10,
-        display: 'flex',
-        justifyContent: 'space-between',
-    },
-    sidrbarDivLeftText: {
-        color: '#5B6773',
-        fontSize: 16,
-        fontWeight: '600',
-        fontFamily:'Roboto-SemiBold'
-
-    },
-    grow: {
-        flexGrow: 1,
-    },
-    sectionDesktop: {
-        display: 'none',
-        [theme.breakpoints.up('md')]: {
-            display: 'flex',
+    crossIcon: {
+        backgroundColor: commonColor.themeColor,
+        color: commonColor.black,
+        '&:hover': {
+            backgroundColor: commonColor.themeColor,
         },
     },
-    sectionMobile: {
+    mainLogo: {
+        [theme.breakpoints.down('sm')]: {
+            paddingRight: 8,
+        },
+    },
+    logoImg: {
+        width: '100px',
+        height: '100px'
+    },
+    linkDiv: {
+        width: '33.33%',
+        // flexWrap: 'wrap',
+        [theme.breakpoints.down('sm')]: {
+            width: '100%',
+        },
+
+    },
+    linkTag: {
+        margin: 0,
+        color: '#fff',
+        fontWeight: '500',
+        fontSize: 16,
+        paddingBottom: '14px',
+        listStyleType: 'none',
+        [theme.breakpoints.down('sm')]: {
+            paddingBottom: '0px',
+            fontSize: 14,
+            fontWeight: '500',
+        },
+    },
+    listIcon: {
+        color: commonColor.themeColor,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 20,
+        },
+    },
+    listIconActive: {
+        color: '#848484',
+        fontSize: 20,
+        
+    },
+    divider: {
+        width: 2,
+        backgroundColor: commonColor.placeholderTextColor,
         display: 'flex',
+        flexDirection: 'column',
+        height: 30,
+        margin: '0px 4px'
+    },
+    dividerMobile: {
+        width: 2,
+        backgroundColor: commonColor.placeholderTextColor,
+        width: '100%'
+
+    },
+    smallDivider: {
+        width: 2,
+        backgroundColor: commonColor.placeholderTextColor,
+        display: 'flex',
+        flexDirection: 'column',
+        height: 30,
+        margin: '0px 10px 0px 15px',
         [theme.breakpoints.up('md')]: {
             display: 'none',
         },
+        "@media (max-width: 600px)": {
+            display: 'none',
+        },
     },
-    headerRightTextContainer: {
+    imgMobBG: {
+        backgroundImage: `url(${imgBG})`,
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        height: 56,
+        width: '100%',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+
+    },
+    DrawerList: {
+        width: '72%',
+        marginLeft: "14%",
+        marginRight: "14%",
+        [theme.breakpoints.down('sm')]: {
+            width: '96%',
+            marginLeft: "2%",
+            marginRight: "2%",
+        },
+    },
+    TopDrawerOptions: {
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        // backgroundColor: 'blue',
     },
-    line: {
-        borderRight: '1px solid #091E42',
-        marginLeft: 20,
-        marginRight: 20
-    },
-    sidebarBtn: {
-        borderRadius: 6,
-        height: 30,
-        paddingLeft: 0,
-        paddingRight: 0,
-        width: 120
-    }
 
 }));
 
