@@ -3,54 +3,31 @@ import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({    
     container : {
-        backgroundColor : '#000000',
-        width: '95%',
-        display: 'block',
-        margin: '0 auto',
-        textAlign: 'center',
+        width : '100%',
     },
     icons : {
-        listStyleType:'none',
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center',
-        padding:'0px 0px 0px 0px'
+        margin:'18px',
+        cursor:'grab'
     },
-    hideiconColor: {
-        color : '#fff',
+    listContainer : {
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    listDiv: {
+        margin: '0px 13px',
+        color: '#fff',
+        fontSize : '15px',
+        display: 'flex',
+        alignItems: 'center',
         cursor:'grab',
-        fontSize : '16px',
-        fontWeight:  '500',
-        paddingLeft: 40,
-        fontFamily: 'Roboto',
-        "@media(max-width: 960px)": {
-            display: 'none'
-        },
-
-
     },
-    iconColor : {
-        color : '#fff',
-        // margin : '20px 20px',
-        // margin : '0px 15px',
-        marginRight: 30,
-        cursor:'grab',
-        fontSize : '16px',
-        fontWeight:  '500',
-        fontFamily: 'Roboto-SemiBold'
-    },
-    list : {
-        listStyleType:'none',
-        display:'inline-block',
-        // display: 'inline',
-        justifyContent:'center',
-        alignItems:'center',
-    },
-    listIcon : {
-        fontSize : '12px'
+    linkTag : {
+        textDecoration:'none',
+        color:'#fff'
     },
     imgMargin : {
         marginLeft:'5px',
+        height : '10px'
     },
     amazonTxt : {
         fontWeight : 'bold',
