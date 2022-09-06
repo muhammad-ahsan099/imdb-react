@@ -1,4 +1,7 @@
 import './App.css';
+import CreateAccount from './auth/createAccount/CreateAccount';
+import SignIn from './auth/signIn/SignIn';
+import SignInGoogle from './auth/signInGoogle/SignInGoogle';
 import BornToday from './common/bornToday/BornToday';
 import ComingSoon from './common/comingSoon/ComingSoon';
 import DrawerComponent from './common/drawer/Drawer';
@@ -11,8 +14,8 @@ import WatchList from './common/watchList/WatchList';
 
 function App() {
   return (
-    <div className="App" style={{backgroundColor:'#000000'}}>
-      <DrawerComponent />
+    <div className="App">
+      {/* <DrawerComponent />
       <WatchList />
       <MoreToWatch />
       <TopBoxOffice />
@@ -20,7 +23,10 @@ function App() {
       <MoreToExplore />
       <BornToday />
       <TopNews />
-      <Footer />
+      <Footer /> */}
+      {/* <SignInGoogle /> */}
+      {/* <CreateAccount /> */}
+      {/* <SignIn /> */}
     </div>
   );
 }
