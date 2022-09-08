@@ -18,8 +18,9 @@ import ArrowNextIcon from '@material-ui/icons/NavigateNext';
 // import required modules
 import { Navigation } from "swiper";
 
-export default function BornToday() {
+export default function BornToday(props) {
 
+    const { celebritiesBirthday } = props;
     const swiperRef = useRef();
     const Styles = useStyles()
 
@@ -43,74 +44,77 @@ export default function BornToday() {
                     People born on August 29
                 </span>
 
-                {/* slider */}
-                <Swiper
-                    spaceBetween={2}
-                    // style={{
-                    //     "--swiper-navigation-color": "#f8f9fa",
-                    // }}
-                    onSwiper={(swiper) => {
-                        swiperRef.current = swiper;
-                    }}
-                    slidesPerView={6}
-                    slidesPerGroup={6}
-                    loop={false}
-                    loopFillGroupWithBlank={false}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    modules={[Navigation]}
-                    allowTouchMove={false}
-                    className={Styles.swiper}
-                    breakpoints={{
-                        0: {
-                            slidesPerView: 2.2,
-                            allowTouchMove: true,
-                            slidesPerGroup: 1,
-                            speed: 1200
-                        },
-                        600: {
-                            slidesPerView: 4.2,
-                            allowTouchMove: true,
-                            slidesPerGroup: 1,
-                            speed: 1200
+                {
+                    celebritiesBirthday?.length > 3 &&
 
-                        },
-                        960: {
-                            slidesPerView: 6,
-                            allowTouchMove: false,
-                            slidesPerGroup: 6,
+                    < Swiper
+                        spaceBetween={10}
+                        // style={{
+                        //     "--swiper-navigation-color": "#f8f9fa",
+                        // }}
+                        onSwiper={(swiper) => {
+                            swiperRef.current = swiper;
+                        }}
+                        slidesPerView={6}
+                        slidesPerGroup={6}
+                        loop={false}
+                        loopFillGroupWithBlank={false}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        modules={[Navigation]}
+                        allowTouchMove={false}
+                        className={Styles.swiper}
+                        breakpoints={{
+                            0: {
+                                slidesPerView: 2.2,
+                                allowTouchMove: true,
+                                slidesPerGroup: 1,
+                                speed: 1200
+                            },
+                            600: {
+                                slidesPerView: 4.2,
+                                allowTouchMove: true,
+                                slidesPerGroup: 1,
+                                speed: 1200
 
-                        },
-                    }}
-                >
-                    {
-                        bornCardData?.map((items, index) => {
-                            return (
-                                <>
-                                    <SwiperSlide key={index}>
-                                        <div className={Styles.cardDiv}>
-                                            <div>
-                                                <img src={items.img} alt="Image Not Found" className={Styles.img} />
+                            },
+                            960: {
+                                slidesPerView: 6,
+                                allowTouchMove: false,
+                                slidesPerGroup: 6,
+
+                            },
+                        }}
+                    >
+                        {
+                            celebritiesBirthday?.map((items, index) => {
+                                return (
+                                    <>
+                                        <SwiperSlide key={index}>
+                                            <div className={Styles.cardDiv}>
+                                                <div >
+                                                    <img src={items?.avatar} alt="Image Not Found" className={Styles.img} />
+                                                </div>
+                                                <div className={Styles.cardTxtDiv}>
+                                                    <h2 className={Styles.cardHeading}>
+                                                        {items.title}
+                                                    </h2>
+                                                    <p className={Styles.cardDes}>
+                                                        {items?.name}
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div className={Styles.cardTxtDiv}>
-                                                <h2 className={Styles.cardHeading}>
-                                                    {items.title}
-                                                </h2>
-                                                <p className={Styles.cardDes}>
-                                                    {items.rate}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </SwiperSlide>
-                                </>
-                            )
-                        })
-                    }
-                    <div className={Styles.swiper_button_next} onClick={() => swiperRef.current.slideNext()} ><ArrowNextIcon className={Styles.arrows} /></div>
-                    <div className={Styles.swiper_button_prev} onClick={() => swiperRef.current.slidePrev()} ><ArrowBackIcon className={Styles.arrows} /></div>
+                                        </SwiperSlide>
+                                    </>
+                                )
+                            })
+                        }
+                        <div className={Styles.swiper_button_next} onClick={() => swiperRef.current.slideNext()} ><ArrowNextIcon className={Styles.arrows} /></div>
+                        <div className={Styles.swiper_button_prev} onClick={() => swiperRef.current.slidePrev()} ><ArrowBackIcon className={Styles.arrows} /></div>
 
-                </Swiper>
+                    </Swiper>
+                }
             </div>
         </>
     )

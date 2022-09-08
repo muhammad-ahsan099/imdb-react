@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import editerIcon from "../../../assets/images/editerIcon.svg";
-import { exploreCardData } from "../UseMoreToExplore";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,7 +15,7 @@ import ArrowNextIcon from '@material-ui/icons/NavigateNext';
 
 import { Navigation } from "swiper";
 
-export default function EditorPicks() {
+export default function EditorPicks({editorPicks}) {
 
     const classes = useStyles()
     const swiperRef = useRef()
@@ -71,7 +70,7 @@ export default function EditorPicks() {
                     }}
                 >
                     {
-                        exploreCardData?.map((items, index) => {
+                        editorPicks?.map((items, index) => {
                             return (
                                 <>
                                     <SwiperSlide key={index}>

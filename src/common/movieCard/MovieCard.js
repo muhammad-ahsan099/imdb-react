@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -13,60 +13,80 @@ import PlayArrowRoundedIcon from '@material-ui/icons/PlayArrowRounded';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import { useStyles } from './MovieCardStyle';
 import { IconButton } from '@material-ui/core';
+import { BsFillBookmarkCheckFill, BsFillBookmarkPlusFill } from "react-icons/bs";
+import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
+import clsx from 'clsx'
+import OpenInNewOutlinedIcon from '@material-ui/icons/OpenInNewOutlined';
 
-export default function MovieCard() {
+export default function MovieCard({ info_btn, bgColor, btn_text, end_icon, moviesData }) {
     const classes = useStyles();
+    const [check, setCheck] = useState(false)
 
     return (
-        <Card className={classes.root}>
+        <Card className={clsx(classes.root, bgColor && classes.bgWhite)}>
             <CardActionArea>
+                <div className={classes.iconTopContainer} onClick={() => setCheck(!check)}>
+                    {
+                        !check ?
+                            <div className={classes.iconContainer}>
+                                <AddOutlinedIcon className={classes.wishListIcon} />
+                            </div>
+                            :
+                            <div className={classes.iconActiveContainer} />
+                    }
+                </div>
+
                 <CardMedia
                     component="img"
-                    alt="Contemplative Reptile"
+                    alt="Movie Poster"
                     height="274"
-                    image="https://v4.mui.com/static/images/cards/contemplative-reptile.jpg"
-                    title="Contemplative Reptile"
+                    image={moviesData?.poster_url}
+                    title="Movie Poster"
                 />
                 <CardContent>
                     <div className={classes.topSection}>
                         <div className={classes.rating}>
                             <StarFillIcon fontSize='small' className={classes.fillIcon} />
                             <Typography className={classes.ratingText}>
-                                7.0
+                                {moviesData?.imdb_rating}
                             </Typography>
                         </div>
                         <StarUnfillIcon fontSize='small' color='primary' />
                     </div>
-                    <Typography className={classes.Typography} variant="h6" component="h6">
-                        Lizard
+                    <Typography className={clsx(classes.Typography, bgColor && classes.colorBlack)} variant="h6" component="h6">
+                       {moviesData?.title}
                     </Typography>
                 </CardContent>
             </CardActionArea>
             <CardActions classes={{ root: classes.cardAction }}>
                 <Button
                     variant='outlined'
-                    className={classes.menuButton}
-                    startIcon={<AddIcon />}
+                    className={clsx(classes.menuButton, bgColor && classes.bgButton)}
+                    startIcon={!end_icon && <AddIcon />}
+                    endIcon={end_icon && <OpenInNewOutlinedIcon />}
                 >
-                    Menu
+                  { btn_text ? btn_text : 'Watchlist'}
                 </Button>
-                <div className={classes.bottomSection}>
+                <div className={clsx(classes.bottomSection, info_btn && classes.hideInfoBtn)}>
                     <Button
                         variant='outlined'
-                        className={classes.trailerButton}
+                        className={clsx(classes.trailerButton, bgColor && classes.bgTrailerButton)}
                         startIcon={<PlayArrowRoundedIcon />}
+                        
                     >
-                        <p className={classes.menuText}>
+                        <p className={classes.menuText} style={{color: bgColor && '#000'}}>
                             Trailer
                         </p>
                     </Button>
-
-                    <IconButton
-                        size={'large'}
-                        className={classes.smallMenuScreen}
-                    >
-                        <InfoOutlinedIcon />
-                    </IconButton>
+                    {
+                        info_btn &&
+                        <IconButton
+                            // size={'large'}
+                            className={classes.smallMenuScreen}
+                        >
+                            <InfoOutlinedIcon />
+                        </IconButton>
+                    }
                 </div>
             </CardActions>
         </Card>

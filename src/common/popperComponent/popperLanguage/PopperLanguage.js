@@ -95,6 +95,7 @@ export default function PopperLanguage(props) {
                                                 return (
                                                     <FormControlLabel
                                                         classes={{label: classes.label}}
+                                                        key={index}
                                                         control={<Radio
                                                             color='secondary'
                                                             classes={{

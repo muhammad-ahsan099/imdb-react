@@ -77,7 +77,10 @@ const useStyles = makeStyles((theme) => ({
     drawerWeb: {
         width: drawerWidth,
         backgroundColor: commonColor.appBar,
-        height: '100vh'
+        height: '100vh',
+        // textAlign: 'center',
+        // justifyContent: 'center',
+        padding: '0px 4%',
     },
     drawerPaper: {
         width: mobileDrawerWidth,

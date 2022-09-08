@@ -2,16 +2,20 @@ import React from 'react'
 import EditorPicks from './swiper/Swiper';
 import BornToday from '../../common/bornToday/BornToday';
 import TopNews from '../../common/topNews/TopNews';
-import RecentlyReviews from '../../common/recentlyReviews/RecentlyReviees';
+import { UseMoreToExplore } from './UseMoreToExplore';
 
-export default function MoreToExplore() {
+export default function MoreToExplore(props) {
+    const [
+        {
+            editorPicks,
+        }
+    ] = UseMoreToExplore()
+    const {celebritiesBirthday} = props;
     return (
         <>
-        {/* <Exclusive */}
-        <EditorPicks />
-        <BornToday />
+        <EditorPicks editorPicks={editorPicks} />
+        <BornToday celebritiesBirthday={celebritiesBirthday} />
         <TopNews />
-        <RecentlyReviews />
         </>
     )
 }

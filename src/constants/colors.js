@@ -11,5 +11,6 @@ export const commonColor = {
   alertColor: 'rgb(254,225,221)',
   error: '#E4001E',
   menuColor: '#1f1f1f',
-  watchBtn: '#2c2c2c'
+  watchBtn: '#2c2c2c',
+  galleryCardBg: '#303030'
 };

@@ -40,7 +40,7 @@ export default function PopperSearch(props) {
                                 <MenuList id="split-button-menu" className={classes.menuList}>
                                     {options.map((option, index) => (
                                         <MenuItem
-                                            key={option}
+                                            key={index}
                                             className={classes.typography}
                                             selected={index === selectedIndex}
                                             onClick={(event) => handleMenuItemClick(event, index)}

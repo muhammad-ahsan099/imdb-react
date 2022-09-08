@@ -12,7 +12,6 @@ import "./styles.css";
 // import { Navigation, Pagination } from "swiper";
 import { Navigation, Pagination, Scrollbar, A11y, Controller } from "swiper";
 import { Grid, Hidden } from "@material-ui/core";
-import PlayCircleIcon from '@material-ui/icons/PlayCircleFilledWhiteOutlined';
 import { IoPlayCircleOutline } from "react-icons/io5";
 import TwoS from '../../../assets/movies/2s.jpg'
 import ArrowIcon from '@material-ui/icons/ArrowForwardIosOutlined';
@@ -21,26 +20,26 @@ import ArrowNextIcon from '@material-ui/icons/NavigateNext';
 import { useSwiper, useSwiperSlide } from 'swiper/react';
 import { useStyles } from "./SwiperStyle";
 import { BsFillBookmarkCheckFill, BsFillBookmarkPlusFill } from "react-icons/bs";
-
-
-export default function SwiperComponent() {
-    const classes = useStyles()
+import bookIcon from '../../../assets/images/bookIcon.svg'
+import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
+export default function SwiperComponent(props) {
+    const {homeMoviesTop} = props;
+    const classes = useStyles();
     const [slideIndex, setSlideIndex] = useState(0)
     const swiper1Ref = useRef();
     const swiper2Ref = useRef();
-    console.log('swiper2Ref', swiper2Ref)
 
     useLayoutEffect(() => {
         swiper1Ref.current.controller.control = swiper2Ref.current;
         swiper2Ref.current.controller.control = swiper1Ref.current;
     }, []);
 
+    const [check, setCheck] = useState(false)
 
     return (
         <div className={classes.root}>
             <Grid container spacing={0}>
-                <Grid item xs={12} sm={12} md={8} lg={8} className={classes.overLay}>
-                    
+                <Grid item xs={12} sm={12} md={8} lg={8}>
                     <Swiper
                         onSwiper={(swiper) => {
                             swiper1Ref.current = swiper;
@@ -51,17 +50,23 @@ export default function SwiperComponent() {
                         className={classes.swiper}
                         loop={true}
                         navigation={true}
-                        modules={[Pagination, Navigation, Controller]}
+                        modules={[Navigation, Controller]}
                     >
                         {
-                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
+                           homeMoviesTop?.map((item, index) => {
                                 return (
-                                    <SwiperSlide>
-                                        <div className={classes.swiper_slide}>
+                                    <SwiperSlide key={index}>
+                                        <div className={classes.swiper_slide}  style={{backgroundImage: `url("${item?.video_poster_url}")`}} >
                                             <div className={classes.bottomSection}>
-                                                <div className={classes.inner_poster}>
-                                                    <BsFillBookmarkCheckFill className={classes.wishListIcon} />
-                                                    <BsFillBookmarkPlusFill className={classes.wishListIcon} />
+                                                <div className={classes.inner_poster} onClick={() => setCheck(!check)} style={{backgroundImage: `url("${item?.poster_url}")`}}>
+                                                    {
+                                                        !check ?
+                                                            <div className={classes.iconContainer}>
+                                                                <AddOutlinedIcon className={classes.wishListIcon} />
+                                                            </div>
+                                                            :
+                                                            <div className={classes.iconActiveContainer} />
+                                                    }
                                                 </div>
 
 
@@ -74,8 +79,8 @@ export default function SwiperComponent() {
                                                     {/* Web View */}
                                                     <IoPlayCircleOutline size={90} className={classes.playIcon} />
                                                     <div className={classes.textContent}>
-                                                        <h1 className={classes.movieHeading}>'The Inivation' Stars Ask Each Other Anything</h1>
-                                                        <p className={classes.movieDetail}>Watch the Interview</p>
+                                                        <h1 className={classes.movieHeading}>{item?.title}</h1>
+                                                        <p className={classes.movieDetail}>Watch the Trailer</p>
                                                     </div>
                                                     <p className={classes.time}>2:30</p>
                                                     {/* </div>
@@ -96,7 +101,7 @@ export default function SwiperComponent() {
 
                 {/* <Hidden smDown > */}
                 <Grid
-                    item xs={0} sm={0} md={4} lg={4} className={classes.rightGrid}>
+                    item md={4} lg={4} className={classes.rightGrid}>
                     <div className={classes.verticalSliderContainer}>
                         <h2 className={classes.smallHeadingTop}>Up next</h2>
                         <div className={classes.bgDiv} />
@@ -121,18 +126,17 @@ export default function SwiperComponent() {
                             }}
                             allowTouchMove={false}
                             effect={"fade"}
-                            // fadeEffect={true}
+                        // fadeEffect={true}
                         >
                             {
-                                [1, 2, 3, 4, 5, 6, 7].map((item, index) => {
-                                    // console.log('index', index);
+                                homeMoviesTop?.map((item, index) => {
                                     return (
-                                        <SwiperSlide>
+                                        <SwiperSlide key={index}>
                                             <div
                                                 className={clsx(classes.verticalSliderSlide,
                                                     slideIndex === index && classes.activeVerticalSlide)}
                                             >
-                                                <img src={TwoS} className={classes.smallImg} alt='img' />
+                                                <img src={item?.poster_url} className={classes.smallImg} alt='img' />
                                                 <div style={{ marginLeft: 10 }}>
                                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                                         <IoPlayCircleOutline size={40} className={classes.playSmallIcon} />
@@ -140,8 +144,8 @@ export default function SwiperComponent() {
                                                     </div>
 
                                                     <div>
-                                                        <h4 className={classes.movieSmallHeading}>'The Inivation' Stars Ask Each Other Anything</h4>
-                                                        <p className={classes.movieSmallDetail}>Watch the Interview</p>
+                                                        <h4 className={classes.movieSmallHeading}>{item?.title}</h4>
+                                                        <p className={classes.movieSmallDetail}>Watch the Trailer</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -149,8 +153,8 @@ export default function SwiperComponent() {
                                     )
                                 })
                             }
-                            <div class="swiper-button-nextt" ><ArrowNextIcon className={classes.arrows} /></div>
-                            <div class="swiper-button-prevv" ><ArrowBackIcon className={classes.arrows} /></div>
+                            {/* <div class="swiper-button-nextt" ><ArrowNextIcon className={classes.arrows} /></div>
+                            <div class="swiper-button-prevv" ><ArrowBackIcon className={classes.arrows} /></div> */}
                         </Swiper>
                         <div className={classes.browseContainer}>
                             <h3 className={classes.brwoseHeading}>Browse trailers</h3>

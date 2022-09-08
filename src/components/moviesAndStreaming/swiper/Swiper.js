@@ -17,7 +17,7 @@ import { Button } from '@material-ui/core';
 
 export default function SwiperComponent(props) {
 
-    const { isSwiper, heading, subHeading , btn } = props;
+    const { isSwiper, heading, subHeading, btn, movies } = props;
     const classes = useStyles()
     const swiper1Ref = useRef();
 
@@ -25,20 +25,20 @@ export default function SwiperComponent(props) {
     return (
         <div className={classes.root}>
             {
-             !btn ? 
-            <div className={classes.topPicks}>
-                <div className={classes.line} />
-                <h1 className={classes.h3}>{heading}</h1>
-                <ArrowNextIcon className={classes.nextIcon} />
-            </div>
-            :
-            <Button
-                variant='outlined'
-                className={classes.primeBtn}
-                // disabled
-            >
-                {heading}
-            </Button>
+                !btn ?
+                    <div className={classes.topPicks}>
+                        <div className={classes.line} />
+                        <h1 className={classes.h3}>{heading}</h1>
+                        <ArrowNextIcon className={classes.nextIcon} />
+                    </div>
+                    :
+                    <Button
+                        variant='outlined'
+                        className={classes.primeBtn}
+                    // disabled
+                    >
+                        {heading}
+                    </Button>
             }
             <p className={classes.topPicksText}>{subHeading}</p>
             {
@@ -82,11 +82,15 @@ export default function SwiperComponent(props) {
                         }}
                     >
                         {
-                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((item) => {
+                            movies?.map((item, index) => {
                                 return (
-                                    <SwiperSlide className={classes.swiper_slide}>
+                                    <SwiperSlide className={classes.swiper_slide} key={index}>
                                         <div className={classes.innerSwiperSlide}>
-                                            <MovieCard />
+                                            <MovieCard
+                                                btn_text={'Watch now'}
+                                                end_icon={true}
+                                                moviesData={item}
+                                            />
                                         </div>
 
                                     </SwiperSlide>

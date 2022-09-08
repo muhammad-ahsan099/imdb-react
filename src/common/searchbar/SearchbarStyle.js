@@ -102,7 +102,7 @@ export const useStyles = makeStyles((theme) =>  ({
         position: 'absolute',
         top: 0,
         left: 0,
-      
+        zIndex: 5000
 
     },
     inputMobile: {

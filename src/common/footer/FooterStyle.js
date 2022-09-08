@@ -1,56 +1,42 @@
 import { makeStyles } from "@material-ui/core";
+import { commonColor } from "../../constants/colors";
 
 
 export const useStyles = makeStyles((theme) => ({    
     container : {
-        backgroundColor : '#000000',
-        width: '95%',
-        display: 'block',
-        margin: '0 auto',
+        width : '100%',
         textAlign: 'center',
     },
     icons : {
-        listStyleType:'none',
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center',
-        padding:'0px 0px 0px 0px'
+        margin:'18px',
+        cursor:'grab'
     },
-    hideiconColor: {
-        color : '#fff',
-        cursor:'grab',
-        fontSize : '16px',
-        fontWeight:  '500',
-        paddingLeft: 40,
-        fontFamily: 'Roboto',
-        "@media(max-width: 960px)": {
-            display: 'none'
+    listContainer : {
+        display: 'flex',
+        justifyContent: 'center',
+        "@media (max-width: 800px)": {
+            padding: '0px 2% 0px 2%',
+            display:'inline-block',
+            margin: '0px auto',
         },
 
-
     },
-    iconColor : {
-        color : '#fff',
-        // margin : '20px 20px',
-        // margin : '0px 15px',
-        marginRight: 30,
+    listDiv: {
+        margin: '0px 13px',
+        color: '#fff',
+        fontSize : '15px',
+        display: 'inline-flex',
+        alignItems: 'center',
         cursor:'grab',
-        fontSize : '16px',
-        fontWeight:  '500',
-        fontFamily: 'Roboto-SemiBold'
+        flexWrap: 'wrap'
     },
-    list : {
-        listStyleType:'none',
-        display:'inline-block',
-        // display: 'inline',
-        justifyContent:'center',
-        alignItems:'center',
-    },
-    listIcon : {
-        fontSize : '12px'
+    linkTag : {
+        textDecoration:'none',
+        color:'#fff'
     },
     imgMargin : {
         marginLeft:'5px',
+        height : '10px'
     },
     amazonTxt : {
         fontWeight : 'bold',
@@ -61,10 +47,12 @@ export const useStyles = makeStyles((theme) => ({
         padding : '10px 0px',
         textAlign : 'center',
     },
+    hidden: {
+        display: 'none'
+    },
     headingTwo : {
         color : '#adb5bd',
         fontSize : '12px',
-        paddingBottom : '20px',
         textAlign : 'center',
     }
 }))

@@ -81,8 +81,8 @@ export default function ExclusiveVideos() {
                         exclusiveVideos?.map((items, index) => {
                             return (
                                 <>
-                                    <SwiperSlide key={index}>
-                                        <div className={Styles.cardDiv}>
+                                    <SwiperSlide>
+                                        <div className={Styles.cardDiv} key={index}>
                                             <div className={Styles.cardHeader}>
                                                 <div>
                                                     <img src={items.img} alt="Image Not Found" height={'240px'} width={'100%'} />
@@ -107,8 +107,8 @@ export default function ExclusiveVideos() {
                     }
                     <div className={Styles.swiper_button_next} onClick={() => swiperRef.current.slideNext()} ><ArrowNextIcon className={Styles.arrows} /></div>
                     <div className={Styles.swiper_button_prev} onClick={() => swiperRef.current.slidePrev()} ><ArrowBackIcon className={Styles.arrows} /></div>
-
                 </Swiper>
+                
             </div>
         </>
     )

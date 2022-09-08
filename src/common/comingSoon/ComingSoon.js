@@ -13,16 +13,19 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import ArrowBackIcon from '@material-ui/icons/NavigateBefore';
 import ArrowNextIcon from '@material-ui/icons/NavigateNext';
+import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 
 
 // import "./styles.css";
 
 // import required modules
 import { Navigation } from "swiper";
+import BookMarkButton from '../BookMarkButton/BookMarkButton';
 
-export default function ComingSoon() {
+export default function ComingSoon(props) {
+    const { recentUpcomingMovies } = props;
     const swiperRef = useRef();
-    const Styles = useStyles()
+    const Styles = useStyles();
 
     return (
         <>
@@ -63,14 +66,14 @@ export default function ComingSoon() {
                     breakpoints={{
                         0: {
                             slidesPerView: 1.1,
-                            spaceBetween:10,
+                            spaceBetween: 10,
                             slidesPerGroup: 1,
                             speed: 1200,
                             allowTouchMove: true
                         },
                         600: {
                             slidesPerView: 2.4,
-                            spaceBetween:10,
+                            spaceBetween: 10,
                             slidesPerGroup: 1,
                             speed: 1200,
                             allowTouchMove: true
@@ -83,34 +86,34 @@ export default function ComingSoon() {
                     }}
                 >
                     {
-                        comingSoonData?.map((items, index) => {
+                        recentUpcomingMovies?.map((items, index) => {
                             return (
                                 <>
-                                    <SwiperSlide key={index}>
-                                        <div className={Styles.cardDiv}>
+                                    <SwiperSlide key={index} >
+                                        <div className={Styles.cardDiv} key={index}>
                                             <div className={Styles.cardHeader}>
-                                                <div>
-                                                    <img src={items.img} alt="Image Not Found" height={'240px'} width={'100%'} />
+                                                <div className={Styles.imgContainer}>
+                                                    <img src={items?.video_poster_url} alt="Image Not Found" className={Styles.mainImg} />
                                                 </div>
                                                 <div className={Styles.iconDiv}>
                                                     <img src={videoIcon} alt="Image Not Found" height={'32px'} width={'32px'} />
                                                     <p className={Styles.iconTxt}>
-                                                        {items.time}
+                                                        {items?.year}
                                                     </p>
                                                 </div>
                                             </div>
 
                                             <div className={Styles.cardFooter}>
                                                 <div>
-                                                    <img src={bookIcon} alt="Image Not Found" height={'70px'} width={'70px'} />
+                                                    <BookMarkButton />
                                                 </div>
 
                                                 <div className={Styles.footerDesDiv}>
-                                                    <span className={Styles.cardYear}>{items.year}</span>
-                                                    <br />
-                                                    <span className={Styles.cardTxt}>
-                                                        {items.des}
+                                                    <span className={Styles.cardYear}>
+                                                        {'items.title'}
                                                     </span>
+                                                    <br />
+                                                    <span className={Styles.cardTxt}>{items?.title}</span>
                                                 </div>
                                             </div>
                                         </div>
