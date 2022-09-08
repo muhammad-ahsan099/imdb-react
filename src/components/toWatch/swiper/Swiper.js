@@ -17,7 +17,7 @@ import { Button } from '@material-ui/core';
 
 export default function SwiperComponent(props) {
 
-    const { isSwiper, heading, subHeading } = props;
+    const { isSwiper, heading, subHeading, info_btn, movies } = props;
     const classes = useStyles()
     const swiper1Ref = useRef();
 
@@ -68,15 +68,16 @@ export default function SwiperComponent(props) {
                                 slidesPerView: 6,
                                 slidesPerGroup:6,
                                 allowTouchMove: false,
+                                mousewheel: true,
                             },
                         }}
                     >
                         {
-                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((item) => {
+                            movies?.map((item, index) => {
                                 return (
-                                    <SwiperSlide className={classes.swiper_slide}>
+                                    <SwiperSlide className={classes.swiper_slide} key={index}>
                                         <div className={classes.innerSwiperSlide}>
-                                            <MovieCard />
+                                            <MovieCard  info_btn={info_btn} moviesData={item} />
                                         </div>
 
                                     </SwiperSlide>

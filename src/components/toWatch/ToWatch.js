@@ -7,9 +7,10 @@ import ArrowNextIcon from '@material-ui/icons/NavigateNext';
 
 
 import { useStyles } from './ToWatchStyle';
+import BookMarkButton from '../../common/BookMarkButton/BookMarkButton';
 
-export default function ToWatch() {
-
+export default function ToWatch(props) {
+  const { topPickMovies, fanFavoritesMovies } = props;
   const classes = useStyles()
 
   return (
@@ -22,7 +23,7 @@ export default function ToWatch() {
           <ArrowNextIcon className={classes.nextIcon} />
         </div>
         <p className={classes.topPicksText}>{'TV shows and movies just for you'}</p>
-        <Swiper isSwiper />
+        <Swiper isSwiper info_btn movies={topPickMovies} />
       </div>
 
       <div className={classes.topSpace} />
@@ -36,28 +37,29 @@ export default function ToWatch() {
         </div>
 
         {
-          false &&
-          <div className={classes.contentContainer}>
-            <img src={bookIcon} alt="Image Not Found" className={classes.contentIcon} />
-            <span className={classes.contentHeading}>
-              Sign in to access your Watchlist
-            </span>
-            <br />
-            <span className={classes.contentDes}>
-              Save shows and movies to keep track of what you want to watch.
-            </span>
-
-            {/* Sign in Button */}
-            <div className={classes.signInButtonDiv}>
-              <Button variant="contained" size="medium" className={classes.signInButton}>
-                Sign in to IMDb
-              </Button>
+          true ?
+            <div className={classes.contentContainer}>
+              <BookMarkButton />
+              <span className={classes.contentHeading}>
+                Sign in to access your Watchlist
+              </span>
+              <br />
+              <span className={classes.contentDes}>
+                Save shows and movies to keep track of what you want to watch.
+              </span>
+              {/* Sign in Button */}
+              <div className={classes.signInButtonDiv}>
+                <Button variant="contained" size="medium" className={classes.signInButton}>
+                  Sign in to IMDb
+                </Button>
+              </div>
             </div>
-          </div>
+            :
+            <>
+              <p className={classes.topPicksText}>{'Movies and TV shows that you have watchlisted'}</p>
+              <Swiper isSwiper info_btn={false} />
+            </>
         }
-
-        <p className={classes.topPicksText}>{'Movies and TV shows that you have watchlisted'}</p>
-        <Swiper isSwiper />
       </div>
 
 
@@ -72,7 +74,7 @@ export default function ToWatch() {
         </div>
         <p className={classes.topPicksText}>{"This week's top TV and movies"}</p>
 
-        <Swiper isSwiper />
+        <Swiper isSwiper info_btn={false} movies={fanFavoritesMovies} />
       </div>
 
       <div className={classes.swiperContainer}>
@@ -83,7 +85,7 @@ export default function ToWatch() {
           <ArrowNextIcon className={classes.nextIcon} />
         </div>
         <p className={classes.topPicksText}>{'IMDb helps you select the perfect next show or movie to watch.'}</p>
-        <Swiper isSwiper={false} />
+        <Swiper isSwiper={false} info_btn={false} />
       </div>
       <div className={classes.topSpace} />
 

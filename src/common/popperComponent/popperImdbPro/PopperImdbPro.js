@@ -3,7 +3,7 @@ import Popper from '@material-ui/core/Popper';
 import Button from '@material-ui/core/Button';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
-import { ClickAwayListener, IconButton, ListItemIcon, MenuItem, MenuList } from '@material-ui/core';
+import { ClickAwayListener, IconButton, Link, ListItemIcon, MenuItem, MenuList } from '@material-ui/core';
 import SearchIcon from "@material-ui/icons/Search";
 import { IMDB_PRO_POSTER } from '../../../constants/images'
 import PRO_LOGO from '../../../assets/icons/pro-logo.svg'
@@ -41,12 +41,14 @@ export default function PoopperIMDBPro(props) {
                                                 <li className={classes.li}>Get the latest news from leading industry trades</li>
                                                 <li className={classes.li}>Claim your page and control your brand across IMDb & Amazon</li>
                                             </ul>
-                                        <Button
-                                                variant='contained'
-                                                className={classes.freebutton}
-                                            >
-                                                Try IMDbPro Free
-                                            </Button>
+                                            <Link href="https://pro.imdb.com/login/lwa?rf=cons_nb_hm&ref_=cons_nb_hm" underline="none">
+                                                <Button
+                                                    variant='contained'
+                                                    className={classes.freebutton}
+                                                >
+                                                    Try IMDbPro Free
+                                                </Button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>

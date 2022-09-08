@@ -29,11 +29,48 @@ export const useStyles = makeStyles((theme) => ({
     },
     signInButtonDiv : {
         textAlign : 'center',
-        margin : '30px 0px'
+        margin : '30px 0px',
+        [theme.breakpoints.down('sm')]: {
+            display: 'none'
+        }
+    },
+    signInButtonDivTwo : {
+        textAlign : 'center',
+        margin : '30px 0px 10px 0px',
+        backgroundColor: commonColor.appBar,
+        padding: '14px 0px',
+        [theme.breakpoints.up('md')]: {
+            display: 'none'
+        }
     },
     signInButton : {
         backgroundColor : '#f5c518',
         textTransform: 'none',
+    },
+    signInButtonSmallDiv: {
+        backgroundColor: 'rgba(18, 18, 18, 0.7)',
+        padding: '8px 0px',
+        textAlign : 'center',
+        [theme.breakpoints.up('md')]: {
+            display: 'none'
+        }
+    },
+    siginInSmall: {
+        textTransform: 'none',
+        color: 'rgb(91,136,244)',
+        border: 'none',
+        fontWeight: 'bold',
+        background: commonColor.watchBtn,
+        '&:hover': {
+            color: 'rgb(91,136,244)',
+            backgroundColor: 'rgba(79, 79, 79, 1)'
+        },
+    },
+    aTag: {
+        margin: 0,
+        padding: 0,
+        textDecoration: 'none'
     }
+
 
 }))

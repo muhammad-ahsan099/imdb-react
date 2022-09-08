@@ -41,10 +41,18 @@ export const useStyles = makeStyles((theme) => ({
     cardDiv : {
         // margin : '20px 0px 45px 0px',
         width: '100%',
+        marginTop: 10,
     },
     img : {
         height : '190px',
+        "@media (max-width: 750px)": {
+            height: '190px',
+        },
+        width: '100%',
         borderRadius:'50% 50%',
+        objectFit: 'cover',
+        backgroundColor: 'pink',
+        // marginRight: 100,
     },
     cardTxtDiv : {
         textAlign : 'center',

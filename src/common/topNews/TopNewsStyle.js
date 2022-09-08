@@ -46,16 +46,17 @@ export const useStyles = makeStyles((theme) => ({
     buttonDiv : {
         margin : '10px 5px',
         paddingBottom: 20,
-        // width: 30em;
         // overflowX: 'scroll',
-        // whiteSpace: 'nowrap'    
+        // whiteSpace: 'nowrap',
+        // minWidth: '100%',
     },
     buttons : {
         color : '#e9ecef',
         textTransform: 'none',
         borderColor : '#6c757d',
         borderRadius : '50px 50px',
-        margin : '0px 4px'
+        margin : '0px 4px',
+        marginBottom: 10,
     },
     arrows: {
         color: '#fff',

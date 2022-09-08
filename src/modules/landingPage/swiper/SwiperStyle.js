@@ -2,17 +2,25 @@ import { makeStyles } from "@material-ui/core";
 import Two from '../../../assets/movies/2.jpg'
 import TwoS from '../../../assets/movies/2s.jpg'
 import { commonColor } from "../../../constants/colors";
+import bookIcon from '../../../assets/images/bookIcon.png'
+import ActiveBookmark from '../../../assets/images/activeBookmark.png';
 
-export const useStyles = makeStyles((theme) => ({
+
+export const useStyles =  makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         marginTop: 10,
-        minHeight: 550,
+        height: 550,
         padding: '0px 4%',
         [theme.breakpoints.down('sm')]: {
-            padding: '0px 1%'
+            padding: '0px 1%',
         },
-
+        "@media(max-width: 730px)": {
+            height: 400,
+        },
+        "@media(max-width: 510px)": {
+            height: 320,
+        },
     },
     // overLay: {
     //     pointer: 'cursor',
@@ -25,10 +33,17 @@ export const useStyles = makeStyles((theme) => ({
         width: '100%',
         height: 550,
         padding: 0,
-        cursor: 'pointer'
+        cursor: 'pointer',
+        "@media(max-width: 730px)": {
+            height: 400,
+        },
+        "@media(max-width: 510px)": {
+            height: 320,
+        },
     },
     swiper_slide: {
-        backgroundImage: `url(${Two})`,
+        // backgroundImage: `url("${Two}")`,
+        // backgroundColor: props => props.bg ? 'pink' : 'blue',
         width: '100%',
         height: '100%',
         backgroundSize: 'contain',
@@ -46,7 +61,7 @@ export const useStyles = makeStyles((theme) => ({
 
     },
     inner_poster: {
-        backgroundImage: `url(${TwoS})`,
+        // backgroundImage: `url(${TwoS})`,
         width: '150px',
         height: '215px',
         [theme.breakpoints.down('sm')]: {
@@ -62,18 +77,49 @@ export const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'flex-start'
     },
-    wishListIcon: {
-        // color: 'rgba(24,24,24, 0.5)', 
-        // color:'orange',
-        // fill: 'yellow',
-        stroke: '#fff',
-        color: '#fff',
-        height: 58, 
+    iconContainer: {
+        backgroundImage: `url(${bookIcon})`,
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        height: 45,
         width: 43,
-        marginTop: -8,
-        marginLeft: -4,
-        borderRadius: 0,
+        display: 'flex',
+        alignItems: 'center',
+        "@media(max-width: 600px)": {
+            height: 25,
+            width: 23,
+        },
+
     },
+    wishListIcon: {
+        color: '#fff',
+        backgroundColor: 'transparent',
+        marginTop: -8,
+        marginLeft: 5,
+        borderRadius: 50,
+        "@media(max-width: 600px)": {
+            marginLeft: 1,
+            fontSize: 16
+        },
+    },
+    iconActiveContainer: {
+        backgroundImage: `url(${ActiveBookmark})`,
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        height: 45,
+        width: 43,
+        display: 'flex',
+        alignItems: 'center',
+        "@media(max-width: 600px)": {
+            // marginTop: '0px',
+            // marginLeft: -15,
+            // marginRight: -11,
+            height: 25,
+            width: 23,
+        },
+
+    },
+
     bottomMiddleSection: {
         display: 'flex',
         justifyContent: 'space-between',
@@ -183,7 +229,6 @@ export const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             display: 'none'
         },
-
     }
     ,
     verticalSliderContainer: {
@@ -292,11 +337,11 @@ export const useStyles = makeStyles((theme) => ({
     },
     swiper_button_next: {
         margin: 0,
-        width: 47, 
+        width: 47,
         height: 63,
         borderRadius: '4px',
         border: '1px solid #848484',
-        color: 'transparent', 
+        color: 'transparent',
         backgroundColor: 'rgba(102,102,103, 0.2)',
         display: 'flex',
         alignItems: 'center',
@@ -309,14 +354,14 @@ export const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             display: 'none'
         },
-      },
+    },
     swiper_button_prev: {
         margin: 0,
-        width: 47, 
+        width: 47,
         height: 63,
         borderRadius: '4px',
         border: '1px solid #848484',
-        color: 'transparent', 
+        color: 'transparent',
         backgroundColor: 'rgba(102,102,103, 0.2)',
         display: 'flex',
         alignItems: 'center',

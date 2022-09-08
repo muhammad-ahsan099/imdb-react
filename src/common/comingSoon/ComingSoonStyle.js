@@ -1,6 +1,5 @@
 import { commonColor } from "../../constants/colors";
 import { makeStyles } from "@material-ui/core";
-
 export const useStyles = makeStyles((theme) => ({
     mainContainer : {
         width : '100%',
@@ -58,17 +57,21 @@ export const useStyles = makeStyles((theme) => ({
     },
     cardFooter : {
         display : 'flex',
+        alignItems: 'flex-end',
     },
     footerDesDiv : {
         marginTop : '10px',
+        paddingBottom: 3
     },
     cardYear : {
         color : '#adb5bd',
-        fontSize : '12px'
+        fontSize : '12px',
+        fontWeight: 'bold',
     },
     cardTxt : {
         color : '#fff',
-        fontSize : '14px'
+        fontSize : '16px',
+        fontWeight: '600'
     },
     arrows: {
         color: '#fff',
@@ -114,6 +117,15 @@ export const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             display: 'none'
         },
-    }
+    },
+    imgContainer: {
+        width: '100%', 
+        height: '240px'
+    },
+    mainImg: {
+        width: '100%',
+        height: '100%',
+        backgroundSize: 'cover',
 
+    }
 }))

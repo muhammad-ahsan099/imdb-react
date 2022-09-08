@@ -45,7 +45,7 @@ export default function WebDrawerOptions({ menuItems, handleDrawerToggle }) {
       <div className={classes.TopDrawerOptions}>
         <div className={classes.linkDiv}>
           {
-            menuItems.map((item) => {
+            menuItems.map((item, index) => {
               return (
                 item?.heading === 'Movies'
                 &&
@@ -80,7 +80,7 @@ export default function WebDrawerOptions({ menuItems, handleDrawerToggle }) {
 
         <div className={classes.linkDiv}>
           {
-            menuItems?.map((item) => {
+            menuItems?.map((item, index) => {
               return (
                 item?.heading === 'TV Shows' ? (
                   <>
@@ -142,12 +142,12 @@ export default function WebDrawerOptions({ menuItems, handleDrawerToggle }) {
         </div>
         <div className={classes.linkDiv}>
           {
-            menuItems.map((item) => {
+            menuItems.map((item, index) => {
               return (
                 item?.heading === 'Awards & Events'
                 &&
                 <>
-                  <div className={classes.headingContainer} >
+                  <div className={classes.headingContainer} key={index}>
                     <Icon className={classes.listIcon}>
                       <img
                         src={AwardsActive}
@@ -181,7 +181,7 @@ export default function WebDrawerOptions({ menuItems, handleDrawerToggle }) {
         </div>
         <div className={classes.linkDiv}>
           {
-            menuItems.map((item) => {
+            menuItems.map((item, index) => {
               return (
                 item?.heading === 'Celebs'
                 &&
@@ -216,7 +216,7 @@ export default function WebDrawerOptions({ menuItems, handleDrawerToggle }) {
         </div>
         <div className={classes.linkDiv}>
           {
-            menuItems.map((item) => {
+            menuItems.map((item, index) => {
               return (
                 item?.heading === 'Community'
                 &&

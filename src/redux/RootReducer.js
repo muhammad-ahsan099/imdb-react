@@ -3,10 +3,14 @@
 import {combineReducers} from 'redux';
 
 import AuthReducer from './reducers/AuthReducer';
-import RateReducer from './reducers/RateReducer'
+import LandingPageReducer from './reducers/LandingPageReducer'
+import CelebritiesReducer from './reducers/CelebritiesReducer'
+
 const RootReducer =   combineReducers({
     AuthReducer,
-    RateReducer
+    LandingPageReducer,
+    CelebritiesReducer,
+    
 })
 
 export default RootReducer;

@@ -1,33 +1,42 @@
 import { makeStyles } from "@material-ui/core";
 import { commonColor } from "../../constants/colors";
+import bookIcon from '../../assets/images/bookIcon.png'
+import ActiveBookmark from '../../assets/images/activeBookmark.png';
 
-export const useStyles = makeStyles((theme)=> ({
+export const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        height: 469,
-        // [theme.breakpoints.down('md')]: {
-        //     width: '15.86%',
-        // },
-        // [theme.breakpoints.down('sm')]: {
-        //     width: '22%',
-        // },
+        // height: 459,
+        borderRadius: 0,
         // [theme.breakpoints.down('xs')]: {
-        //     width: '40%',
+        //     height: 400,
         // },
         backgroundColor: commonColor.cardBg,
         textAlign: 'left',
         margin: 0,
     },
+    bgWhite:{
+        backgroundColor: commonColor.white,
+    },
     Typography: {
         margin: 0,
         padding: 0,
-        fontWeight: 400,
-        fontSize: 18,
+        fontWeight: 500,
+        fontSize: 17,
         marginTop: 6,
         color: '#fff',
         '&:hover': {
             textDecoration: 'underline'
-        }
+        },
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        display: "-webkit-box",
+        WebkitLineClamp: "2",
+        WebkitBoxOrient: "vertical",
+        height:50
+    },
+    colorBlack: {
+        color: commonColor.black
     },
     fillIcon: {
         color: commonColor.themeColor,
@@ -60,6 +69,16 @@ export const useStyles = makeStyles((theme)=> ({
             backgroundColor: 'rgba(79, 79, 79, 1)'
         },
     },
+    bgButton: {
+        color: 'rgb(91,136,244)',
+        border: 'none',
+        fontWeight: 'bold',
+        background: 'rgb(235,235,235)',
+        '&:hover': {
+            color: 'rgb(91,136,244)',
+            backgroundColor: 'rgba(235,235,235, 0.6)'
+        },
+    },
     menuText: {
         margin: 0,
         padding: 0,
@@ -70,7 +89,13 @@ export const useStyles = makeStyles((theme)=> ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 8
+        justifyContent: 'center',
+        marginTop: 8,
+    },
+    hideInfoBtn: {
+        display: 'flex',
+        justifyContent: 'center',
+        justifyContent: 'space-between',
     },
     trailerButton: {
         width: '45%',
@@ -85,15 +110,69 @@ export const useStyles = makeStyles((theme)=> ({
         paddingLeft: 12,
         paddingRight: 12,
         paddingBottom: 0,
-        background: commonColor.appBar,
         '&:hover': {
             color: '#fff',
             backgroundColor: 'rgba(79, 79, 79, 1)'
         },
 
     },
+    bgTrailerButton: {
+        '&:hover': {
+            color: 'rgb(91,136,244)',
+            backgroundColor: 'rgba(235,235,235, 0.6)'
+        },
+
+    },
     smallMenuScreen: {
         color: '#fff',
+    },
+    iconTopContainer: {
+        position: 'absolute',
+        height: 45,
+        width: 40,
+        display: 'inline-block'
+    },
+    iconContainer: {
+        backgroundImage: `url(${bookIcon})`,
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        height: 45,
+        width: 43,
+        display: 'flex',
+        alignItems: 'center',
+        "@media(max-width: 600px)": {
+            height: 25,
+            width: 23,
         },
+
+    },
+    wishListIcon: {
+        color: '#fff',
+        backgroundColor: 'transparent',
+        marginTop: -8,
+        marginLeft: 5,
+        borderRadius: 50,
+        "@media(max-width: 600px)": {
+            marginLeft: 1,
+            fontSize: 16
+        },
+    },
+    iconActiveContainer: {
+        backgroundImage: `url(${ActiveBookmark})`,
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        height: 45,
+        width: 43,
+        display: 'flex',
+        alignItems: 'center',
+        "@media(max-width: 600px)": {
+            // marginTop: '0px',
+            // marginLeft: -15,
+            // marginRight: -11,
+            height: 25,
+            width: 23,
+            },
+
+    },
 
 }));

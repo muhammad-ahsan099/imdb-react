@@ -1,9 +1,11 @@
 import { makeStyles } from "@material-ui/core";
+import { commonColor } from "../../constants/colors";
 
 
 export const useStyles = makeStyles((theme) => ({    
     container : {
         width : '100%',
+        textAlign: 'center',
     },
     icons : {
         margin:'18px',
@@ -11,15 +13,22 @@ export const useStyles = makeStyles((theme) => ({
     },
     listContainer : {
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        "@media (max-width: 800px)": {
+            padding: '0px 2% 0px 2%',
+            display:'inline-block',
+            margin: '0px auto',
+        },
+
     },
     listDiv: {
         margin: '0px 13px',
         color: '#fff',
         fontSize : '15px',
-        display: 'flex',
+        display: 'inline-flex',
         alignItems: 'center',
         cursor:'grab',
+        flexWrap: 'wrap'
     },
     linkTag : {
         textDecoration:'none',
@@ -38,10 +47,12 @@ export const useStyles = makeStyles((theme) => ({
         padding : '10px 0px',
         textAlign : 'center',
     },
+    hidden: {
+        display: 'none'
+    },
     headingTwo : {
         color : '#adb5bd',
         fontSize : '12px',
-        paddingBottom : '20px',
         textAlign : 'center',
     }
 }))

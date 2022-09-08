@@ -139,7 +139,7 @@ function DrawerComponent(props) {
 
               <IconButton
                 onClick={handleDrawerToggle}
-                size={'large'}
+                // size={'large'}
                 className={classes.smallMenuScreen}
               >
                 <MenuIcon />

@@ -94,7 +94,7 @@ export default function MobileDrawerOptions({ menuItems, handleDrawerToggle }) {
                             item?.heading
                             &&
                             <>
-                                <Accordion expanded={expanded === index} onChange={handleChange(index)}>
+                                <Accordion expanded={expanded === index} onChange={handleChange(index)} key={index}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon style={{ color: '#fff' }} />}
                                         aria-controls="panel1bh-content"

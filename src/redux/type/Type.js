@@ -1,8 +1,11 @@
 
-export const LOGIN = "LOGIN";
-export const LOGOUT = "LOGOUT";
-export const ACTIVE_USER = "ACTIVE_USER";
-export const GET_RATE = 'GET_RATE'
-export const GET_COUNTARY_INFO = 'GET_COUNTARY_INFO'
-
-
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
+export const ACTIVE_USER = 'ACTIVE_USER';
+export const HOME_MOVIES_TOP = 'HOME_MOVIES_TOP'
+export const TOP_PICK_MOVIES = 'TOP_PICK_MOVIES'
+export const FAN_FAVORITES_MOVIES = 'FAN_FAVORITES_MOVIES'
+export const RECENT_RELEASED_MOVIES = 'RECENT_RELEASED_MOVIES'
+export const RECENT_UPCOMING_MOVIES = 'RECENT_UPCOMING_MOVIES'
+export const PRIME_VIDEOS = 'PRIME_VIDEOS'
+export const CELEBRITY_BIRTHDAY = 'CELEBRITY_BIRTHDAY'
