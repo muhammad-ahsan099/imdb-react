@@ -8,6 +8,7 @@ import DrawerComponent from './common/drawer/Drawer';
 import Footer from './common/footer/Footer';
 import MoreToExplore from './common/moreToExplore/MoreToExplore';
 import MoreToWatch from './common/moreToWatch/MoreToWatch';
+import MostPopularMovies from './common/mostPopularMovies/MostPopularMovies';
 import TopBoxOffice from './common/topBoxOffice/TopBoxOffice';
 import TopNews from './common/topNews/TopNews';
 import WatchList from './common/watchList/WatchList';
@@ -27,6 +28,7 @@ function App() {
       {/* <SignInGoogle /> */}
       {/* <CreateAccount /> */}
       {/* <SignIn /> */}
+      {/* <MostPopularMovies /> */}
     </div>
   );
 }
