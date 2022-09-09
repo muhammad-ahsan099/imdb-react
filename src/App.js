@@ -8,6 +8,7 @@ import DrawerComponent from './common/drawer/Drawer';
 import Footer from './common/footer/Footer';
 import MoreToExplore from './common/moreToExplore/MoreToExplore';
 import MoreToWatch from './common/moreToWatch/MoreToWatch';
+import MostPopularCelebs from './common/mostPopularCelebs/MostPopularCelebs';
 import MostPopularMovies from './common/mostPopularMovies/MostPopularMovies';
 import TopBoxOffice from './common/topBoxOffice/TopBoxOffice';
 import TopNews from './common/topNews/TopNews';
@@ -29,6 +30,7 @@ function App() {
       {/* <CreateAccount /> */}
       {/* <SignIn /> */}
       {/* <MostPopularMovies /> */}
+      {/* <MostPopularCelebs /> */}
     </div>
   );
 }
