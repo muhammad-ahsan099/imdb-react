@@ -22,8 +22,9 @@ import { useStyles } from "./SwiperStyle";
 import { BsFillBookmarkCheckFill, BsFillBookmarkPlusFill } from "react-icons/bs";
 import bookIcon from '../../../assets/images/bookIcon.svg'
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
+import { Link } from "react-router-dom";
 export default function SwiperComponent(props) {
-    const {homeMoviesTop} = props;
+    const { homeMoviesTop } = props;
     const classes = useStyles();
     const [slideIndex, setSlideIndex] = useState(0)
     const swiper1Ref = useRef();
@@ -53,41 +54,43 @@ export default function SwiperComponent(props) {
                         modules={[Navigation, Controller]}
                     >
                         {
-                           homeMoviesTop?.map((item, index) => {
+                            homeMoviesTop?.map((item, index) => {
                                 return (
                                     <SwiperSlide key={index}>
-                                        <div className={classes.swiper_slide}  style={{backgroundImage: `url("${item?.video_poster_url}")`}} >
-                                            <div className={classes.bottomSection}>
-                                                <div className={classes.inner_poster} onClick={() => setCheck(!check)} style={{backgroundImage: `url("${item?.poster_url}")`}}>
-                                                    {
-                                                        !check ?
-                                                            <div className={classes.iconContainer}>
-                                                                <AddOutlinedIcon className={classes.wishListIcon} />
-                                                            </div>
-                                                            :
-                                                            <div className={classes.iconActiveContainer} />
-                                                    }
-                                                </div>
+                                        <Link  to={`/movie-trailer/${item?.imdb_id}/${item?.id}`} >
+                                            <div className={classes.swiper_slide} style={{ backgroundImage: `url("${item?.video_poster_url}")` }} >
+                                                <div className={classes.bottomSection}>
+                                                    <div className={classes.inner_poster} onClick={() => setCheck(!check)} style={{ backgroundImage: `url("${item?.poster_url}")` }}>
+                                                        {
+                                                            !check ?
+                                                                <div className={classes.iconContainer}>
+                                                                    <AddOutlinedIcon className={classes.wishListIcon} />
+                                                                </div>
+                                                                :
+                                                                <div className={classes.iconActiveContainer} />
+                                                        }
+                                                    </div>
 
 
-                                                <div className={classes.bottomMiddleSection}>
-                                                    {/* Mobile View  */}
-                                                    <div className={classes.hiddenMob}>
-                                                        <IoPlayCircleOutline className={classes.playIconHidden} />
-                                                        <p className={classes.timeHidden}>2:30</p>
-                                                    </div>
-                                                    {/* Web View */}
-                                                    <IoPlayCircleOutline size={90} className={classes.playIcon} />
-                                                    <div className={classes.textContent}>
-                                                        <h1 className={classes.movieHeading}>{item?.title}</h1>
-                                                        <p className={classes.movieDetail}>Watch the Trailer</p>
-                                                    </div>
-                                                    <p className={classes.time}>2:30</p>
-                                                    {/* </div>
+                                                    <div className={classes.bottomMiddleSection}>
+                                                        {/* Mobile View  */}
+                                                        <div className={classes.hiddenMob}>
+                                                            <IoPlayCircleOutline className={classes.playIconHidden} />
+                                                            <p className={classes.timeHidden}>2:30</p>
+                                                        </div>
+                                                        {/* Web View */}
+                                                        <IoPlayCircleOutline size={90} className={classes.playIcon} />
+                                                        <div className={classes.textContent}>
+                                                            <h1 className={classes.movieHeading}>{item?.title}</h1>
+                                                            <p className={classes.movieDetail}>Watch the Trailer</p>
+                                                        </div>
+                                                        <p className={classes.time}>2:30</p>
+                                                        {/* </div>
                                                 <div className={classes.bottomRightSection}> */}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </Link>
                                     </SwiperSlide>
                                 )
                             })

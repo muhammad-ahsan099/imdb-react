@@ -17,32 +17,29 @@ import { BsFillBookmarkCheckFill, BsFillBookmarkPlusFill } from "react-icons/bs"
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import clsx from 'clsx'
 import OpenInNewOutlinedIcon from '@material-ui/icons/OpenInNewOutlined';
+import BookMarkButton from '../BookMarkButton/BookMarkButton';
+import { Link } from 'react-router-dom';
 
 export default function MovieCard({ info_btn, bgColor, btn_text, end_icon, moviesData }) {
     const classes = useStyles();
-    const [check, setCheck] = useState(false)
 
     return (
         <Card className={clsx(classes.root, bgColor && classes.bgWhite)}>
             <CardActionArea>
-                <div className={classes.iconTopContainer} onClick={() => setCheck(!check)}>
-                    {
-                        !check ?
-                            <div className={classes.iconContainer}>
-                                <AddOutlinedIcon className={classes.wishListIcon} />
-                            </div>
-                            :
-                            <div className={classes.iconActiveContainer} />
-                    }
+                <div className={classes.iconTopContainer} >
+                    <BookMarkButton />
                 </div>
 
-                <CardMedia
-                    component="img"
-                    alt="Movie Poster"
-                    height="274"
-                    image={moviesData?.poster_url}
-                    title="Movie Poster"
-                />
+                <Link  to={`/movie-detail/${moviesData?.imdb_id}/${moviesData?.id}`} >
+                    <CardMedia
+                        component="img"
+                        alt="Movie Poster"
+                        height="274"
+                        image={moviesData?.poster_url}
+                        title="Movie Poster"
+                    />
+                </Link>
+
                 <CardContent>
                     <div className={classes.topSection}>
                         <div className={classes.rating}>
@@ -54,7 +51,7 @@ export default function MovieCard({ info_btn, bgColor, btn_text, end_icon, movie
                         <StarUnfillIcon fontSize='small' color='primary' />
                     </div>
                     <Typography className={clsx(classes.Typography, bgColor && classes.colorBlack)} variant="h6" component="h6">
-                       {moviesData?.title}
+                        {moviesData?.title}
                     </Typography>
                 </CardContent>
             </CardActionArea>
@@ -65,16 +62,16 @@ export default function MovieCard({ info_btn, bgColor, btn_text, end_icon, movie
                     startIcon={!end_icon && <AddIcon />}
                     endIcon={end_icon && <OpenInNewOutlinedIcon />}
                 >
-                  { btn_text ? btn_text : 'Watchlist'}
+                    {btn_text ? btn_text : 'Watchlist'}
                 </Button>
                 <div className={clsx(classes.bottomSection, info_btn && classes.hideInfoBtn)}>
                     <Button
                         variant='outlined'
                         className={clsx(classes.trailerButton, bgColor && classes.bgTrailerButton)}
                         startIcon={<PlayArrowRoundedIcon />}
-                        
+
                     >
-                        <p className={classes.menuText} style={{color: bgColor && '#000'}}>
+                        <p className={classes.menuText} style={{ color: bgColor && '#000' }}>
                             Trailer
                         </p>
                     </Button>

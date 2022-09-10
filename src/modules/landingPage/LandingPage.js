@@ -9,7 +9,7 @@ import ToWatch from '../../components/toWatch/ToWatch'
 import { useStyles } from './LandingPageStyle'
 import Swiper from './swiper/Swiper'
 import { UseLandingPage } from './UseLandingPage'
-export default function Landing() {
+export default function LandingPage() {
   const classes = useStyles()
   const [
     {

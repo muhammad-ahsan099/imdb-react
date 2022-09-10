@@ -1,6 +1,5 @@
 import { makeStyles } from "@material-ui/core";
 
-
 export const useStyles = makeStyles((theme) => ({
     container:{
         backgroundColor: '#fff',
@@ -27,14 +26,39 @@ export const useStyles = makeStyles((theme) => ({
     },
     inputsFields: {
         width: '98%',
-        height: '32px',
-        margin: '6px 0px 15px 0px',
+        height: '24px',
+        margin: '6px 0px 0px 0px',
         outlineColor: 'rgb(249,205,163)',
+        // outlineColor: 'rgb(243,116,0)',
+        outlineOffset: 1,
         padding: '2px 0px 2px 5px',
         borderRadius: 4,
         border: '1.2px solid rgb(162,162,162)',
     },
+    errorField: {
+        width: '98%',
+        height: '24px',
+        margin: '6px 0px 0px 0px',
+        outline: 'none',
+        padding: '2px 0px 2px 5px',
+        borderRadius: 4,
+        border: '1.2px solid rgb(211,0,0)',
+    },
+    errorContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        marginTop: 3
+    },
+    error: {
+        color: 'rgb(211,0,0)',
+        fontSize: 12,
+        fontWeight: 400,
+    },
+    link: {
+        textDecoration: 'none'
+    },
     passwordLabelDiv: {
+        marginTop: 15,
         display: 'flex',
         justifyContent: 'space-between',
     },
@@ -44,6 +68,7 @@ export const useStyles = makeStyles((theme) => ({
         color: 'rgb(42,95,202)'
     },
     btnDiv: {
+        marginTop: 24,
         marginBottom: '20px'
     },
     btnSignIn: {

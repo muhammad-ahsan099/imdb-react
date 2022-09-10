@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core";
+import { commonColor } from "../../../constants/colors";
 
 
 export const useStyles = makeStyles((theme) => ({
@@ -27,7 +28,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     inputsFields: {
         width: '98%',
-        height: '32px',
+        height: '24px',
         margin: '5px 0px 10px 0px',
         padding: '2px 0px 2px 5px',
         outlineColor: 'rgb(249,205,163)',
@@ -36,7 +37,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     passwordField: {
         width: '98%',
-        height: '32px',
+        height: '24px',
         margin: '5px 0px 0px 0px',
         outlineColor: 'rgb(249,205,163)',
         padding: '2px 0px 2px 5px',
@@ -55,7 +56,8 @@ export const useStyles = makeStyles((theme) => ({
     btnCreateAccount: {
         background: 'linear-gradient(to bottom,#f7dfa5,#f0c14b)',
         textTransform: 'none',
-        fontWeight: '400',
+        fontSize:14,
+        fontWeight: '500',
         border: '1.2px solid rgb(162,162,162)',
         width: '100%',
         '&: hover': {
@@ -67,7 +69,11 @@ export const useStyles = makeStyles((theme) => ({
     },
     signInTxt: {
         fontWeight: 'bold',
-        color: '#136cb2'
+        color: '#136cb2',
+        textDecoration: 'none',
+    },
+    link: {
+        textDecoration: 'none'
     },
     lastContainer: {
         textAlign: 'center',
@@ -85,4 +91,32 @@ export const useStyles = makeStyles((theme) => ({
         aligItems:'center',
         marginLeft: -8
     },
+    errorContainer: {
+        border: `1px solid ${commonColor.error}`,
+        borderRadius: 4,
+        padding: '10px 20px',
+        paddingBottom: 20,
+        display: 'flex',
+        marginBottom: 14
+    },
+    errIcon: {
+        color: 'rgb(211,0,0)',
+        fontSize: 30,
+    },
+    rightDiv: {
+        paddingLeft: 14,
+    },
+    errHead: {
+        fontSize: 16,
+        fontWeight: '500',
+        color: 'rgb(211,0,0)',
+    },
+    marginDiv: {
+        marginTop: 8
+    },
+    error: {
+        fontSize: 12,
+        fontWeight: 400,
+        color: '#000',
+    }
 }))

@@ -50,6 +50,24 @@ const useStyles = makeStyles((theme) => ({
         // },
 
     },
+    signInButton: {
+        marginLeft: 6,
+        marginRight: 6,
+        paddingTop: 6,
+        paddingBottom: 6,
+        textTransform: 'none',
+        color: '#fff',
+        border: 'none',
+        fontWeight: 'bold',
+        background: commonColor.appBar,
+        '&:hover': {
+            color: '#ffffff',
+            backgroundColor: 'rgba(158, 158, 158, 0.2)'
+        },
+    },
+    link: {
+        textDecoration: 'none',
+    },
     smallMenuScreen: {
         color: '#fff',
         [theme.breakpoints.up('md')]: {
@@ -254,6 +272,9 @@ const useStyles = makeStyles((theme) => ({
         width: '72%',
         marginLeft: "14%",
         marginRight: "14%",
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
         [theme.breakpoints.down('sm')]: {
             width: '96%',
             marginLeft: "2%",

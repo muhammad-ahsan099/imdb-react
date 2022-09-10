@@ -7,19 +7,26 @@ import Community from '@material-ui/icons/PublicRounded';
 import { MdStars } from "react-icons/md";
 
 import useStyles from './DrawerStyle';
+import { useDispatch, useSelector } from 'react-redux';
+import { doLogout, fetchProfile } from '../../redux/actions/AuthAction';
+import { getToken } from '../localStorage/LocalStorage';
+import { useEffect } from 'react';
 
 export const UseDrawer = () => {
-  const classes = useStyles()
+  const dispatch = useDispatch()
+  const isUserLoggedIn = useSelector(state => state.AuthReducer.isUserLoggedIn)
+  const userProfile = useSelector(state => state.AuthReducer.userProfile)
+  const [loading, setLoading] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const [selectValue, setSelectValue] = React.useState(0);
-  const [selectOpen, setSelectOpen] = React.useState(false);
+
+  let { access_token } = getToken()
+  // console.log('Access Token', access_token);
+  console.log('User Profile', userProfile);
 
   const menuItems = [
     {
       heading: 'Movies',
-      icon:  <Movies />,
+      icon: <Movies />,
       subTitles: [
         {
           title: 'Release Calender',
@@ -57,7 +64,7 @@ export const UseDrawer = () => {
     },
     {
       heading: 'TV Shows',
-      icon: <TvIcon  /> ,
+      icon: <TvIcon />,
       subTitles: [
         {
           title: "What's on TV & Streaming",
@@ -87,7 +94,7 @@ export const UseDrawer = () => {
     },
     {
       heading: 'Watch',
-      icon: <Watch  />,
+      icon: <Watch />,
       subTitles: [
         {
           title: "What to Watch",
@@ -200,44 +207,57 @@ export const UseDrawer = () => {
   ];
 
 
+  const logoutHandler = ()=> {
+    dispatch(doLogout(setLoading))
+  }
+  
+  useEffect(() => {
+    console.log('Use Effect is Running');
+    dispatch(fetchProfile(setLoading))
+  }, [])
+  
+
+  const accountOptions = [
+    {
+      title: 'Your activity',
+      path: '/'
+    },
+    {
+      title: 'Your watchlist',
+      path: '/'
+    },
+    {
+      title: 'Your ratings',
+      path: '/'
+    },
+    {
+      title: 'Your lists',
+      path: '/'
+    },
+    {
+      title: 'Account settings',
+      path: '/'
+    },
+    {
+      title: 'Sign out',
+      logout: logoutHandler
+    },
+  ]
+
+
 
 
   function handleDrawerToggle() {
     setMobileOpen(!mobileOpen);
   }
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
 
-  const handleClose = () => {
-    selectOpen(false);
-  };
-
-  const handleOpen = () => {
-    selectOpen(true);
-  };
-  const mobileDrawerOptions = (value) => {
-    setSelectValue(value);
-    setSelectOpen(!selectOpen)
-
-
-  }
 
   return [{
+    isUserLoggedIn,
+    userProfile,
     menuItems,
     mobileOpen,
-    isMobileMenuOpen,
-    mobileMoreAnchorEl,
-    selectValue,
-    selectOpen,
-    mobileDrawerOptions,
     handleDrawerToggle,
-    handleMobileMenuClose,
-    handleMobileMenuOpen,
-    handleClose,
-    handleOpen,
+    accountOptions,
   }]
 }

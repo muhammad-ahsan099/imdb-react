@@ -1,35 +1,60 @@
-
-import { LOGIN, LOGOUT , ACTIVE_USER} from "../type/Type";
-
-let initialState = {
-    error: '',
+import { LOGIN, CREATE_ACCOUNT ,ACTIVE_USER,FORGOT_PASSWORD,RESET_PASSWORD,LOGOUT, USER_PROFILE} from '../type/Type';
+const initialState = {
     isUserLoggedIn: false,
-    users: []
-}
+    forgotPasswordEmailSend: false,
+    resetSuccess: false,
+    userProfile: null
+};
 
-function AuthReducer(state = initialState, action) {
+const AuthReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOGIN: {
             return {
                 ...state,
                 isUserLoggedIn: true,
-                users: action.payload.Data
-            };
+                user: action.payload
+            }
         }
-
-        case LOGOUT:
+        
+        case USER_PROFILE: {
             return {
                 ...state,
-                isUserLoggedIn: false,
-                users: [],
+                userProfile: action.payload
             }
-        case ACTIVE_USER:
+        }
+
+        case ACTIVE_USER: {
             return {
                 ...state,
                 isUserLoggedIn: true,
-                // users: [],
             }
+        }
+        case CREATE_ACCOUNT: {
+            return {
+                ...state,
+                isUserLoggedIn: false,
+            }
+        }
+        case FORGOT_PASSWORD: {
+            return {
+                ...state,
+                forgotPasswordEmailSend: true,
+            }
+        }
+        case RESET_PASSWORD: {
+            return {
+                ...state,
+                resetSuccess: true,
+            }
+        }
 
+        case LOGOUT: {
+            return {
+                ...state,
+                isUserLoggedIn: false,
+                user: null
+            }
+        }
         default:
             return state;
     }

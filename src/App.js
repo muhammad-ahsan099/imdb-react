@@ -1,40 +1,20 @@
 import './App.css';
-import CreateAccount from './auth/createAccount/CreateAccount';
-import SignIn from './auth/signIn/SignIn';
-import SignInGoogle from './auth/signInGoogle/SignInGoogle';
-import BornToday from './common/bornToday/BornToday';
-import ComingSoon from './common/comingSoon/ComingSoon';
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
 import DrawerComponent from './common/drawer/Drawer';
-import Footer from './common/footer/Footer';
-import DetailPage from './modules/detailPage/DetailPage';
-import LandingPage from './modules/landingPage/LandingPage';
-import RecentlyReviews from './common/recentlyReviews/RecentlyReviees';
-import TrailersPage from './modules/trailersPage/TrailersPage';
-import VideoPlayer from './modules/trailersPage/videoPlayer/VideoPlayer';
+import Navigation from './navigation/Navigation';
+import ScrollToTop from './navigation/ScrollToTop';
 
 function App() {
+  const history = createBrowserHistory({ window });
+
   return (
-    <div className="App" style={{ backgroundColor: '#000', paddingBottom:10 }}>
-      <DrawerComponent />
-      {/* <LandingPage /> */}
-      {/* <DetailPage /> */}
-      {/* <TrailersPage /> */}
-      {/* <VideoPlayer /> */}
-      {/* <RecentlyReviews /> */}
-      {/* <Footer /> */}
-    {/* <div className="App"> */}
-      {/* <DrawerComponent />
-      <WatchList />
-      <MoreToWatch />
-      <TopBoxOffice />
-      <ComingSoon />
-      <MoreToExplore />
-      <BornToday />
-      <TopNews />
-      <Footer /> */}
-      {/* <SignInGoogle /> */}
-      {/* <CreateAccount /> */}
-      <SignIn />
+    <div className="App" style={{ backgroundColor: '#000', paddingBottom: 10 }}>
+      <HistoryRouter history={history}>
+        <ScrollToTop />
+        <Navigation />
+      </HistoryRouter>
     </div>
   );
 }

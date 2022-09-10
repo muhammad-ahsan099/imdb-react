@@ -6,21 +6,26 @@ import { fetchfanFavoriteMovies, fetchHomeMoviesTop, fetchPrimeVideos, fetchRece
 export const UseLandingPage = () => {
 
     const [loading, setLoading] = useState(false);
-
+    const page = '?page=1';
 
     const dispatch = useDispatch();
     const homeMoviesTop = useSelector(state => state.LandingPageReducer.homeMoviesTop)
-    const topPickMovies = useSelector(state => state.LandingPageReducer.topPickMovies)
-    const fanFavoritesMovies = useSelector(state => state.LandingPageReducer.fanFavoritesMovies)
+    let topPickMovies = useSelector(state => state.LandingPageReducer.topPickMovies)
+    topPickMovies = topPickMovies?.results ?
+        topPickMovies?.results :
+        topPickMovies
+    let fanFavoritesMovies = useSelector(state => state.LandingPageReducer.fanFavoritesMovies)
+    fanFavoritesMovies = fanFavoritesMovies?.results ?
+        fanFavoritesMovies?.results :
+        fanFavoritesMovies
     const recentReleasedMovies = useSelector(state => state.LandingPageReducer.recentReleasedMovies)
     const recentUpcomingMovies = useSelector(state => state.LandingPageReducer.recentUpcomingMovies)
     const primeVideos = useSelector(state => state.LandingPageReducer.primeVideos)
     const celebritiesBirthday = useSelector(state => state.CelebritiesReducer.celebritiesBirthday)
-
     useEffect(() => {
-        dispatch(fetchHomeMoviesTop(setLoading))
-        dispatch(fetchTopPickMovies(setLoading))
-        dispatch(fetchfanFavoriteMovies(setLoading))
+        dispatch(fetchHomeMoviesTop(setLoading,))
+        dispatch(fetchTopPickMovies(setLoading, page))
+        dispatch(fetchfanFavoriteMovies(setLoading, page))
         dispatch(fetchRecentReleasedMovies(setLoading))
         dispatch(fetchRecentUpcomingMovies(setLoading))
         dispatch(fetchPrimeVideos(setLoading))

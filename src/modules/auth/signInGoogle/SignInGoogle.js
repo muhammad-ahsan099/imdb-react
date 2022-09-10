@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Button, Container, Grid, Paper } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { useStyles } from "./SignInGoogleStyle";
+import { Link } from 'react-router-dom';
 
 export default function SignInGoogle() {
     const Styles = useStyles()
@@ -16,25 +17,27 @@ export default function SignInGoogle() {
                             <div className={Styles.istContentDiv}>
                                 <h2>Sign In</h2>
                                 <div>
-                                    <Button
-                                        variant="outlined"
-                                        size="medium"
-                                        className={Styles.signInButton}
-                                        startIcon={<img src={require('../../assets/images/imdbLogo.png')} alt="Image Not Found" className={Styles.signInButtonHW} />}
-                                    >
-                                        <span className={Styles.imdbIcon}>
-                                            Sign In With IMDb
+                                    <Link to='/login' className={Styles.Link}>
+                                        <Button
+                                            variant="outlined"
+                                            size="medium"
+                                            className={Styles.signInButton}
+                                            startIcon={<img src={require('../../../assets/images/imdbLogo.png')} alt="Image Not Found" className={Styles.signInButtonHW} />}
+                                        >
+                                            <span className={Styles.imdbIcon}>
+                                                Sign In With IMDb
                                             </span>
-                                    </Button>
+                                        </Button>
+                                    </Link>
                                     <Button
                                         variant="outlined"
                                         size="medium"
                                         className={Styles.signInButton}
-                                        startIcon={<img src={require('../../assets/images/googleLogo.png')} alt="Image Not Found" className={Styles.signInButtonHW} />}
+                                        startIcon={<img src={require('../../../assets/images/googleLogo.png')} alt="Image Not Found" className={Styles.signInButtonHW} />}
                                     >
                                         <span className={Styles.googleIcon}>
                                             {' '}{'Sign In With Google'}
-                                            </span>
+                                        </span>
                                     </Button>
                                 </div>
 
@@ -60,14 +63,29 @@ export default function SignInGoogle() {
                                 </div>
 
                                 {/* button */}
-                                <Button variant="contained" size="medium" className={Styles.createAccountBtn}>
-                                    Create a New Account
-                                </Button>
+                                <Link to='/create-account' className={Styles.Link}>
+                                    <Button variant="contained" size="medium" className={Styles.createAccountBtn}>
+                                        Create a New Account
+                                    </Button>
+                                </Link>
 
                                 {/* description */}
                                 <div className={Styles.istDesDiv}>
                                     <p>
-                                        By Signing in, you agree to IMDb's <span className={Styles.istDesDivTxt}>Conditions to Use</span> and <span className={Styles.istDesDivTxt}>Privacy Policy.</span>
+                                        By Signing in, you agree to IMDb's <span className={Styles.istDesDivTxt}>
+                                            <a className={Styles.Link} href='https://www.imdb.com/conditions' target='_blank'>
+                                                <span className={Styles.istDesDivTxt}>
+
+                                                    Conditions to Use
+                                                </span>
+                                            </a>
+
+                                        </span> and
+                                        <a className={Styles.Link} href='https://www.imdb.com/privacy' target='_blank'>
+                                            <span className={Styles.istDesDivTxt}>
+                                                Privacy Policy.
+                                            </span>
+                                        </a>
                                     </p>
                                 </div>
                             </div>

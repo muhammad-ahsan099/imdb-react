@@ -12,6 +12,7 @@ import { useStyles } from './PopperAccountStyle'
 
 
 export default function PopperAccount(props) {
+    const { accountOptions, userName } = props;
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
     const [placement, setPlacement] = React.useState();
@@ -26,26 +27,21 @@ export default function PopperAccount(props) {
     const handleClose = (event) => {
         setOpen(false);
     };
-    const options = ['Your activity', 'Your watchlist', 'Your ratings', 'Your lists', 'Account settings', 'Sign out']
     return (
-        <div className={classes.root} onMouseLeave={()=> handleClose()}>
+        <div className={classes.root} onMouseLeave={() => handleClose()}>
             <Popper open={open} anchorEl={anchorEl} placement={placement} transition disablePortal>
                 {({ TransitionProps }) => (
                     <Fade {...TransitionProps} timeout={350}>
                         <Paper>
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList id="split-button-menu" className={classes.menuList}>
-                                    {options.map((option, index) => (
+                                    {accountOptions?.map((option, index) => (
                                         <MenuItem
                                             key={index}
                                             className={classes.typography}
-                                        // selected={index === selectedIndex}
-                                        // onClick={(event) => handleMenuItemClick(event, index)}
+                                            onClick={() => { option.logout(); handleClose() }}
                                         >
-                                            {/* <ListItemIcon>
-                                                <SearchIcon fontSize="small" style={{ color: 'yellow' }} />
-                                            </ListItemIcon> */}
-                                            {option}
+                                            {option?.title}
 
                                         </MenuItem>
                                     ))}
@@ -62,7 +58,7 @@ export default function PopperAccount(props) {
             >
                 <AccountCircleRoundedIcon />
                 <p className={classes.menuText}>
-                    TA-
+                    {userName ? userName.slice(0,2) : 'TA-'}
                 </p>
                 {
                     open ?

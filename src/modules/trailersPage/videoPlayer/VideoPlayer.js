@@ -21,7 +21,7 @@ const format = (seconds) => {
 
 let count = 0;
 
-function VideoPlayer() {
+function VideoPlayer({video_url}) {
   const classes = useStyles();
   // const [count, setCount] = useState(0);
   const [timeDisplayFormat, setTimeDisplayFormat] = React.useState("normal");
@@ -172,6 +172,7 @@ function VideoPlayer() {
             width="100%"
             height="100%"
             url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            // url={video_url}
             pip={pip}
             playing={playing}
             controls={false}

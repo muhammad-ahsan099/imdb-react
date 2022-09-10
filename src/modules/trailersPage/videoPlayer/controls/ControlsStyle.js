@@ -31,7 +31,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   
     bottomIcons: {
-      color: "#999",
+      color: "#fff",
       "&:hover": {
         color: "#fff",
       },
@@ -53,6 +53,13 @@ export const useStyles = makeStyles((theme) => ({
           backgroundColor :'rgba(0,0,0, 0.7)',
       },    
     },
+    closeBtn: {
+      textTransform: 'none',
+      color: '#848484',
+      '&:hover': {
+        color: '#ffffff',
+    },
+    }
   }));
   
 export const PrettoSlider = withStyles({

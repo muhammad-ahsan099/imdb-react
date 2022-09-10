@@ -1,9 +1,11 @@
-import { HOME_MOVIES_TOP, TOP_PICK_MOVIES, FAN_FAVORITES_MOVIES, RECENT_RELEASED_MOVIES, RECENT_UPCOMING_MOVIES, PRIME_VIDEOS } from "../type/Type";
+import { HOME_MOVIES_TOP, TOP_PICK_MOVIES, FAN_FAVORITES_MOVIES, RECENT_RELEASED_MOVIES, RECENT_UPCOMING_MOVIES, PRIME_VIDEOS, ALL_TOP_PICK_MOVIES, ALL_FAN_FAVORITES_MOVIES } from "../type/Type";
 
 const initialState = {
     homeMoviesTop: [],
     topPickMovies: [],
+    allTopPickMovies: [],
     fanFavoritesMovies: [],
+    allFanFavoritesMovies: [],
     recentReleasedMovies: [],
     recentUpcomingMovies: [],
     primeVideos:[],
@@ -23,11 +25,23 @@ const LandingPageReducer = (state = initialState, action) => {
 
             }
         }
+        case ALL_TOP_PICK_MOVIES: {
+            return {
+                ...state,
+                allTopPickMovies: action.payload,
+            }
+        }
         case FAN_FAVORITES_MOVIES: {
             return {
                 ...state,
                 fanFavoritesMovies: action.payload
 
+            }
+        }
+        case ALL_FAN_FAVORITES_MOVIES: {
+            return {
+                ...state,
+                allFanFavoritesMovies: action.payload,
             }
         }
         case RECENT_RELEASED_MOVIES: {

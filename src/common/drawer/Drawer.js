@@ -36,7 +36,7 @@ import Watch from '@material-ui/icons/VideoLibraryRounded';
 import Community from '@material-ui/icons/PublicRounded';
 import { commonColor } from "../../constants/colors";
 import MobileDrawerOptions from "./components/Mobile";
-import { BsFillBookmarkCheckFill , BsFillBookmarkPlusFill } from "react-icons/bs";
+import { BsFillBookmarkCheckFill, BsFillBookmarkPlusFill } from "react-icons/bs";
 
 
 
@@ -56,18 +56,12 @@ function DrawerComponent(props) {
 
   const [
     {
+      userProfile,
+      isUserLoggedIn,
       menuItems,
       mobileOpen,
-      isMobileMenuOpen,
-      mobileMoreAnchorEl,
-      selectValue,
-      selectOpen,
-      mobileDrawerOptions,
       handleDrawerToggle,
-      handleMobileMenuClose,
-      handleMobileMenuOpen,
-      handleClose,
-      handleOpen,
+      accountOptions,
     },
   ] = UseDrawer();
 
@@ -125,7 +119,9 @@ function DrawerComponent(props) {
             className={classes.Toolbar}
           >
             <div className={classes.logoDiv}>
-              <img src={LOGO} className={classes.mainLogo} alt="imagelogo" />
+              <Link to='/'>
+                <img src={LOGO} className={classes.mainLogo} alt="imagelogo" />
+              </Link>
               <Button
                 variant='outlined'
                 onClick={handleDrawerToggle}
@@ -139,7 +135,6 @@ function DrawerComponent(props) {
 
               <IconButton
                 onClick={handleDrawerToggle}
-                // size={'large'}
                 className={classes.smallMenuScreen}
               >
                 <MenuIcon />
@@ -163,16 +158,33 @@ function DrawerComponent(props) {
                   Watchlist
                 </p>
 
-                <Badge
-                  classes={{ colorPrimary: classes.colorPrimary }}
-                  color="primary"
-                  overlap='rectangular'
-                  className={classes.badge}
-                  badgeContent={24}
-                />
+                {
+                  true &&
+                  <Badge
+                    classes={{ colorPrimary: classes.colorPrimary }}
+                    color="primary"
+                    overlap='rectangular'
+                    className={classes.badge}
+                    badgeContent={userProfile?.profile?.to_watch?.length}
+                  />
+                }
               </Button>
             </Hidden>
-            <PopperAccount />
+
+            {
+              true ?
+                <PopperAccount accountOptions={accountOptions} userName={userProfile?.name} />
+                :
+                <Link to='/registration' className={classes.link}>
+                  <Button
+                    variant='outlined'
+                    className={classes.signInButton}
+                  >
+                    Sign&nbsp;In
+                  </Button>
+                </Link>
+            }
+
             <PopperLanguage />
             {/* </div> */}
           </Toolbar>

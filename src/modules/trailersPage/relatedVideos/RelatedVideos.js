@@ -68,7 +68,6 @@ export default function RelatedVideos() {
                 >
                     {
                         exclusiveVideos?.map((items, index) => {
-                            console.log('items: ', items.des);
                             return (
                                 <>
                                     <SwiperSlide>

@@ -60,12 +60,16 @@ export const useStyles = makeStyles((theme) => ({
         // backgroundColor: 'pink'
         // marginLeft: '35px'
     },
+    Link: {
+        textDecoration: 'none',
+    },
     optionDiv: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         color: '#136cb2',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        cursor: 'pointer',
     },
     optionIcon: {
         marginTop: '8px'
