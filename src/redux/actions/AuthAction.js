@@ -1,90 +1,211 @@
-
 import axios from 'axios';
+import { getToken, removeToken, storeToken } from '../../common/localStorage/LocalStorage';
 import { endPoint } from '../endPoint/EndPoint';
-import { LOGIN , LOGOUT , ACTIVE_USER} from '../type/Type';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Alert } from 'react-native';
-// Login Function 
-export const doLogin = (email, password) => async (dispatch) => {
+import { LOGIN, ACTIVE_USER, CREATE_ACCOUNT, FORGOT_PASSWORD, RESET_PASSWORD, LOGOUT, USER_PROFILE } from '../type/Type';
+
+export const doLogin = (email, password, navigate, setLoading, setServerError) => async (dispatch) => {
   try {
-    let payload = { email, password }
-    let axiosConfig = {
+    setLoading(true)
+    const creds = {
+      email,
+      password
+    }
+    let request = {
+      method: 'post',
+      url: `${endPoint}user/login/`,
       headers: {
         'Content-Type': 'application/json',
-        'user': 'GoldSERVER_1947E102-E4D5-4F11-95D7-42EFF444D339',
-        'password': '2A98D725-24B6-4E74-AD06-D5A50026BABC'
-      }
+      },
+      data: creds
     };
-    const userCredential = await axios.post(`${endPoint}Home/LoginInfo`, payload, axiosConfig);
-
-    if (userCredential.data.IsSuccess) {
-      try {
-        await AsyncStorage.setItem('loginKey', userCredential?.data?.Data?.Id)
-        await AsyncStorage.setItem('nameEng', userCredential?.data?.Data?.EnglishName)
-        await AsyncStorage.setItem('nameAra', userCredential?.data?.Data?.ArabicName)
-
-      } catch (e) {
-        console.log('Error', e);
-      }
+    let res = await axios(request);
+    if (res.data) {
+      storeToken(res.data.token)
       dispatch({
         type: LOGIN,
-        payload: userCredential.data,
+        payload: res?.data,
+      })
+      setTimeout(() =>
+        navigate('/')
+        , 1000)
+    }
+  }
+  catch (error) {
+    setServerError(error?.response?.data?.errors)
+    console.log('Error at Login: ', error)
+  }
+  finally {
+    setTimeout(() =>
+      setLoading(false)
+      , 1000)
+  }
+}
+
+export const fetchProfile = (setLoading) => async (dispatch) => {
+  try {
+    setLoading(true)
+    const { access_token } = getToken()
+    let request = {
+      method: 'get',
+      url: `${endPoint}user/profile/`,
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': `Bearer ${access_token}`,
+      }
+    };
+    let res = await axios(request);
+    console.log('Res: ', res.data);
+    if (res.data.status === 200) {
+      dispatch({
+        type: USER_PROFILE,
+        payload: res?.data?.data,
+      })
+    }
+  }
+  catch (error) {
+    console.log('Error at Fetch Profile: ', error)
+  }
+  finally {
+    setTimeout(() =>
+      setLoading(false)
+      , 500)
+  }
+}
+
+
+
+// export const doGetLoggedInUser = (setLoading) => async (dispatch) => {
+//   try {
+//     setLoading(true)
+//     const token = await window.localStorage.getItem('token');
+//     if (token) {
+//       const user = await axios.post(`${endPoint}auth/getLoggedInUser`, { token: token });
+//       dispatch({
+//         type: ACTIVE_USER,
+//         payload: user?.data?.data,
+//       })
+//     }
+//   }
+//   catch (error) {
+//     console.log(error?.response?.data?.message)
+//   }
+//   finally {
+//     setLoading(false)
+//   }
+// }
+
+export const createAccount = (creds, navigate, setLoading, setServerError) => async (dispatch) => {
+  try {
+    setLoading(true)
+    let request = {
+      method: 'post',
+      url: `${endPoint}user/register/`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: creds
+    };
+    let res = await axios(request);
+    if (res.data?.success) {
+      dispatch({
+        type: CREATE_ACCOUNT,
+        payload: res?.data,
+      });
+      setTimeout(() =>
+        navigate('/login')
+        , 1000)
+    }
+
+  }
+  catch (error) {
+    setServerError(error?.response?.data?.errors)
+    console.log('Error at Login: ', error)
+  }
+  finally {
+    setTimeout(() =>
+      setLoading(false)
+      , 1000)
+  }
+}
+
+export const forgotPassword = (creds, setLoading, setServerError) => async (dispatch) => {
+  try {
+    setLoading(true)
+    let request = {
+      method: 'post',
+      url: `${endPoint}user/send-reset-password-email/`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: creds
+    };
+    let res = await axios(request);
+    if (res.data) {
+      dispatch({
+        type: FORGOT_PASSWORD,
+        payload: res?.data,
       });
     }
-    else {
-      Alert.alert('Please provide correct email & password!')
-    }
-  } catch (error) {
-    alert(JSON.stringify('Please Try again Later...'))
+
   }
-};
+  catch (error) {
+    setServerError(error?.response?.data?.errors)
+    console.log('Error at Forgot Password: ', error)
+  }
+  finally {
+    setTimeout(() =>
+      setLoading(false)
+      , 1000)
+  }
+}
 
-
-export const doLogout = () => async (dispatch) => {
+export const resetPassword = (creds, navigate, setLoading, setServerError) => async (dispatch) => {
   try {
+    setLoading(true)
+    let request = {
+      method: 'post',
+      url: `${endPoint}user/changepassword/`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: creds
+    };
+    let res = await axios(request);
+    if (res.data) {
+      dispatch({
+        type: RESET_PASSWORD,
+        payload: res?.data,
+      });
+      navigate('/login')
+    }
 
-    await AsyncStorage.removeItem('loginKey')
-    await AsyncStorage.removeItem('nameEng')
-    await AsyncStorage.removeItem('nameAra')
+  }
+  catch (error) {
+    setServerError(error?.response?.data?.errors)
+    console.log('Error at Forgot Password: ', error)
+  }
+  finally {
+    setTimeout(() =>
+      setLoading(false)
+      , 1000)
+  }
+}
 
+
+export const doLogout = (setLoading) => async (dispatch) => {
+  try {
+    removeToken()
     dispatch({
       type: LOGOUT,
       payload: null,
     })
   }
   catch (error) {
-    Alert.alert("Please Try again later...")
-  }
-}
-
-export const doGetLoggedInUser = (setSplash) => async (dispatch) => {
-  try {
-    setSplash(true)
-      const token = await AsyncStorage.getItem('loginKey');
-      if (token) {
-          dispatch({
-              type: ACTIVE_USER,
-              payload: null,
-          })
-      }
-  }
-  catch (error) {
-      console.log(error)
+    console.log(error?.message)
   }
   finally {
-    setSplash(false)
+    setTimeout(() =>
+      setLoading(false)
+      , 1000)
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -28,7 +28,6 @@ import RatingModal from '../../common/ratingModal/RatingModal';
 import ListModal from '../../common/listModal/ListModal';
 export default function DetailPage() {
     const classes = useStyles();
-    const topPickMovies = useSelector(state => state.LandingPageReducer.topPickMovies)
     const [
         {
             dropDown, setDropDown,
@@ -36,15 +35,19 @@ export default function DetailPage() {
             rating, setRating,
             openRatingModal, setOpenRatingModal,
             openListModal, setOpenListModal,
+            movieDetail,
+            time_convert,
+            allTopPickMovies
         }
     ] = UseDetail()
+
 
     return (
         <>
             <div className={classes.root}>
                 <div className={classes.topContainer}>
                     <div>
-                        <h1 className={classes.h1}>Top Gun</h1>
+                        <h1 className={classes.h1}>{movieDetail?.title ? movieDetail?.title : 'Top Gun'}</h1>
                         <span className={classes.year}>2022 </span>&nbsp;
                         <span className={classes.year}>.</span> &nbsp;
                         <span className={classes.year}>1h 50m </span>
@@ -87,12 +90,18 @@ export default function DetailPage() {
 
                 <Grid container spacing={0} className={classes.Container}>
                     <div className={classes.leftGrid}>
-                        <div className={classes.leftPoster}>
+                        <div
+                            className={classes.leftPoster}
+                            style={{ backgroundImage: `url("${movieDetail?.poster_url}")` }}
+                        >
                             <BookMarkButton />
                         </div>
                     </div>
                     <div className={classes.middlePoster}>
-                        <div className={classes.rightPoster}>
+                        <div
+                            className={classes.rightPoster}
+                            style={{ backgroundImage: `url("${movieDetail?.video_poster_url}")` }}
+                        >
                             <div className={classes.playTrailerDiv}>
                                 <IoPlayCircleOutline className={classes.playIcon} />
                                 <p className={classes.trailerText}>Play trailer</p>
@@ -124,14 +133,21 @@ export default function DetailPage() {
 
                 <div className={classes.detailSection}>
                     <div className={classes.leftSection}>
-                        <Button
-                            variant='outlined'
-                            className={classes.genreButton}
-                        >
-                            Action
-                        </Button>
+                        {
+                            movieDetail?.genre?.map((genreName) => {
+                                return (
+                                    <Button
+                                        variant='outlined'
+                                        className={classes.genreButton}
+                                    >
+                                        {genreName ? genreName : 'Action'}
+                                    </Button>
+                                )
+                            })
+                        }
                         <p className={classes.description}>
-                            As students at the United States Navy's elite fighter weapons school compete to be best in the class, one daring young pilot learns a few things from a civilian instructor that are not taught in the classroom.
+                            {movieDetail?.description}
+                            {/* As students at the United States Navy's elite fighter weapons school compete to be best in the class, one daring young pilot learns a few things from a civilian instructor that are not taught in the classroom. */}
                         </p>
 
                         <div className={classes.smallScreenRating}>
@@ -185,11 +201,13 @@ export default function DetailPage() {
                                     <p className={classes.starName}>Tom Cruise</p>
                                 </div>
                                 <div className={classes.divider} />
+                                <a className={classes.link} href='https://pro.imdb.com/title/tt0108052/?rf=cons_tt_atf&ref_=cons_tt_atf' target={'_blank'}>
                                 <div className={classes.starsContainer}>
                                     <img src={PRO_LOGO} alt="imagelogo" />
                                     <p className={classes.imdbProText}>See production, box office & company info</p>
                                     <img src={listIcon} alt="icon not found" className={classes.imgMargin} />
                                 </div>
+                                </a>
                             </div>
                         }
 
@@ -206,7 +224,7 @@ export default function DetailPage() {
                             <Button
                                 variant='outlined'
                                 className={classes.dropdownBtn}
-                                onClick={()=> setOpenListModal(true)}
+                                onClick={() => setOpenListModal(true)}
                             >
                                 <KeyboardArrowDownIcon />
                             </Button>
@@ -215,7 +233,7 @@ export default function DetailPage() {
                         <div className={classes.metaScoreDiv}>
 
                             <div className={classes.metascore}>
-                                <span>64</span>
+                                <span>{movieDetail?.metascore}</span>
                             </div>
                             <span className={classes.metascoreText}>Metascore</span>
                         </div>
@@ -253,10 +271,12 @@ export default function DetailPage() {
                         <p className={classes.starName}>English</p>
                     </div>
                     <div className={classes.divider} />
-                    <div className={classes.imdbProDiv}>
-                        <p className={classes.starTextTwo}>See more company credits at IMDbPro</p>
-                        <img src={listIconBlack} alt="icon not found" className={classes.imgMargin} />
-                    </div>
+                    <a href='https://pro.imdb.com/title/tt0108052/?rf=cons_tt_atf&ref_=cons_tt_atf' target={'_blank'}>
+                        <div className={classes.imdbProDiv}>
+                            <p className={classes.starTextTwo}>See more company credits at IMDbPro</p>
+                            <img src={listIconBlack} alt="icon not found" className={classes.imgMargin} />
+                        </div>
+                    </a>
                 </div>
 
                 <div className={classes.topMargin} />
@@ -304,7 +324,7 @@ export default function DetailPage() {
                 <MoreLikes
                     heading={'More like this'}
                     bgColor={true}
-                    movies={topPickMovies}
+                    movies={allTopPickMovies}
                 />
                 <div className={classes.topMargin} />
                 <div className={classes.watchContainer}>
@@ -315,9 +335,9 @@ export default function DetailPage() {
                 </div>
                 <div className={classes.boxOffice}>
                     <p className={classes.starTextTwo}>Budget</p>
-                    <p className={classes.amountText}>$60338293 (estimated)</p>
+                    <p className={classes.amountText}>${movieDetail?.budget} (estimated)</p>
                     <p className={classes.starTextTwo}>Gross worldwide</p>
-                    <p className={classes.amountText}>$357,288,178</p>
+                    <p className={classes.amountText}>${movieDetail?.box_office}</p>
                 </div>
                 <div className={classes.topMargin} />
                 <div className={classes.watchContainer}>
@@ -329,14 +349,14 @@ export default function DetailPage() {
                 </div>
                 <div className={classes.techSpecs}>
                     <p className={classes.starTextTwo}>Runtime</p>
-                    <p className={classes.specsText}>1h 20m</p>
+                    <p className={classes.specsText}>{time_convert(movieDetail?.runtime)}</p>
                 </div>
 
                 <MoreLikes
                     heading={'Top picks'}
                     subHeading={'TV shows and movies just for you'}
                     bgColor={true}
-                    movies={topPickMovies}
+                    movies={allTopPickMovies}
                 />
 
                 {/* Review Drawer  */}
@@ -352,11 +372,11 @@ export default function DetailPage() {
                     setRating={setRating}
                 />
                 {/* List Modal  */}
-                <ListModal 
+                <ListModal
                     openListModal={openListModal}
                     setOpenListModal={setOpenListModal}
                 />
-                
+
             </div>
         </>
     )

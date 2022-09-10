@@ -8,6 +8,7 @@ import ArrowNextIcon from '@material-ui/icons/NavigateNext';
 
 import { useStyles } from './ToWatchStyle';
 import BookMarkButton from '../../common/BookMarkButton/BookMarkButton';
+import { Link } from 'react-router-dom';
 
 export default function ToWatch(props) {
   const { topPickMovies, fanFavoritesMovies } = props;
@@ -17,10 +18,17 @@ export default function ToWatch(props) {
     <div className={classes.root}>
       <h1 className={classes.h1} >What to watch</h1>
       <div className={classes.swiperContainer}>
-        <div className={classes.topPicks}>
-          <div className={classes.line} />
-          <h1 className={classes.h3}>{'Top picks'}</h1>
-          <ArrowNextIcon className={classes.nextIcon} />
+        <div className={classes.recomendDiv}>
+          <div className={classes.topPicks}>
+            <div className={classes.line} />
+            <h1 className={classes.h3}>{'Top picks'}</h1>
+            <ArrowNextIcon className={classes.nextIcon} />
+          </div>
+          <Link to={'/what-to-watch'} className={classes.link}>
+            <Button variant="outlined" size="medium" color='primary' className={classes.recommendBtn} endIcon={<ArrowNextIcon fontSize='small' style={{ marginLeft: -10 }} />} >
+              Get more recommend...
+            </Button>
+          </Link>
         </div>
         <p className={classes.topPicksText}>{'TV shows and movies just for you'}</p>
         <Swiper isSwiper info_btn movies={topPickMovies} />

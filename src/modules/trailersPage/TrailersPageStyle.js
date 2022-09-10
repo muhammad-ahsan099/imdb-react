@@ -70,6 +70,8 @@ export const useStyles = makeStyles((theme) => ({
         textAlign: 'left',
         margin: 0,
         marginTop: 2,
+        marginRight: 4,
+        display: 'inline-block'
     },
     divider: {
         height: '1px',

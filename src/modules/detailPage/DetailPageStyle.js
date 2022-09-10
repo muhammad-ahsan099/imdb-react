@@ -171,7 +171,7 @@ export const useStyles = makeStyles((theme) => ({
         }
     },
     leftPoster: {
-        backgroundImage: `url(${TwoS})`,
+        // backgroundImage: `url(${TwoS})`,
         width: '98%',
         height: '100%',
         backgroundSize: 'cover',
@@ -201,7 +201,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     rightPoster: {
         cursor: 'pointer',
-        backgroundImage: `url("${Two}")`,
+        // backgroundImage: `url("${Two}")`,
         width: '100%',
         height: '100%',
         backgroundSize: 'cover',
@@ -343,6 +343,7 @@ export const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        cursor: 'pointer',
     },
     starText: {
         color: '#fff',
@@ -501,8 +502,8 @@ export const useStyles = makeStyles((theme) => ({
     amountText: {
         margin: 0,
         color: commonColor.cardBg,
-        fontSize: 16,
-        fontWeight: '400',
+        fontSize: 15,
+        fontWeight: '500',
         marginBottom: 6
     },
     techSpecs: {
@@ -570,4 +571,8 @@ export const useStyles = makeStyles((theme) => ({
             fontSize: 40,
         }
     },
+    link: {
+        textDecoration: 'none',
+        cursor: 'pointer'
+    }
 }));

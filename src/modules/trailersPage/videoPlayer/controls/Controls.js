@@ -13,11 +13,13 @@ import Grid from "@material-ui/core/Grid";
 import VolumeUp from "@material-ui/icons/VolumeUp";
 import VolumeDown from "@material-ui/icons/VolumeDown";
 import VolumeMute from "@material-ui/icons/VolumeOff";
-import Rewind from '../../../../assets/icons/rewind.svg'
+import Rewind from '../../../../assets/icons/rewindIcon.png'
 import { BsArrowsAngleContract } from "react-icons/bs";
 import Popover from "@material-ui/core/Popover";
 import { useStyles, PrettoSlider } from "./ControlsStyle";
 import CloseIcon from '@material-ui/icons/Close';
+import { useNavigate } from 'react-router-dom';
+
 function ValueLabelComponent(props) {
   const { children, open, value } = props;
 
@@ -57,6 +59,8 @@ const Controls = forwardRef(
   ) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const navigate = useNavigate();
+
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
@@ -83,12 +87,20 @@ const Controls = forwardRef(
             justify="space-between"
             style={{ padding: 16 }}
           >
-            <Grid item alignItems="center" style={{display: 'flex'}}>
-              <CloseIcon style={{color: '#848484', marginLeft: 4, fontSize: 26}} />
-              <Typography variant="h5" style={{ color: "#fff", fontSize: 16, fontWeight: '600' }}>
-                Close
-              </Typography>
+
+
+            <Grid item alignItems="center" style={{ display: 'flex' }}>
+              <Button
+                className={classes.closeBtn}
+                startIcon={<CloseIcon style={{ marginRight: -8, fontSize: 22 }} />}
+                onClick={() => navigate(-1)}
+              >
+                <Typography variant="h5" style={{ color: "#fff", fontSize: 16, fontWeight: '600' }}>
+                  Close
+                </Typography>
+              </Button>
             </Grid>
+
           </Grid>
           <Grid container direction="row" alignItems="center" justify="center">
             <IconButton
@@ -172,6 +184,15 @@ const Controls = forwardRef(
 
                 <IconButton
                   size="small"
+                  onClick={onRewind}
+                  className={classes.bottomIcons}
+                >
+                  <img src={Rewind} height={20} width={20} style={{margin: '0px 10px'}} alt='img' />
+                </IconButton>
+
+
+                <IconButton
+                  size="small"
                   // onClick={() => setState({ ...state, muted: !state.muted })}
                   onClick={onMute}
                   className={`${classes.bottomIcons} ${classes.volumeButton}`}
@@ -184,9 +205,6 @@ const Controls = forwardRef(
                     <VolumeDown fontSize="medium" />
                   )}
                 </IconButton>
-
-                {/* <img src={Rewind}  height={20} width={20} alt='img'/> */}
-
                 <Slider
                   min={0}
                   max={100}
@@ -225,7 +243,7 @@ const Controls = forwardRef(
                 className={classes.bottomIcons}
                 variant="text"
               >
-                <Typography>{playbackRate}X</Typography>
+                <Typography style={{fontWeight: 'bold', fontSize: 16}}>{playbackRate}X</Typography>
               </Button>
 
               <Popover
@@ -243,7 +261,7 @@ const Controls = forwardRef(
                   horizontal: "left",
                 }}
               >
-                <Grid container direction="column-reverse" style={{backgroundColor: '#121212'}}>
+                <Grid container direction="column-reverse" style={{ backgroundColor: '#121212' }}>
                   {[0.5, 1, 1.5, 2].map((rate) => (
                     <Button
                       key={rate}

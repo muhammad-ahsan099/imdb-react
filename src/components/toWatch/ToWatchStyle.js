@@ -30,6 +30,11 @@ export const useStyles = makeStyles((theme) => ({
         },
         backgroundColor : commonColor.black,
     },
+    recomendDiv: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
     topPicks: {
         display: 'flex',
         alignItems: 'center',
@@ -65,7 +70,7 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         flexDirection: 'column',
         alignItems: 'center',
-        margin: '15px 0px'
+        margin: '40px 0px 15px 0px'
     },
     contentIcon: {
         height: '70px',
@@ -85,7 +90,22 @@ export const useStyles = makeStyles((theme) => ({
     },
     signInButton: {
         backgroundColor: '#f5c518',
+        '&:hover': {
+            backgroundColor: '#f5c518',
+        },
         textTransform: 'none',
+    },
+    link: {
+        textDecoration: 'none'
+    },
+    recommendBtn: {
+        // backgroundColor: '#f5c518',
+        border: 'none',
+        textTransform: 'none',
+        fontWeight: 'bold',
+        '&:hover': {
+            border: 'none',
+        },
     },
     nextIcon: {
         color : '#fff',
