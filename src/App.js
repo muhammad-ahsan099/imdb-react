@@ -2,7 +2,6 @@ import './App.css';
 import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
-import DrawerComponent from './common/drawer/Drawer';
 import Navigation from './navigation/Navigation';
 import ScrollToTop from './navigation/ScrollToTop';
 

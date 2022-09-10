@@ -18,6 +18,10 @@ import Footer from '../common/footer/Footer';
 import WhatToWatch from '../modules/whatToWatch/WhatToWatch';
 import ResetPassword from '../modules/auth/resetPassword/ResetPassword';
 import ForgotPassword from '../modules/auth/forgotPassword/ForgotPassword';
+// import MostPopularCelebs from '../common/mostPopularCelebs/MostPopularCelebs';
+// import MostPopularMovies from '../common/mostPopularMovies/MostPopularMovies';
+
+
 
 export default function Navigation() {
     let location = useLocation();
