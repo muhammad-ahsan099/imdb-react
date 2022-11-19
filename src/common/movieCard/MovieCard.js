@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -19,18 +19,27 @@ import clsx from 'clsx'
 import OpenInNewOutlinedIcon from '@material-ui/icons/OpenInNewOutlined';
 import BookMarkButton from '../BookMarkButton/BookMarkButton';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import InfoModal from '../infoModal/InfoModal';
 
 export default function MovieCard({ info_btn, bgColor, btn_text, end_icon, moviesData }) {
     const classes = useStyles();
+    const [openInfoModal, setOpenInfoModal] = useState(false)
+    const movieDetail = useSelector(state => state.MovieDetailReducer.movieDetail)
+    const userProfile = useSelector(state => state.AuthReducer.userProfile)
+    let filterRating;
+    if (userProfile?.user_rating?.length >= 0) {
+        filterRating = userProfile?.user_rating?.find(item => item?.movie === moviesData?.id)
+    }
 
     return (
         <Card className={clsx(classes.root, bgColor && classes.bgWhite)}>
             <CardActionArea>
                 <div className={classes.iconTopContainer} >
-                    <BookMarkButton />
+                    <BookMarkButton movie_id={moviesData?.id} />
                 </div>
 
-                <Link  to={`/movie-detail/${moviesData?.imdb_id}/${moviesData?.id}`} >
+                <Link to={`/movie-detail/${moviesData?.imdb_id}/${moviesData?.id}`} >
                     <CardMedia
                         component="img"
                         alt="Movie Poster"
@@ -48,7 +57,15 @@ export default function MovieCard({ info_btn, bgColor, btn_text, end_icon, movie
                                 {moviesData?.imdb_rating}
                             </Typography>
                         </div>
-                        <StarUnfillIcon fontSize='small' color='primary' />
+                        {
+                            filterRating &&
+                            <div className={classes.rating}>
+                                <StarUnfillIcon fontSize='small' color='primary' />
+                                <Typography className={classes.ratingText}>
+                                    {filterRating?.ratings}
+                                </Typography>
+                            </div>
+                        }
                     </div>
                     <Typography className={clsx(classes.Typography, bgColor && classes.colorBlack)} variant="h6" component="h6">
                         {moviesData?.title}
@@ -56,34 +73,49 @@ export default function MovieCard({ info_btn, bgColor, btn_text, end_icon, movie
                 </CardContent>
             </CardActionArea>
             <CardActions classes={{ root: classes.cardAction }}>
-                <Button
+                {/* <Button
                     variant='outlined'
                     className={clsx(classes.menuButton, bgColor && classes.bgButton)}
                     startIcon={!end_icon && <AddIcon />}
                     endIcon={end_icon && <OpenInNewOutlinedIcon />}
                 >
                     {btn_text ? btn_text : 'Watchlist'}
-                </Button>
+                </Button> */}
+                <BookMarkButton
+                    movie_id={moviesData?.id}
+                    small_primary_btn={true}
+                    bgColor={bgColor}
+                    end_icon={end_icon}
+                    btn_text={btn_text}
+                />
                 <div className={clsx(classes.bottomSection, info_btn && classes.hideInfoBtn)}>
-                    <Button
-                        variant='outlined'
-                        className={clsx(classes.trailerButton, bgColor && classes.bgTrailerButton)}
-                        startIcon={<PlayArrowRoundedIcon />}
+                    <Link to={`/movie-trailer/${moviesData?.imdb_id}/${moviesData?.id}`} className={classes.Link}>
+                        <Button
+                            variant='outlined'
+                            className={clsx(classes.trailerButton, bgColor && classes.bgTrailerButton)}
+                            startIcon={<PlayArrowRoundedIcon />}
 
-                    >
-                        <p className={classes.menuText} style={{ color: bgColor && '#000' }}>
-                            Trailer
-                        </p>
-                    </Button>
+                        >
+                            <p className={classes.menuText} style={{ color: bgColor && '#000' }}>
+                                Trailer
+                            </p>
+                        </Button>
+                    </Link>
                     {
                         info_btn &&
                         <IconButton
                             // size={'large'}
                             className={classes.smallMenuScreen}
+                            onClick={() => setOpenInfoModal(true)}
                         >
                             <InfoOutlinedIcon />
                         </IconButton>
                     }
+                    <InfoModal
+                        openInfoModal={openInfoModal}
+                        setOpenInfoModal={setOpenInfoModal}
+                        movie_data={moviesData}
+                    />
                 </div>
             </CardActions>
         </Card>

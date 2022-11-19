@@ -15,7 +15,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 // import required modules
 import { Navigation } from "swiper";
 
-export default function ImageGallery() {
+export default function ImageGallery({imageGallery}) {
     const Styles = useStyles();
     const swiperRef = useRef()
     const [{ exclusiveVideos }] = UseExclusiveVideos();
@@ -66,14 +66,14 @@ export default function ImageGallery() {
                     }}
                 >
                     {
-                        exclusiveVideos?.map((items, index) => {
+                        imageGallery?.map((items, index) => {
                             return (
                                 <>
                                     <SwiperSlide>
                                         <div className={Styles.cardDiv} key={index}>
                                             <div className={Styles.cardHeader}>
                                                 <div>
-                                                    <img src={items.img} alt="Image Not Found" height={'180px'} width={'100%'} />
+                                                    <img src={items.poster_url} alt="Image Not Found" height={'180px'} width={'100%'} />
                                                 </div>
                                             </div>
                                         </div>

@@ -32,8 +32,11 @@ export default function WhatToWatch() {
     const [
         {
             loading,
+            isUserLoggedIn,
             allTopPickMovies,
             allFanFavoritesMovies,
+            mostPopularMovies,
+            userWishlist,
         }
     ] = UseWhatToWatch()
 
@@ -110,7 +113,7 @@ export default function WhatToWatch() {
                                         {
                                             allFanFavoritesMovies?.map((item, index) => {
                                                 return (
-                                                    <Grid item xs={6} sm={3} md={2} lg={2} className={classes.tabsDiv}>
+                                                    <Grid item xs={6} sm={3} md={2} lg={2} className={classes.tabsDiv} key={item?.id}>
                                                         <MovieCard moviesData={item} key={item.id} />
                                                     </Grid>
                                                 )
@@ -137,7 +140,7 @@ export default function WhatToWatch() {
                                         {
                                             allTopPickMovies?.map((item, index) => {
                                                 return (
-                                                    <Grid item xs={6} sm={3} md={2} lg={2} className={classes.tabsDiv}>
+                                                    <Grid item xs={6} sm={3} md={2} lg={2} className={classes.tabsDiv} key={item?.id}>
                                                         <MovieCard moviesData={item} key={item.id} />
                                                     </Grid>
                                                 )
@@ -155,22 +158,48 @@ export default function WhatToWatch() {
                     aria-labelledby={`full-width-tab-${2}`}
                 >
                     {value === 2 && (
-                        <div className={classes.contentContainer}>
-                            <BookMarkButton />
-                            <span className={classes.contentHeading}>
-                                Sign in to access your Watchlist
-                            </span>
-                            <br />
-                            <span className={classes.contentDes}>
-                                Save shows and movies to keep track of what you want to watch.
-                            </span>
-                            {/* Sign in Button */}
-                            <div className={classes.signInButtonDiv}>
-                                <Button variant="contained" size="medium" className={classes.signInButton}>
-                                    Sign in to IMDb
-                                </Button>
-                            </div>
-                        </div>
+                        <>
+                            {
+                                !isUserLoggedIn ?
+                                    <div className={classes.contentContainer}>
+                                        <BookMarkButton />
+                                        <span className={classes.contentHeading}>
+                                            Sign in to access your Watchlist
+                                        </span>
+                                        <br />
+                                        <span className={classes.contentDes}>
+                                            Save shows and movies to keep track of what you want to watch.
+                                        </span>
+                                        {/* Sign in Button */}
+                                        <div className={classes.signInButtonDiv}>
+                                            <Button variant="contained" size="medium" className={classes.signInButton}>
+                                                Sign in to IMDb
+                                            </Button>
+                                        </div>
+                                    </div>
+                                    :
+                                    <Grid container spacing={2} className={classes.gridContainer}>
+
+                                        {
+                                            loading ?
+                                                <Loader />
+                                                :
+                                                <>
+                                                    {
+                                                        userWishlist?.to_watch?.map((item, index) => {
+                                                            return (
+                                                                <Grid item xs={6} sm={3} md={2} lg={2} className={classes.tabsDiv} key={item?.id}>
+                                                                    <MovieCard moviesData={item} key={item.id} />
+                                                                </Grid>
+                                                            )
+                                                        })
+                                                    }
+                                                </>
+                                        }
+                                    </Grid>
+
+                            }
+                        </>
                     )}
                 </div>
                 <div
@@ -180,12 +209,27 @@ export default function WhatToWatch() {
                     aria-labelledby={`full-width-tab-${3}`}
                 >
                     {value === 3 && (
-                        <Box p={3}>
-                            <Typography color='primary'>{'children4'}</Typography>
-                        </Box>
+                        <Grid container spacing={2} className={classes.gridContainer}>
+                            {
+                                loading ?
+                                    <Loader />
+                                    :
+                                    <>
+                                        {
+                                            mostPopularMovies?.map((item, index) => {
+                                                return (
+                                                    <Grid item xs={6} sm={3} md={2} lg={2} className={classes.tabsDiv} key={item?.id}>
+                                                        <MovieCard moviesData={item} key={item.id} />
+                                                    </Grid>
+                                                )
+                                            })
+                                        }
+                                    </>
+                            }
+                        </Grid>
                     )}
                 </div>
-            </SwipeableViews>
-        </div>
+            </SwipeableViews >
+        </div >
     );
 }

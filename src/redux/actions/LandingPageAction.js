@@ -1,6 +1,37 @@
-import { HOME_MOVIES_TOP, ALL_TOP_PICK_MOVIES, TOP_PICK_MOVIES, FAN_FAVORITES_MOVIES, RECENT_RELEASED_MOVIES, RECENT_UPCOMING_MOVIES, PRIME_VIDEOS, ALL_FAN_FAVORITES_MOVIES } from "../type/Type"
+import { SEARCH_MOVIES, HOME_MOVIES_TOP, ALL_TOP_PICK_MOVIES, TOP_PICK_MOVIES, FAN_FAVORITES_MOVIES, RECENT_RELEASED_MOVIES, RECENT_UPCOMING_MOVIES, PRIME_VIDEOS, ALL_FAN_FAVORITES_MOVIES } from "../type/Type"
 import axios from "axios";
 import { endPoint } from '../endPoint/EndPoint';
+
+export const fetchSearchMovies = (setLoading, query) => async (dispatch) => {
+    try {
+        setLoading(true);
+        let request = {
+            method: 'get',
+            url: `${endPoint}movies/search-movies/?search=${query}`,
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        let res = await axios(request);
+        console.log('Res of Searchbar: ', res.data);
+
+        if (res.data) {
+            dispatch({
+                type: SEARCH_MOVIES,
+                payload: res?.data,
+            })
+        }
+    }
+    catch (error) {
+        console.log('Error at Search Movies: ', error);
+    }
+    finally {
+        setLoading(false)
+    }
+}
+
+
+
 
 export const fetchHomeMoviesTop = (setLoading) => async (dispatch) => {
     try {

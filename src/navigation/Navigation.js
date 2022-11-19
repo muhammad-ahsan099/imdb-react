@@ -18,17 +18,23 @@ import Footer from '../common/footer/Footer';
 import WhatToWatch from '../modules/whatToWatch/WhatToWatch';
 import ResetPassword from '../modules/auth/resetPassword/ResetPassword';
 import ForgotPassword from '../modules/auth/forgotPassword/ForgotPassword';
+import MostPopularCelebs from '../modules/mostPopularCelebs/MostPopularCelebs';
+import MostPopularMovies from '../modules/mostPopularMovies/MostPopularMovies';
+import Top250Movies from '../modules/top250Movies/Top250Movies';
+import CelebrityDetail from '../modules/celebrityDetail/CelebrityDetail';
+import Watchlist from '../modules/watchlist/Watchlist';
+import UserList from '../modules/userList/UserList';
+import { useSelector } from 'react-redux';
+
 
 export default function Navigation() {
+    const isUserLoggedIn = useSelector(state => state.AuthReducer.isUserLoggedIn)
     let location = useLocation();
     console.log('Log location name: ', location.pathname)
     let navigate = useNavigate()
 
-
-    let authState = false;
-
     useEffect(() => {
-        if (!authState) {
+        if (!isUserLoggedIn) {
             navigate(location.pathname)
         }
     }, [])
@@ -50,7 +56,7 @@ export default function Navigation() {
                 <Route
                     path='/login'
                     element={
-                        <PublicRouting isAllowed={authState}>
+                        <PublicRouting isAllowed={isUserLoggedIn}>
                             <SignIn />
                         </PublicRouting>
                     }
@@ -58,7 +64,7 @@ export default function Navigation() {
                 <Route
                     path='/create-account'
                     element={
-                        <PublicRouting isAllowed={authState}>
+                        <PublicRouting isAllowed={isUserLoggedIn}>
                             <CreateAccount />
                         </PublicRouting>
                     }
@@ -66,7 +72,7 @@ export default function Navigation() {
                 <Route
                     path='/registration'
                     element={
-                        <PublicRouting isAllowed={authState}>
+                        <PublicRouting isAllowed={isUserLoggedIn}>
                             <SignInGoogle />
                         </PublicRouting>
                     }
@@ -74,7 +80,7 @@ export default function Navigation() {
                 <Route
                     path='/reset-password/:id/:token'
                     element={
-                        <PublicRouting isAllowed={authState}>
+                        <PublicRouting isAllowed={isUserLoggedIn}>
                             <ResetPassword />
                         </PublicRouting>
                     }
@@ -82,7 +88,7 @@ export default function Navigation() {
                 <Route
                     path='/forgot-password'
                     element={
-                        <PublicRouting isAllowed={authState}>
+                        <PublicRouting isAllowed={isUserLoggedIn}>
                             <ForgotPassword />
                         </PublicRouting>
                     }
@@ -100,33 +106,66 @@ export default function Navigation() {
                 <Route
                     path='/'
                     element={
-                        <PublicRouting isAllowed={authState}>
-                            <LandingPage />
-                        </PublicRouting>
+                        <LandingPage />
                     }
                 />
                 <Route
                     path='/movie-detail/:imdb_id/:id'
                     element={
-                        <PublicRouting isAllowed={authState}>
-                            <DetailPage />
-                        </PublicRouting>
+                        <DetailPage />
                     }
                 />
                 <Route
                     path='/movie-trailer/:imdb_id/:id'
                     element={
-                        <PublicRouting isAllowed={authState}>
-                            <TrailersPage />
-                        </PublicRouting>
+                        <TrailersPage />
                     }
                 />
                 <Route
                     path='/what-to-watch'
                     element={
-                        <PublicRouting isAllowed={authState}>
-                            <WhatToWatch />
-                        </PublicRouting>
+                        <WhatToWatch />
+                    }
+                />
+                <Route
+                    path='/most-popular-movies'
+                    element={
+                        <MostPopularMovies />
+                    }
+                />
+                <Route
+                    path='/top-250-movies'
+                    element={
+                        <Top250Movies />
+                    }
+                />
+
+                <Route
+                    path='/most-popular-celebs'
+                    element={
+                        <MostPopularCelebs />
+                    }
+                />
+                <Route
+                    path='/celebrity-detail/:id'
+                    element={
+                        <CelebrityDetail />
+                    }
+                />
+                <Route
+                    path='/user-watchlist'
+                    element={
+                        <PrivateRouting isAllowed={isUserLoggedIn}>
+                            <Watchlist />
+                        </PrivateRouting>
+                    }
+                />
+                <Route
+                    path='/user-list'
+                    element={
+                        <PrivateRouting isAllowed={isUserLoggedIn}>
+                            <UserList />
+                        </PrivateRouting>
                     }
                 />
                 {/* <Route

@@ -112,5 +112,8 @@ export const useStyles = makeStyles ((theme) => ({
         [theme.breakpoints.down('sm')]: {
             display: 'none'
         },
+    },
+    Link: {
+        textDecoration: 'none'
     }
 }))

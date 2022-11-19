@@ -270,10 +270,11 @@ const useStyles = makeStyles((theme) => ({
     },
     DrawerList: {
         width: '72%',
-        marginLeft: "14%",
-        marginRight: "14%",
+        marginLeft: "auto",
+        marginRight: "auto",
         display: 'flex',
-        justifyContent: 'center',
+        alginItems: 'center',
+        // justifyContent: 'center',
         flexDirection: 'column',
         [theme.breakpoints.down('sm')]: {
             width: '96%',
@@ -287,7 +288,6 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
         // backgroundColor: 'blue',
     },
-
 }));
 
 export default useStyles;

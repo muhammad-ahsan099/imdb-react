@@ -68,5 +68,17 @@ export const useStyles = makeStyles((theme) => ({
             color: '#ffffff',
             backgroundColor: 'rgba(158, 158, 158, 0.4)'
         },
-    }
+    },
+    remBtn: {
+      marginTop: 10,
+      width: '60%',
+      textTransform: 'none',
+      border: 'none',
+      fontWeight: '500',
+      '&:hover': {
+        border: 'none',
+          backgroundColor :'rgba(158, 158, 158, 0.1)',
+      },
+
+    },
   }));

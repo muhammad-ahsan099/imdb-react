@@ -15,8 +15,9 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 // import required modules
 import { Navigation } from "swiper";
+import { Link } from 'react-router-dom';
 
-export default function VideoGallery() {
+export default function VideoGallery({ videoGallery, id, imdb_id }) {
     const Styles = useStyles();
     const swiperRef = useRef()
     const [{ exclusiveVideos }] = UseExclusiveVideos();
@@ -27,10 +28,10 @@ export default function VideoGallery() {
                 {/* Imdb origanls container */}
                 <div className={Styles.watchContainer}>
                     <div className={Styles.sideLine}></div>
-                        <h1 className={Styles.heading}>
-                            Videos
-                        </h1>
-                        <ArrowForwardIosIcon  />
+                    <h1 className={Styles.heading}>
+                        Videos
+                    </h1>
+                    <ArrowForwardIosIcon />
                 </div>
 
                 {/* slider */}
@@ -67,28 +68,25 @@ export default function VideoGallery() {
                     }}
                 >
                     {
-                        exclusiveVideos?.map((items, index) => {
+                        videoGallery?.map((items, index) => {
                             return (
                                 <>
                                     <SwiperSlide>
-                                        <div className={Styles.cardDiv} key={index}>
-                                            <div className={Styles.cardHeader}>
-                                                <div>
-                                                    <img src={items.img} alt="Image Not Found" height={'240px'} width={'100%'} />
-                                                </div>
-                                                <div className={Styles.iconDiv}>
-                                                    <img src={videoIcon} alt="Image Not Found" height={'32px'} width={'32px'} />
-                                                    <p className={Styles.iconTxt}>
+                                        <Link to={`/movie-trailer/${imdb_id}/${id}`} >
+                                            <div className={Styles.cardDiv} key={index}>
+                                                <div className={Styles.cardHeader}>
+                                                    <div>
+                                                        <img src={items?.video_poster_url} alt="Image Not Found" height={'240px'} width={'100%'} />
+                                                    </div>
+                                                    <div className={Styles.iconDiv}>
+                                                        <img src={videoIcon} alt="Image Not Found" height={'32px'} width={'32px'} />
+                                                        {/* <p className={Styles.iconTxt}>
                                                         {items.time}
-                                                    </p>
+                                                    </p> */}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <p className={Styles.cardTxt}>
-                                                    {items.des}
-                                                </p>
-                                            </div>
-                                        </div>
+                                        </Link>
                                     </SwiperSlide>
                                 </>
                             )
@@ -97,7 +95,7 @@ export default function VideoGallery() {
                     <div className={Styles.swiper_button_next} onClick={() => swiperRef.current.slideNext()} ><ArrowNextIcon className={Styles.arrows} /></div>
                     <div className={Styles.swiper_button_prev} onClick={() => swiperRef.current.slidePrev()} ><ArrowBackIcon className={Styles.arrows} /></div>
                 </Swiper>
-                
+
             </div>
         </>
     )

@@ -29,6 +29,7 @@ export default function LandingPage() {
       <ToWatch
         topPickMovies={topPickMovies}
         fanFavoritesMovies={fanFavoritesMovies}
+        
       />
       <ExclusiveVideos />
       <MoviesAndStreaming

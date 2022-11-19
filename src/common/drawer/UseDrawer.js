@@ -9,19 +9,20 @@ import { MdStars } from "react-icons/md";
 import useStyles from './DrawerStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { doLogout, fetchProfile } from '../../redux/actions/AuthAction';
-import { getToken } from '../localStorage/LocalStorage';
 import { useEffect } from 'react';
 
 export const UseDrawer = () => {
   const dispatch = useDispatch()
   const isUserLoggedIn = useSelector(state => state.AuthReducer.isUserLoggedIn)
-  const userProfile = useSelector(state => state.AuthReducer.userProfile)
   const [loading, setLoading] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false);
+  
+  const userProfile = useSelector(state => state.AuthReducer.userProfile)
+  // useEffect(()=> {
+  // }, [userProfile])
 
-  let { access_token } = getToken()
-  // console.log('Access Token', access_token);
-  console.log('User Profile', userProfile);
+  console.log('userProfile', userProfile);
+  console.log('isUserLoggedIn', isUserLoggedIn)
 
   const menuItems = [
     {
@@ -34,11 +35,11 @@ export const UseDrawer = () => {
         },
         {
           title: 'Top 250 Movies',
-          path: '/'
+          path: '/top-250-movies'
         },
         {
           title: 'Top Popular Movies',
-          path: '/',
+          path: '/most-popular-movies',
         },
         {
           title: 'Browse Movies By Genre',
@@ -98,7 +99,7 @@ export const UseDrawer = () => {
       subTitles: [
         {
           title: "What to Watch",
-          path: '/'
+          path: '/what-to-watch'
         },
         {
           title: 'Latest Trailers',
@@ -178,7 +179,7 @@ export const UseDrawer = () => {
         },
         {
           title: 'Most Popular Celebs',
-          path: '/'
+          path: '/most-popular-celebs'
         },
         {
           title: 'Celebrity News',
@@ -212,9 +213,8 @@ export const UseDrawer = () => {
   }
   
   useEffect(() => {
-    console.log('Use Effect is Running');
     dispatch(fetchProfile(setLoading))
-  }, [])
+  }, [userProfile])
   
 
   const accountOptions = [

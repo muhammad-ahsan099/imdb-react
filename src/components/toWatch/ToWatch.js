@@ -9,9 +9,14 @@ import ArrowNextIcon from '@material-ui/icons/NavigateNext';
 import { useStyles } from './ToWatchStyle';
 import BookMarkButton from '../../common/BookMarkButton/BookMarkButton';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function ToWatch(props) {
   const { topPickMovies, fanFavoritesMovies } = props;
+  const isUserLoggedIn = useSelector(state => state.AuthReducer.isUserLoggedIn)
+  let userWishlist = useSelector(state => state.AuthReducer.userProfile);
+  userWishlist = userWishlist?.user_wishlist
+
   const classes = useStyles()
 
   return (
@@ -45,7 +50,7 @@ export default function ToWatch(props) {
         </div>
 
         {
-          true ?
+          !isUserLoggedIn ?
             <div className={classes.contentContainer}>
               <BookMarkButton />
               <span className={classes.contentHeading}>
@@ -57,15 +62,17 @@ export default function ToWatch(props) {
               </span>
               {/* Sign in Button */}
               <div className={classes.signInButtonDiv}>
-                <Button variant="contained" size="medium" className={classes.signInButton}>
-                  Sign in to IMDb
-                </Button>
+                <Link to='/login' className={classes.link}>
+                  <Button variant="contained" size="medium" className={classes.signInButton}>
+                    Sign in to IMDb
+                  </Button>
+                </Link>
               </div>
             </div>
             :
             <>
               <p className={classes.topPicksText}>{'Movies and TV shows that you have watchlisted'}</p>
-              <Swiper isSwiper info_btn={false} />
+              <Swiper isSwiper info_btn={false}  movies={userWishlist?.to_watch}  />
             </>
         }
       </div>

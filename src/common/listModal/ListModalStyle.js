@@ -7,6 +7,9 @@ export const useStyles = makeStyles((theme) => ({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    link: {
+        textDecoration: 'none',
+    },
     paper: {
       backgroundColor: theme.palette.background.paper,
       border: 'none',
