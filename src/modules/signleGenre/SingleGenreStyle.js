@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core";
-import { commonColor } from "../../constants/colors";
 
 export const useStyles = makeStyles((theme) => ({
     istContainer : {
@@ -26,8 +25,7 @@ export const useStyles = makeStyles((theme) => ({
     secondHeadingDes : {
         fontSize : '12px',
         display:'inline-block',
-        marginBottom : '10px',
-        color: 'rgb(102,102,102)'
+        marginBottom : '10px'
     },
     buttonHeading : {
         fontSize : '14px',
@@ -174,4 +172,5 @@ export const useStyles = makeStyles((theme) => ({
     link:{
         textDecoration: 'none'
     }
+
 }))

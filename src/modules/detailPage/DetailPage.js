@@ -229,14 +229,20 @@ export default function DetailPage() {
                     </div>
                     <div className={classes.rightSection}>
                         <div className={classes.wishListBtnDiv}>
-                            <Button
+                            {/* <Button
                                 variant='outlined'
                                 className={classes.wishlistBtn}
                                 startIcon={<AddIcon />}
                             >
                                 Add to wishlist
-                            </Button>
-                            
+                            </Button> */}
+                            <BookMarkButton
+                                movie_id={movieDetail?.id}
+                                small_primary_btn={true}
+                                btn_height={50}
+                                btn_text={"Add to wishlist"}
+                            />
+
                             <Button
                                 variant='outlined'
                                 className={classes.dropdownBtn}

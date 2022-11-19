@@ -77,9 +77,6 @@ function DrawerComponent(props) {
     setExpanded(isExpanded ? panel : false);
   };
 
-
-
-
   const drawer = (
     <div
       className={clsx(classes.list, {

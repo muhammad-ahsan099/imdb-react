@@ -25,7 +25,6 @@ import InfoModal from '../infoModal/InfoModal';
 export default function MovieCard({ info_btn, bgColor, btn_text, end_icon, moviesData }) {
     const classes = useStyles();
     const [openInfoModal, setOpenInfoModal] = useState(false)
-    const movieDetail = useSelector(state => state.MovieDetailReducer.movieDetail)
     const userProfile = useSelector(state => state.AuthReducer.userProfile)
     let filterRating;
     if (userProfile?.user_rating?.length >= 0) {

@@ -8,6 +8,38 @@ import SearchIcon from "@material-ui/icons/Search";
 import ArrowDropDownRoundedIcon from '@material-ui/icons/ArrowDropDownRounded';
 import ArrowDropUpRoundedIcon from '@material-ui/icons/ArrowDropUpRounded';
 import { useStyles } from './PopperSearchStyle'
+import TvIcon from '@material-ui/icons/Tv';
+import Movies from '@material-ui/icons/TheatersRounded';
+import Celebs from '@material-ui/icons/PeopleRounded';
+import BusinessIcon from '@material-ui/icons/Business';
+import LabelIcon from '@material-ui/icons/Label';
+
+const options = [
+    {
+        title : 'All',
+        icon: <SearchIcon fontSize="small" style={{ color: 'yellow' }} />
+    },
+    {
+        title : 'Titles',
+        icon: <Movies fontSize="small" style={{ color: 'yellow' }} />
+    },
+    {
+        title : `TVEpisode`,
+        icon: <TvIcon  fontSize="small" style={{ color: 'yellow' }}/>
+    },
+    {
+        title : 'Celebs',
+        icon: <Celebs  fontSize="small" style={{ color: 'yellow' }}/>
+    },
+    {
+        title : 'Companies',
+        icon: <BusinessIcon  fontSize="small" style={{ color: 'yellow' }}/>
+    },
+    {
+        title : 'Keywords',
+        icon: <LabelIcon  fontSize="small" style={{ color: 'yellow' }}/>
+    }
+];
 
 
 export default function PopperSearch(props) {
@@ -17,9 +49,9 @@ export default function PopperSearch(props) {
 
     const classes = useStyles();
 
-    const handleMenuItemClick = (event , index) => {
+    const handleMenuItemClick = (event, index) => {
         setSelectedIndex(index);
-        setOpen(false);    
+        setOpen(false);
     };
     const handleToggle = (event) => {
         setAnchorEl(event.currentTarget);
@@ -29,16 +61,15 @@ export default function PopperSearch(props) {
     const handleClose = (event) => {
         setOpen(false);
     };
-    const options = ['All', 'Titles', 'TVEpisodes', 'Celebs', 'Companies', 'Keywords',];
     return (
         <div className={classes.root} >
             <Popper open={open} anchorEl={anchorEl} placement={'bottom-start'} transition disablePortal className={classes.Popper}>
                 {({ TransitionProps }) => (
                     <Fade {...TransitionProps} timeout={350}>
-                        <Paper>
+                        <Paper >
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList id="split-button-menu" className={classes.menuList}>
-                                    {options.map((option, index) => (
+                                    {options?.map((item, index) => (
                                         <MenuItem
                                             key={index}
                                             className={classes.typography}
@@ -46,9 +77,10 @@ export default function PopperSearch(props) {
                                             onClick={(event) => handleMenuItemClick(event, index)}
                                         >
                                             <ListItemIcon className={classes.iconsList}>
-                                                <SearchIcon fontSize="small" style={{ color: 'yellow' }} />
+                                                {item?.icon}
+                                                {/* <SearchIcon fontSize="small" style={{ color: 'yellow' }} /> */}
                                             </ListItemIcon>
-                                            {option}
+                                            {item?.title} 
 
                                         </MenuItem>
                                     ))}
@@ -67,7 +99,7 @@ export default function PopperSearch(props) {
                 onClick={(event) => handleToggle(event)}
                 className={classes.listBtn}
             >
-                {options[selectedIndex]}
+                {options[selectedIndex].title}
                 {
                     open ?
                         <ArrowDropUpRoundedIcon />

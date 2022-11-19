@@ -43,7 +43,7 @@ export const UseDrawer = () => {
         },
         {
           title: 'Browse Movies By Genre',
-          path: '/'
+          path: '/genre-list'
         },
         {
           title: 'Top Box Office',

@@ -36,8 +36,6 @@ export default function SwiperComponent(props) {
         swiper2Ref.current.controller.control = swiper1Ref.current;
     }, []);
 
-    const [check, setCheck] = useState(false)
-
     return (
         <div className={classes.root}>
             <Grid container spacing={0}>
@@ -55,7 +53,7 @@ export default function SwiperComponent(props) {
                         modules={[Navigation, Controller]}
                     >
                         {
-                            homeMoviesTop?.map((item, index) => {
+                            homeMoviesTop?.sort((a, b) => a.id - b.id)?.map((item, index) => {
                                 return (
                                     <SwiperSlide key={index}>
                                         <Link to={`/movie-trailer/${item?.imdb_id}/${item?.id}`} >
@@ -126,7 +124,7 @@ export default function SwiperComponent(props) {
                         // fadeEffect={true}
                         >
                             {
-                                homeMoviesTop?.map((item, index) => {
+                                homeMoviesTop?.sort((a, b) => a.id - b.id)?.map((item, index) => {
                                     return (
                                         <SwiperSlide key={index}>
                                             <div

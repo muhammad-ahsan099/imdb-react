@@ -14,6 +14,7 @@ import ArrowNextIcon from '@material-ui/icons/NavigateNext';
 import MovieCard from '../../../common/movieCard/MovieCard'
 import { useStyles } from './SwiperStyle';
 import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 export default function SwiperComponent(props) {
 
@@ -56,7 +57,7 @@ export default function SwiperComponent(props) {
                                 slidesPerGroup: 1,
                                 speed: 1200,
                                 allowTouchMove: true,
-                                
+
                             },
                             600: {
                                 slidesPerView: 4.2,
@@ -66,7 +67,7 @@ export default function SwiperComponent(props) {
                             },
                             960: {
                                 slidesPerView: 6,
-                                slidesPerGroup:6,
+                                slidesPerGroup: 6,
                                 allowTouchMove: false,
                                 mousewheel: true,
                             },
@@ -77,7 +78,7 @@ export default function SwiperComponent(props) {
                                 return (
                                     <SwiperSlide className={classes.swiper_slide} key={index}>
                                         <div className={classes.innerSwiperSlide}>
-                                            <MovieCard  info_btn={info_btn} moviesData={item} />
+                                            <MovieCard info_btn={info_btn} moviesData={item} />
                                         </div>
 
                                     </SwiperSlide>
@@ -90,18 +91,22 @@ export default function SwiperComponent(props) {
                     </Swiper>
                     :
                     <div className={classes.btnContainer}>
-                        <Button
-                            variant='outlined'
-                            className={classes.menuButton}
-                        >
-                            Watch Guide
-                        </Button>
-                        <Button
-                            variant='outlined'
-                            className={classes.menuButton}
-                        >
-                            Most Popular
-                        </Button>
+                        <Link to={"/what-to-watch"} className={classes.router}>
+                            <Button
+                                variant='outlined'
+                                className={classes.menuButton}
+                            >
+                                Watch Guide
+                            </Button>
+                        </Link>
+                        <Link to={"/what-to-watch"} className={classes.router}>
+                            <Button
+                                variant='outlined'
+                                className={classes.menuButton}
+                            >
+                                Most Popular
+                            </Button>
+                        </Link>
                     </div>
             }
 
