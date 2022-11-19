@@ -25,4 +25,6 @@ export const ADD_RATING = 'ADD_RATING'
 export const UPDATE_RATING = 'UPDATE_RATING'
 export const DELETE_RATINGS = 'DELETE_RATINGS'
 export const IMDB_ORIGINAL = 'IMDB_ORIGINAL'
+export const GENRE_LIST = 'GENRE_LIST'
+export const SIGNLE_GENRE = 'SIGNLE_GENRE'
 
