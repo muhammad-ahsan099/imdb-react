@@ -4,15 +4,26 @@ import { useStyles } from "./MostPopularMoviesStyle";
 import ShareIcon from '@material-ui/icons/Share';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
 import bookIcon from "../../assets/images/bookIcon.svg";
+import StarRoundedIcon from '@material-ui/icons/StarRounded';
+import { UseMostPopularMovies } from './UseMostPopularMovies';
+import BookMarkButton from '../../common/BookMarkButton/BookMarkButton';
+import { BsFillBookmarkCheckFill, BsFillBookmarkPlusFill } from "react-icons/bs";
+
 
 export default function MostPopularMovies() {
     const Styles = useStyles();
+    const [
+        {
+            loading,
+            mostPopularMovies,
+        }
+    ] = UseMostPopularMovies()
 
     return (
         <Container>
             <Grid container justifyContent={'center'}>
                 {/* ist content */}
-                <Grid item xs={12} sm={12} md={6} lg={6}>
+                <Grid item xs={12} sm={12} md={7} lg={7}>
                     <Paper component={Box} className={Styles.istContainer}>
                         <div className={Styles.istContentDiv}>
                             {/* Headings */}
@@ -59,35 +70,40 @@ export default function MostPopularMovies() {
                                 <div>
                                     <span className={Styles.cardIstHeading}>Rank & Title</span>
                                 </div>
-                                <div>
-                                    <span className={Styles.cardSecondHeading}>IMDb Rating</span>
-                                    <span className={Styles.cardSecondHeading}>Your Rating</span>
+                                <div className={Styles.cardContainer}>
+                                    <span className={Styles.cardSecondHeading}>IMDbM <br /> Rating</span>
+                                    <span className={Styles.cardSecondHeading}>Your<br /> Rating</span>
+                                    <span className={Styles.cardSecondHeading}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                 </div>
                             </div>
 
                             {/* cards */}
                             {
-                                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((items, index) => {
+                                mostPopularMovies?.map((items, index) => {
                                     return (
                                         <>
                                             <div className={Styles.cardMainContainer}>
                                                 <div className={Styles.cardHeaderDiv}>
                                                     <div>
-                                                        <img src={require('../../assets/images/watchCard1.jpg')} alt="Image not found" height={'70px'} width={'50px'} />
+                                                        <img src={items?.poster_url ? items?.poster_url : require('../../assets/images/watchCard1.jpg')} alt="not found" height={'70px'} width={'50px'} />
                                                     </div>
                                                     <div className={Styles.cardTitleDiv}>
-                                                        <span className={Styles.cardTitle}>Nope <span>(2022)</span></span>
+                                                        <span className={Styles.cardTitle}>{items?.title ? items?.title : 'Nope'} <span>{items?.year ? '(' + items?.year + ')' : '(2022)'}</span></span>
                                                         <br />
                                                         <span className={Styles.cardTitleTwo}>1 (* 1)</span>
                                                     </div>
                                                 </div>
-                                                <div className={Styles.cardHeaderDiv}>
-                                                    <div>
-                                                        <span className={Styles.cardRatingTitle}>7.0</span>
+                                                <div className={Styles.cardContainer}>
+                                                    <div className={Styles.ratingContainer}>
+                                                        <StarRoundedIcon className={Styles.iconStar} />
+                                                        <span className={Styles.cardRatingTitle}>{items?.imdb_rating ? items?.imdb_rating : '7.0'}</span>
                                                     </div>
-                                                    <div>
-                                                        <img src={bookIcon} alt="Icon Not Found" height={'50px'} width={'50px'} className={Styles.cardRatingTitle} />
+                                                    <div className={Styles.ratingContainer}>
+                                                        <StarRoundedIcon className={Styles.iconBlueStar} />
+                                                        <span className={Styles.cardRatingTitle}>{items?.imdb_rating ? items?.imdb_rating : '7.0'}</span>
                                                     </div>
+                                                    <BsFillBookmarkPlusFill style={{ height: 24, width: 28, color: 'rgb(177,177,177)' }} />
+                                                    {/* <BsFillBookmarkCheckFill style={{ height: 24, width: 28, color: 'rgb(154,221,128)' }} /> */}
                                                 </div>
                                             </div>
                                             <hr />
@@ -102,7 +118,7 @@ export default function MostPopularMovies() {
                 {/* second content */}
                 <Grid item xs={12} sm={12} md={3} lg={3}>
                     <Paper component={Box} className={Styles.secondContentDiv}>
-                        <h2>You have seen</h2>
+                        <img src={require('../../assets/images/popularCard2.jpg')} alt="Image Not Found" height={'300px'} width={'100%'} />
                     </Paper>
                 </Grid>
             </Grid>

@@ -1,6 +1,7 @@
-import { HOME_MOVIES_TOP, TOP_PICK_MOVIES, FAN_FAVORITES_MOVIES, RECENT_RELEASED_MOVIES, RECENT_UPCOMING_MOVIES, PRIME_VIDEOS, ALL_TOP_PICK_MOVIES, ALL_FAN_FAVORITES_MOVIES } from "../type/Type";
+import { SEARCH_MOVIES, HOME_MOVIES_TOP, TOP_PICK_MOVIES, FAN_FAVORITES_MOVIES, RECENT_RELEASED_MOVIES, RECENT_UPCOMING_MOVIES, PRIME_VIDEOS, ALL_TOP_PICK_MOVIES, ALL_FAN_FAVORITES_MOVIES } from "../type/Type";
 
 const initialState = {
+    searchMovies: [],
     homeMoviesTop: [],
     topPickMovies: [],
     allTopPickMovies: [],
@@ -12,6 +13,13 @@ const initialState = {
 };
 const LandingPageReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SEARCH_MOVIES: {
+            return {
+                ...state,
+                searchMovies: action.payload
+            }
+        }
+
         case HOME_MOVIES_TOP: {
             return {
                 ...state,

@@ -23,6 +23,7 @@ import { BsFillBookmarkCheckFill, BsFillBookmarkPlusFill } from "react-icons/bs"
 import bookIcon from '../../../assets/images/bookIcon.svg'
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import { Link } from "react-router-dom";
+import BookMarkButton from "../../../common/BookMarkButton/BookMarkButton";
 export default function SwiperComponent(props) {
     const { homeMoviesTop } = props;
     const classes = useStyles();
@@ -57,18 +58,11 @@ export default function SwiperComponent(props) {
                             homeMoviesTop?.map((item, index) => {
                                 return (
                                     <SwiperSlide key={index}>
-                                        <Link  to={`/movie-trailer/${item?.imdb_id}/${item?.id}`} >
+                                        <Link to={`/movie-trailer/${item?.imdb_id}/${item?.id}`} >
                                             <div className={classes.swiper_slide} style={{ backgroundImage: `url("${item?.video_poster_url}")` }} >
                                                 <div className={classes.bottomSection}>
-                                                    <div className={classes.inner_poster} onClick={() => setCheck(!check)} style={{ backgroundImage: `url("${item?.poster_url}")` }}>
-                                                        {
-                                                            !check ?
-                                                                <div className={classes.iconContainer}>
-                                                                    <AddOutlinedIcon className={classes.wishListIcon} />
-                                                                </div>
-                                                                :
-                                                                <div className={classes.iconActiveContainer} />
-                                                        }
+                                                    <div className={classes.inner_poster} style={{ backgroundImage: `url("${item?.poster_url}")` }}>
+                                                        <BookMarkButton movie_id={item?.id} />
                                                     </div>
 
 

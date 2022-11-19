@@ -33,11 +33,17 @@ export default function DetailPage() {
             dropDown, setDropDown,
             drawerOpen, setDrawerOpen,
             rating, setRating,
+            savedRating, setSavedRating,
             openRatingModal, setOpenRatingModal,
             openListModal, setOpenListModal,
             movieDetail,
             time_convert,
-            allTopPickMovies
+            allTopPickMovies,
+            Rating,
+            RemoveRating,
+            UpdateRating,
+            userProfile,
+            CurrentMovieRating,
         }
     ] = UseDetail()
 
@@ -63,7 +69,7 @@ export default function DetailPage() {
                                 <div className={classes.ratingDiv}>
                                     <StarRoundedIcon fontSize='large' className={classes.fillIcon} />
                                     <div className={classes.ratingsDiv} >
-                                        <span className={classes.rating}>6.9</span><span className={classes.totalRating}>/10</span>
+                                        <span className={classes.rating}>{movieDetail?.imdb_rating}</span><span className={classes.totalRating}>/10</span>
                                         <p className={classes.votes}>417K</p>
                                     </div>
                                 </div>
@@ -80,7 +86,11 @@ export default function DetailPage() {
                                 <div className={classes.ratingDiv}>
                                     <StarUnfillIcon className={classes.unfillIcon} />
                                     <div >
-                                        <h2 className={classes.rateText}>Rate</h2>
+                                        <h2 className={classes.rateText}>
+                                            {
+                                                savedRating === 'Rate' ? savedRating : (savedRating + '/10')
+                                            }
+                                        </h2>
                                     </div>
                                 </div>
                             </Button>
@@ -167,11 +177,16 @@ export default function DetailPage() {
                             <Button
                                 variant='outlined'
                                 className={classes.ratingBtn}
+                                onClick={() => setOpenRatingModal(true)}
                             >
                                 <div className={classes.ratingDiv}>
                                     <StarUnfillIcon className={classes.unfillIcon} />
                                     <div >
-                                        <h2 className={classes.rateText}>Rate</h2>
+                                        <h2 className={classes.rateText}>
+                                            {
+                                                savedRating === 'Rate' ? savedRating : (savedRating + '/10')
+                                            }
+                                        </h2>
                                     </div>
                                 </div>
                             </Button>
@@ -202,11 +217,11 @@ export default function DetailPage() {
                                 </div>
                                 <div className={classes.divider} />
                                 <a className={classes.link} href='https://pro.imdb.com/title/tt0108052/?rf=cons_tt_atf&ref_=cons_tt_atf' target={'_blank'}>
-                                <div className={classes.starsContainer}>
-                                    <img src={PRO_LOGO} alt="imagelogo" />
-                                    <p className={classes.imdbProText}>See production, box office & company info</p>
-                                    <img src={listIcon} alt="icon not found" className={classes.imgMargin} />
-                                </div>
+                                    <div className={classes.starsContainer}>
+                                        <img src={PRO_LOGO} alt="imagelogo" />
+                                        <p className={classes.imdbProText}>See production, box office & company info</p>
+                                        <img src={listIcon} alt="icon not found" className={classes.imgMargin} />
+                                    </div>
                                 </a>
                             </div>
                         }
@@ -221,6 +236,7 @@ export default function DetailPage() {
                             >
                                 Add to wishlist
                             </Button>
+                            
                             <Button
                                 variant='outlined'
                                 className={classes.dropdownBtn}
@@ -242,8 +258,8 @@ export default function DetailPage() {
                 </div>
             </div>
             <div>
-                <VideoGallery />
-                <ImageGallery />
+                <VideoGallery videoGallery={movieDetail?.video_gallery} id={movieDetail?.id} imdb_id={movieDetail?.imdb_id} />
+                <ImageGallery imageGallery={movieDetail?.image_gallery} />
             </div>
 
             <div className={classes.movieDetailSection}>
@@ -363,18 +379,28 @@ export default function DetailPage() {
                 <Review
                     drawerOpen={drawerOpen}
                     setDrawerOpen={setDrawerOpen}
+                    title={movieDetail?.title}
+                    poster={movieDetail?.poster_url}
                 />
                 {/* Rating Modal  */}
                 <RatingModal
                     openRatingModal={openRatingModal}
                     setOpenRatingModal={setOpenRatingModal}
+                    savedRating={savedRating}
+                    setSavedRating={setSavedRating}
                     rating={rating}
                     setRating={setRating}
+                    movie_title={movieDetail?.title}
+                    Rating={Rating}
+                    RemoveRating={RemoveRating}
+                    UpdateRating={UpdateRating}
                 />
                 {/* List Modal  */}
                 <ListModal
                     openListModal={openListModal}
                     setOpenListModal={setOpenListModal}
+                    movie_title={movieDetail?.title}
+                    poster={movieDetail?.poster_url}
                 />
 
             </div>

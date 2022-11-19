@@ -15,7 +15,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
 export default function Review(props) {
 
-    const { drawerOpen, setDrawerOpen } = props;
+    const { drawerOpen, setDrawerOpen, title, poster } = props;
     const classes = useStyles();
     const [value, setValue] = React.useState('no');
     const [focusInput, setFocusInput] = useState(false)
@@ -49,8 +49,8 @@ export default function Review(props) {
             </div>
 
             <div className={classes.header}>
-                <div className={classes.img} />
-                <h2 className={classes.heading} >Top Gun</h2>
+                <img src={poster}  alt={title}className={classes.img} />
+                <h2 className={classes.heading} >{title ? title : 'Top Gun'}</h2>
             </div>
             <div className={classes.divider} />
             <div className={classes.bottom}>

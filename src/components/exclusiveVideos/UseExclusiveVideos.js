@@ -1,5 +1,11 @@
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { imdbOriginal } from '../../redux/actions/MovieDetailAction'
+
 export const UseExclusiveVideos = () => {
 
+    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch()
     const exclusiveVideos = [
         {
             img: require('../../assets/images/cardImg44.jpg'),
@@ -33,6 +39,14 @@ export const UseExclusiveVideos = () => {
         }
     ]
 
-    return [{exclusiveVideos}]
+    useEffect(() => {
+        dispatch(imdbOriginal(setLoading))
+    }, [])
+
+    const imdbOriginalMovie = useSelector(state => state.MovieDetailReducer.imdbOriginal)
+
+    console.log('imdbOriginalMovie', imdbOriginalMovie);
+
+    return [{loading, exclusiveVideos, imdbOriginalMovie}]
 
 }

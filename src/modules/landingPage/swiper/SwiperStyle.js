@@ -62,6 +62,7 @@ export const useStyles =  makeStyles((theme) => ({
     },
     inner_poster: {
         // backgroundImage: `url(${TwoS})`,
+        zIndex: 1000,
         width: '150px',
         height: '215px',
         [theme.breakpoints.down('sm')]: {

@@ -5,8 +5,21 @@ import ActiveBookmark from '../../assets/images/activeBookmark.png';
 
 export const useStyles = makeStyles((theme) => ({
     BtnContainer: {
-        // backgroundColor: 'pink',
         cursor: 'pointer',
+    },
+    iconActiveContainer: {
+        backgroundImage: `url(${ActiveBookmark})`,
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        height: 45,
+        width: 43,
+        display: 'flex',
+        alignItems: 'center',
+        "@media(max-width: 600px)": {
+            height: 25,
+            width: 23,
+            },
+
     },
     iconContainer: {
         backgroundImage: `url(${bookIcon})`,
@@ -33,19 +46,44 @@ export const useStyles = makeStyles((theme) => ({
             fontSize: 16
         },
     },
-    iconActiveContainer: {
-        backgroundImage: `url(${ActiveBookmark})`,
-        backgroundSize: 'contain',
-        backgroundRepeat: 'no-repeat',
-        height: 45,
-        width: 43,
-        display: 'flex',
-        alignItems: 'center',
+    activeWishListIcon: {
+        color: '#000',
+        backgroundColor: 'transparent',
+        marginTop: -8,
+        marginLeft: 5,
+        borderRadius: 50,
         "@media(max-width: 600px)": {
-            height: 25,
-            width: 23,
-            },
+            marginLeft: 1,
+            fontSize: 16
+        },
 
     },
+    loader: {
+        color: '#fff',
+        padding: '0px 10px'
+    },
+    menuButton: {
+        width: '100%',
+        textTransform: 'none',
+        color: 'rgb(91,136,244)',
+        border: 'none',
+        fontWeight: 'bold',
+        background: commonColor.watchBtn,
+        '&:hover': {
+            color: 'rgb(91,136,244)',
+            backgroundColor: 'rgba(79, 79, 79, 1)'
+        },
+    },
+    bgButton: {
+        color: 'rgb(91,136,244)',
+        border: 'none',
+        fontWeight: 'bold',
+        background: 'rgb(235,235,235)',
+        '&:hover': {
+            color: 'rgb(91,136,244)',
+            backgroundColor: 'rgba(235,235,235, 0.6)'
+        },
+    },
+
 
 }))

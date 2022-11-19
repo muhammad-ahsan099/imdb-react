@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { getToken } from '../../common/localStorage/LocalStorage';
 import { fetchCelebrityBirthday } from '../../redux/actions/CelebritiesAction';
 import { fetchfanFavoriteMovies, fetchHomeMoviesTop, fetchPrimeVideos, fetchRecentReleasedMovies, fetchRecentUpcomingMovies, fetchTopPickMovies } from '../../redux/actions/LandingPageAction';
 
@@ -22,6 +23,7 @@ export const UseLandingPage = () => {
     const recentUpcomingMovies = useSelector(state => state.LandingPageReducer.recentUpcomingMovies)
     const primeVideos = useSelector(state => state.LandingPageReducer.primeVideos)
     const celebritiesBirthday = useSelector(state => state.CelebritiesReducer.celebritiesBirthday)
+
     useEffect(() => {
         dispatch(fetchHomeMoviesTop(setLoading,))
         dispatch(fetchTopPickMovies(setLoading, page))

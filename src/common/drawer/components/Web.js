@@ -17,6 +17,7 @@ import PRO_LOGO from '../../../assets/icons/pro-logo.svg'
 
 import useStyles from '../DrawerStyle'
 import UseWindowDimensions from '../../customHooks/UseWindowDimensions';
+import { Link } from 'react-router-dom';
 
 export default function WebDrawerOptions({ menuItems, handleDrawerToggle }) {
   const classes = useStyles();
@@ -57,16 +58,16 @@ export default function WebDrawerOptions({ menuItems, handleDrawerToggle }) {
                   {
                     item?.subTitles?.map((items, index) => {
                       return (
-                        //  <Link to={item.path} className={classes.RouterLink}> */}
-                        <div
-                          onClick={width < 960 ? handleDrawerToggle : null}
-                          key={index}
-                        >
-                          <ul>
-                            <li className={classes.linkTag}>{items?.title}</li>
-                          </ul>
-                        </div>
-                        //  </Link>  
+                        <Link to={items.path} className={classes.RouterLink}>
+                          <div
+                            onClick={handleDrawerToggle}
+                            key={index}
+                          >
+                            <ul>
+                              <li className={classes.linkTag}>{items?.title}</li>
+                            </ul>
+                          </div>
+                        </Link>
 
                       )
                     })
@@ -91,16 +92,16 @@ export default function WebDrawerOptions({ menuItems, handleDrawerToggle }) {
                     {
                       item?.subTitles?.map((items, index) => {
                         return (
-                          //  <Link to={item.path} className={classes.RouterLink}> */}
-                          <div
-                            onClick={width < 960 ? handleDrawerToggle : null}
-                            key={index}
-                          >
-                            <ul>
-                              <li className={classes.linkTag}>{items?.title}</li>
-                            </ul>
-                          </div>
-                          //  </Link>  
+                          <Link to={items?.path} className={classes.RouterLink}>
+                            <div
+                              onClick={handleDrawerToggle}
+                              key={index}
+                            >
+                              <ul>
+                                <li className={classes.linkTag}>{items?.title}</li>
+                              </ul>
+                            </div>
+                          </Link>
 
                         )
                       })
@@ -119,16 +120,16 @@ export default function WebDrawerOptions({ menuItems, handleDrawerToggle }) {
                       {
                         item?.subTitles?.map((items, index) => {
                           return (
-                            //  <Link to={item.path} className={classes.RouterLink}> */}
-                            <div
-                              onClick={width < 960 ? handleDrawerToggle : null}
-                              key={index}
-                            >
-                              <ul>
-                                <li className={classes.linkTag}>{items?.title}</li>
-                              </ul>
-                            </div>
-                            //  </Link>  
+                            <Link to={items.path} className={classes.RouterLink}>
+                              <div
+                                onClick={handleDrawerToggle}
+                                key={index}
+                              >
+                                <ul>
+                                  <li className={classes.linkTag}>{items?.title}</li>
+                                </ul>
+                              </div>
+                            </Link>
 
                           )
                         })
@@ -159,16 +160,16 @@ export default function WebDrawerOptions({ menuItems, handleDrawerToggle }) {
                   {
                     item?.subTitles?.map((items, index) => {
                       return (
-                        //  <Link to={item.path} className={classes.RouterLink}> */}
-                        <div
-                          onClick={width < 960 ? handleDrawerToggle : null}
-                          key={index}
-                        >
-                          <ul>
-                            <li className={classes.linkTag}>{items?.title}</li>
-                          </ul>
-                        </div>
-                        //  </Link>  
+                        <Link to={items.path} className={classes.RouterLink}>
+                          <div
+                            onClick={handleDrawerToggle}
+                            key={index}
+                          >
+                            <ul>
+                              <li className={classes.linkTag}>{items?.title}</li>
+                            </ul>
+                          </div>
+                        </Link>
 
                       )
                     })
@@ -194,16 +195,16 @@ export default function WebDrawerOptions({ menuItems, handleDrawerToggle }) {
                   {
                     item?.subTitles?.map((items, index) => {
                       return (
-                        //  <Link to={item.path} className={classes.RouterLink}> */}
-                        <div
-                          onClick={width < 960 ? handleDrawerToggle : null}
-                          key={index}
-                        >
-                          <ul>
-                            <li className={classes.linkTag}>{items?.title}</li>
-                          </ul>
-                        </div>
-                        //  </Link>  
+                        <Link to={items.path} className={classes.RouterLink}>
+                          <div
+                            onClick={handleDrawerToggle}
+                            key={index}
+                          >
+                            <ul>
+                              <li className={classes.linkTag}>{items?.title}</li>
+                            </ul>
+                          </div>
+                        </Link>
 
                       )
                     })
@@ -230,7 +231,7 @@ export default function WebDrawerOptions({ menuItems, handleDrawerToggle }) {
                       return (
                         //  <Link to={item.path} className={classes.RouterLink}> */}
                         <div
-                          onClick={width < 960 ? handleDrawerToggle : null}
+                          onClick={handleDrawerToggle}
                           key={index}
                         >
                           <ul>

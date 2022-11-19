@@ -7,10 +7,13 @@ import { Button, IconButton } from '@material-ui/core';
 import { ModalRating } from '../rating/Rating';
 import CloseIcon from '@material-ui/icons/Close';
 import ArrowForwardIosRoundedIcon from '@material-ui/icons/ArrowForwardIosRounded';
+import { Link } from 'react-router-dom';
 
 export default function ListModal({
     openListModal,
-    setOpenListModal
+    setOpenListModal,
+    movie_title,
+    poster,
 }) {
     const classes = useStyles()
 
@@ -35,17 +38,19 @@ export default function ListModal({
                 <Fade in={openListModal}>
                     <div className={classes.paper}>
                         <div className={classes.header}>
-                            <div className={classes.img} />
+                            <img src={poster} alt='Poster' className={classes.img} />
                             <div className={classes.movieNameDiv}>
-                                <p className={classes.movieName}>Movie Name</p>
+                                <p className={classes.movieName}>{movie_title ? movie_title : 'Movie Name'}</p>
                                 <h2 className={classes.listTitle} >Add to list</h2>
                             </div>
                         </div>
 
-                        <div className={classes.listDiv}>
-                            <p className={classes.listName}>View Watchlist</p>
-                            <ArrowForwardIosRoundedIcon  className={classes.arrow}/>
-                        </div>
+                        <Link to='/user-watchlist' className={classes.link}>
+                            <div className={classes.listDiv}>
+                                <p className={classes.listName}>View Watchlist</p>
+                                <ArrowForwardIosRoundedIcon className={classes.arrow} />
+                            </div>
+                        </Link>
                         <div className={classes.divider} />
                         <div className={classes.listDiv}>
                             <p className={classes.listName}>Create new list</p>

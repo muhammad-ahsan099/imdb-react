@@ -149,30 +149,31 @@ function DrawerComponent(props) {
             <Hidden smDown>
               <PoopperIMDBPro />
               <div className={classes.divider} />
-              <Button
-                variant='outlined'
-                className={classes.menuButton}
-                startIcon={<BsFillBookmarkPlusFill style={{ height: 18, width: 18 }} />}
-              >
-                <p className={classes.menuText}>
-                  Watchlist
-                </p>
-
-                {
-                  true &&
+              <Link to='/user-watchlist' className={classes.link}>
+                <Button
+                  variant='outlined'
+                  className={classes.menuButton}
+                  startIcon={<BsFillBookmarkPlusFill style={{ height: 18, width: 18 }} />}
+                >
+                  <p className={classes.menuText}>
+                    Watchlist
+                  </p>
+                  {/* {
+                  isUserLoggedIn && */}
                   <Badge
                     classes={{ colorPrimary: classes.colorPrimary }}
                     color="primary"
                     overlap='rectangular'
                     className={classes.badge}
-                    badgeContent={userProfile?.profile?.to_watch?.length}
+                    badgeContent={userProfile?.user_wishlist?.to_watch?.length}
                   />
-                }
-              </Button>
+                  {/* } */}
+                </Button>
+              </Link>
             </Hidden>
 
             {
-              true ?
+              isUserLoggedIn ?
                 <PopperAccount accountOptions={accountOptions} userName={userProfile?.name} />
                 :
                 <Link to='/registration' className={classes.link}>
@@ -184,8 +185,8 @@ function DrawerComponent(props) {
                   </Button>
                 </Link>
             }
-
             <PopperLanguage />
+
             {/* </div> */}
           </Toolbar>
         </AppBar>

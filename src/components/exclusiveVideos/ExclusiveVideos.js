@@ -14,11 +14,12 @@ import ArrowNextIcon from '@material-ui/icons/NavigateNext';
 
 // import required modules
 import { Navigation } from "swiper";
+import { Link } from 'react-router-dom';
 
 export default function ExclusiveVideos() {
     const Styles = useStyles();
     const swiperRef = useRef()
-    const [{ exclusiveVideos }] = UseExclusiveVideos();
+    const [{ loading, exclusiveVideos, imdbOriginalMovie }] = UseExclusiveVideos();
     return (
         <>
             <div className={Styles.mainContainer}>
@@ -78,28 +79,27 @@ export default function ExclusiveVideos() {
                     }}
                 >
                     {
-                        exclusiveVideos?.map((items, index) => {
+                        imdbOriginalMovie?.map((items, index) => {
                             return (
                                 <>
                                     <SwiperSlide>
+                                    <Link to={`/movie-trailer/${items?.imdb_id}/${items?.id}`} className={Styles.Link}>
                                         <div className={Styles.cardDiv} key={index}>
                                             <div className={Styles.cardHeader}>
                                                 <div>
-                                                    <img src={items.img} alt="Image Not Found" height={'240px'} width={'100%'} />
+                                                    <img src={items?.video_poster_url} alt="Image Not Found" height={'240px'} width={'100%'} />
                                                 </div>
                                                 <div className={Styles.iconDiv}>
                                                     <img src={videoIcon} alt="Image Not Found" height={'32px'} width={'32px'} />
-                                                    <p className={Styles.iconTxt}>
-                                                        {items.time}
-                                                    </p>
                                                 </div>
                                             </div>
                                             <div>
                                                 <p className={Styles.cardTxt}>
-                                                    {items.des}
+                                                    {items?.title}
                                                 </p>
                                             </div>
                                         </div>
+                                        </Link>
                                     </SwiperSlide>
                                 </>
                             )

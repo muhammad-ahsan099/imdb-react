@@ -16,10 +16,10 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 // import required modules
 import { Navigation } from "swiper";
 
-export default function RelatedVideos() {
+export default function RelatedVideos({videoGallery}) {
     const Styles = useStyles();
     const swiperRef = useRef()
-    const [{ exclusiveVideos }] = UseExclusiveVideos();
+    // const [{ exclusiveVideos }] = UseExclusiveVideos();
     return (
         <>
             <div className={Styles.mainContainer}>
@@ -67,26 +67,18 @@ export default function RelatedVideos() {
                     }}
                 >
                     {
-                        exclusiveVideos?.map((items, index) => {
+                        videoGallery?.map((items, index) => {
                             return (
                                 <>
                                     <SwiperSlide>
                                         <div className={Styles.cardDiv} key={index}>
                                             <div className={Styles.cardHeader}>
                                                 <div>
-                                                    <img src={items.img} alt="Image Not Found" height={'240px'} width={'100%'} />
+                                                    <img src={items?.video_poster_url} alt="Image Not Found" height={'240px'} width={'100%'} />
                                                 </div>
                                                 <div className={Styles.iconDiv}>
                                                     <img src={videoIcon} alt="Image Not Found" height={'32px'} width={'32px'} />
-                                                    <p className={Styles.iconTxt}>
-                                                        {items.time}
-                                                    </p>
                                                 </div>
-                                            </div>
-                                            <div>
-                                                <p className={Styles.cardTxt}>
-                                                    {items.des}
-                                                </p>
                                             </div>
                                         </div>
                                     </SwiperSlide>

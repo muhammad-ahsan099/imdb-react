@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core";
+import { commonColor } from "../../constants/colors";
 
 export const useStyles = makeStyles((theme) => ({
     istContainer : {
@@ -25,7 +26,8 @@ export const useStyles = makeStyles((theme) => ({
     secondHeadingDes : {
         fontSize : '12px',
         display:'inline-block',
-        marginBottom : '10px'
+        marginBottom : '10px',
+        color: 'rgb(102,102,102)'
     },
     buttonHeading : {
         fontSize : '14px',
@@ -68,12 +70,23 @@ export const useStyles = makeStyles((theme) => ({
             fontSize:'8px'
         }
     },
+    cardContainer: {
+        display:'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '35%',
+        marginRight: 20,
+        "@media (max-width: 768px)": {
+            width: '44%',
+        },
+
+    },
     cardSecondHeading : {
         fontSize : '14px',
         fontWeight:'bold',
         color:'#666666',
         // display:'inline-block',
-        margin:'5px 25px 5px 25px',
+        // margin:'5px 25px 5px 25px',
         "@media (max-width: 768px)": {
             fontSize:'10px'
         },
@@ -85,6 +98,12 @@ export const useStyles = makeStyles((theme) => ({
     cardHeaderDiv : {
         display:'flex',
         alignItems : 'center',
+    },
+    ratingContainer: {
+        display:'flex',
+        alignItems : 'center',
+        justifyContent: 'center',
+        // margin:'5px 70px 5px 0px',
     },
     cardTitleDiv : {
         margin:'0px 0px 0px 10px'
@@ -106,11 +125,16 @@ export const useStyles = makeStyles((theme) => ({
         fontSize : '14px',
         fontWeight:'bold',
         display:'inline-block',
-        margin:'5px 45px 5px 45px',
+        // margin:'5px 30px 5px 25px',
+        // margin:'5px 45px 5px 5px',
+    },
+    bookMark:{
+        margin:'5px 30px 5px 25px',
     },
     secondContentDiv : {
         backgroundColor : '#e9ecef',
         padding:'38px 10px',
+        height: 400,
         borderLeft: '3px solid #adb5bd',
         borderTop:'none',
         borderRight:'none',
@@ -123,5 +147,28 @@ export const useStyles = makeStyles((theme) => ({
         "@media (max-width: 600px)": {
             display:'none',
         }
-    }
+    },
+    iconStar: {
+        color: 'rgb(241, 202, 70)',
+        fontSize: 26,
+        "@media (max-width: 668px)": {
+            fontSize:'16px'
+        },
+    },
+    iconBlueStar: {
+        color: 'rgb(102, 108, 241)',
+        fontSize: 26,
+        "@media (max-width: 668px)": {
+            fontSize:'16px'
+        },
+    },
+    seenMovies: {
+        fontSize: 18,
+        fontWeight: '400',
+    },
+    seenText: {
+        fontSize: 30,
+        fontWeight: 'bold',
+
+    },
 }))

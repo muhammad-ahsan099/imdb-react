@@ -5,6 +5,12 @@ export const useStyles = makeStyles((theme) =>  ({
     container: {
         // width: '100%'
     },
+    root: {
+        width: 'auto',
+        zIndex: 1000,
+        // marginTop: 10
+
+    },
     searchContainer: {
         backgroundColor: '#fff',
         width: '58%',
@@ -121,6 +127,74 @@ export const useStyles = makeStyles((theme) =>  ({
     searchBtn: {
         display: 'flex',
         alignItems: 'center',
-        marginTop: 3
+        marginTop: 3,
+    },
+    searchModal: {
+        backgroundColor: commonColor.cardBg,
+        paddingBottom: 10,
+        marginTop: 5
+    },
+    searchDiv: {
+        backgroundColor: commonColor.cardBg,
+        padding: 10,
+        display: 'flex',
+    },
+    img: {
+        width: '60px',
+        height: 80,
+        backgroundColor: 'orange',
+        
+    },
+    rightSection: {
+        marginLeft: 10,
+    },
+    movieName: {
+        margin: 0,
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize:16,
+    },
+    year: {
+        color: '#848484',
+        margin: 0,
+    },
+    cardDiv : {
+        width : '99%',
+        display: 'flex',
+        paddingLeft: 10,
+        paddingTop:10,
+        justifyContent: 'space-between',
+        backgroundColor: commonColor.cardBg,
+    },
+    cardHeader : {
+        position: 'relative',
+        paddingRight: 4,
+        backgroundColor: commonColor.cardBg,
+    },
+    iconDiv : {
+        position:'absolute',
+        bottom:'5px',
+        left:'10px',
+        cursor:'grab',
+        display : 'flex',
+        alignItems:'center'
+    },
+    iconTxt : {
+        color : '#fff',
+        margin : '15px 10px',
+        fontSize : '14px'
+    },
+    cardTxt : {
+        color : '#fff',
+        fontSize : '15px'
+    },
+    dividerBottom: {
+        marginTop: 3,
+        width: '100%',
+        height: 2,
+        backgroundColor: commonColor.placeholderTextColor,
+    },
+    Link: {
+        textDecoration: 'none',
     }
 }))

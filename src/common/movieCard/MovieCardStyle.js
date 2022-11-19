@@ -98,7 +98,7 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
     },
     trailerButton: {
-        width: '45%',
+        // width: '45%',
         height: 36,
         textTransform: 'none',
         color: '#848484',
@@ -131,5 +131,10 @@ export const useStyles = makeStyles((theme) => ({
         height: 45,
         width: 40,
         display: 'inline-block'
+    },
+    Link: {
+        textDecoration: 'none',
+        // paddingLeft: 12,
+        // paddingRight: 12
     },
 }));

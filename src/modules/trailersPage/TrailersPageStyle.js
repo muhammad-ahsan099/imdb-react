@@ -46,6 +46,9 @@ export const useStyles = makeStyles((theme) => ({
         // marginLeft: 10,
         zIndex: 1000,
     },
+    link: {
+        textDecoration: 'none',
+    },
     smallImg: {
         width: 94,
         height: 130,
@@ -90,6 +93,13 @@ export const useStyles = makeStyles((theme) => ({
         fontWeight: '500',
         margin: 0,
         marginBottom: 20,
+    },
+    iconBtn: {
+        background: commonColor.cardBg,
+        '&:hover': {
+            color: '#ffffff',
+            backgroundColor: 'rgba(158, 158, 158, 0.2)'
+        },
     },
 
 }))

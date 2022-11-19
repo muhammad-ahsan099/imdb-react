@@ -31,8 +31,7 @@ export const useStyles = makeStyles((theme) => ({
     img: {
         width: 80,
         height: 90,
-        objectFit: 'contain',
-        backgroundColor: 'pink',
+        objectFit: 'cover',
         marginLeft: 10
     },
     heading: {

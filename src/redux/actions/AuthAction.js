@@ -54,7 +54,6 @@ export const fetchProfile = (setLoading) => async (dispatch) => {
       }
     };
     let res = await axios(request);
-    console.log('Res: ', res.data);
     if (res.data.status === 200) {
       dispatch({
         type: USER_PROFILE,
@@ -74,25 +73,20 @@ export const fetchProfile = (setLoading) => async (dispatch) => {
 
 
 
-// export const doGetLoggedInUser = (setLoading) => async (dispatch) => {
-//   try {
-//     setLoading(true)
-//     const token = await window.localStorage.getItem('token');
-//     if (token) {
-//       const user = await axios.post(`${endPoint}auth/getLoggedInUser`, { token: token });
-//       dispatch({
-//         type: ACTIVE_USER,
-//         payload: user?.data?.data,
-//       })
-//     }
-//   }
-//   catch (error) {
-//     console.log(error?.response?.data?.message)
-//   }
-//   finally {
-//     setLoading(false)
-//   }
-// }
+export const getLoggedInUser = () => async (dispatch) => {
+  try {
+    let { access_token } = getToken()
+    if (access_token) {
+      dispatch({
+        type: ACTIVE_USER,
+        payload: null,
+      })
+    }
+  }
+  catch (error) {
+    console.log(error?.response?.data?.message)
+  }
+}
 
 export const createAccount = (creds, navigate, setLoading, setServerError) => async (dispatch) => {
   try {
@@ -199,6 +193,8 @@ export const doLogout = (setLoading) => async (dispatch) => {
       type: LOGOUT,
       payload: null,
     })
+    window.location.href = '/';
+
   }
   catch (error) {
     console.log(error?.message)
