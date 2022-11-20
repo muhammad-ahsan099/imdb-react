@@ -272,6 +272,7 @@ const useStyles = makeStyles((theme) => ({
         width: '72%',
         marginLeft: "auto",
         marginRight: "auto",
+        alginSelf: 'center',
         display: 'flex',
         alginItems: 'center',
         // justifyContent: 'center',
