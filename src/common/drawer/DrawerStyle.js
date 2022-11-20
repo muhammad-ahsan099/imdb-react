@@ -227,7 +227,7 @@ const useStyles = makeStyles((theme) => ({
     listIconActive: {
         color: '#848484',
         fontSize: 20,
-        
+
     },
     divider: {
         width: 2,
@@ -286,8 +286,16 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         flexWrap: 'wrap',
-        // backgroundColor: 'blue',
     },
+    space: {
+        "@media (max-width: 600px)": {
+            width: '40%',
+            height: '100%',
+        },
+        "@media (max-width: 310px)": {
+            display: 'none',
+        },
+    }
 }));
 
 export default useStyles;
