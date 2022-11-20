@@ -45,8 +45,6 @@ export const UseExclusiveVideos = () => {
 
     const imdbOriginalMovie = useSelector(state => state.MovieDetailReducer.imdbOriginal)
 
-    console.log('imdbOriginalMovie', imdbOriginalMovie);
-
     return [{loading, exclusiveVideos, imdbOriginalMovie}]
 
 }

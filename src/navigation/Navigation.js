@@ -25,6 +25,8 @@ import CelebrityDetail from '../modules/celebrityDetail/CelebrityDetail';
 import Watchlist from '../modules/watchlist/Watchlist';
 import UserList from '../modules/userList/UserList';
 import { useSelector } from 'react-redux';
+import GenreList from '../modules/genreList/GenreList';
+import SingleGenre from '../modules/signleGenre/SingleGenre';
 
 
 export default function Navigation() {
@@ -146,6 +148,21 @@ export default function Navigation() {
                         <MostPopularCelebs />
                     }
                 />
+
+                <Route
+                    path='/genre-list'
+                    element={
+                        <GenreList />
+                    }
+                />
+                <Route
+                    path='/genre/search/title/:title'
+                    element={
+                        <SingleGenre />
+                    }
+                />
+
+
                 <Route
                     path='/celebrity-detail/:id'
                     element={

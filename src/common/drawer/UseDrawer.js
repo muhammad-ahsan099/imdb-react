@@ -21,8 +21,8 @@ export const UseDrawer = () => {
   // useEffect(()=> {
   // }, [userProfile])
 
-  console.log('userProfile', userProfile);
-  console.log('isUserLoggedIn', isUserLoggedIn)
+  // console.log('userProfile', userProfile);
+  // console.log('isUserLoggedIn', isUserLoggedIn)
 
   const menuItems = [
     {
@@ -43,7 +43,7 @@ export const UseDrawer = () => {
         },
         {
           title: 'Browse Movies By Genre',
-          path: '/'
+          path: '/genre-list'
         },
         {
           title: 'Top Box Office',

@@ -7,6 +7,50 @@ import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import BookMarkButton from '../../common/BookMarkButton/BookMarkButton';
 import { BsFillBookmarkCheckFill, BsFillBookmarkPlusFill } from "react-icons/bs";
 import { UseTop250MoviesMovies } from './UseTop250MoviesMovies';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+const MoviesToShow = ({ items, index }) => {
+    const Styles = useStyles();
+    const userProfile = useSelector(state => state.AuthReducer.userProfile)
+    let filterRating;
+    if (userProfile?.user_rating?.length >= 0) {
+        filterRating = userProfile?.user_rating?.find(item => item?.movie === items?.id)
+    }
+    return (
+        <>
+            <div className={Styles.cardMainContainer} key={index}>
+                <Link to={`/movie-detail/${items?.imdb_id}/${items?.id}`} className={Styles.link}>
+                    <div className={Styles.cardHeaderDiv}>
+                        <div>
+                            <img src={items?.poster_url ? items?.poster_url : require('../../assets/images/watchCard1.jpg')} alt="not found" height={'70px'} width={'50px'} />
+                        </div>
+                        <div className={Styles.cardTitleDiv}>
+                            <span className={Styles.cardTitle}>{items?.title ? items?.title : 'Nope'} <span style={{ color: 'rgb(142,142,141)' }}>{items?.year ? '(' + items?.year + ')' : '(2022)'}</span></span>
+                            <br />
+                        </div>
+                    </div>
+                </Link>
+                <div className={Styles.cardContainer}>
+                    <div className={Styles.ratingContainer}>
+                        <StarRoundedIcon className={Styles.iconStar} />
+                        <span className={Styles.cardRatingTitle}>{items?.imdb_rating ? items?.imdb_rating : '7.0'}</span>
+                    </div>
+                    <div className={Styles.ratingContainer}>
+                        <StarRoundedIcon className={Styles.iconBlueStar} />
+                        <span className={Styles.cardRatingTitle}>{filterRating?.ratings}</span>
+                    </div>
+                    <BookMarkButton
+                        movie_id={items?.id}
+                        btn_size={"small"}
+                    />
+                </div>
+            </div>
+            <hr />
+        </>
+    )
+
+}
 
 
 export default function Top250Movies() {
@@ -78,37 +122,18 @@ export default function Top250Movies() {
 
                             {/* cards */}
                             {
+                                loading && <p>loading...</p>
+                            }
+                            {
                                 top250Movies?.map((items, index) => {
                                     return (
-                                        <>
-                                            <div className={Styles.cardMainContainer}>
-                                                <div className={Styles.cardHeaderDiv}>
-                                                    <div>
-                                                        <img src={items?.poster_url ? items?.poster_url : require('../../assets/images/watchCard1.jpg')} alt="not found" height={'70px'} width={'50px'} />
-                                                    </div>
-                                                    <div className={Styles.cardTitleDiv}>
-                                                        <span className={Styles.cardTitle}>{items?.title ? items?.title : 'Nope'} <span style={{ color: 'rgb(142,142,141)' }}>{items?.year ? '(' + items?.year + ')' : '(2022)'}</span></span>
-                                                        <br />
-                                                    </div>
-                                                </div>
-                                                <div className={Styles.cardContainer}>
-                                                    <div className={Styles.ratingContainer}>
-                                                        <StarRoundedIcon className={Styles.iconStar} />
-                                                        <span className={Styles.cardRatingTitle}>{items?.imdb_rating ? items?.imdb_rating : '7.0'}</span>
-                                                    </div>
-                                                    <div className={Styles.ratingContainer}>
-                                                        <StarRoundedIcon className={Styles.iconBlueStar} />
-                                                        <span className={Styles.cardRatingTitle}>{items?.imdb_rating ? items?.imdb_rating : '7.0'}</span>
-                                                    </div>
-                                                    <BsFillBookmarkPlusFill style={{ height: 24, width: 28, color: 'rgb(177,177,177)' }} />
-                                                    {/* <BsFillBookmarkCheckFill style={{ height: 24, width: 28, color: 'rgb(154,221,128)' }} /> */}
-                                                </div>
-                                            </div>
-                                            <hr />
-                                        </>
+                                        <MoviesToShow items={items} index={index} />
                                     )
-                                })
-                            }
+
+                                }
+                                )}
+
+
                         </div>
                     </Paper>
                 </Grid>

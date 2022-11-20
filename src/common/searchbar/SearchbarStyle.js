@@ -132,7 +132,6 @@ export const useStyles = makeStyles((theme) =>  ({
     searchModal: {
         backgroundColor: commonColor.cardBg,
         paddingBottom: 10,
-        marginTop: 5
     },
     searchDiv: {
         backgroundColor: commonColor.cardBg,
@@ -142,7 +141,6 @@ export const useStyles = makeStyles((theme) =>  ({
     img: {
         width: '60px',
         height: 80,
-        backgroundColor: 'orange',
         
     },
     rightSection: {

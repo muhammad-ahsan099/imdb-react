@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import UseWindowDimensions from "../../common/customHooks/UseWindowDimensions"
 import { fetchAllTopPickMovies } from "../../redux/actions/LandingPageAction"
 import { deleteRatingToMovie, fetchMovieDetail, ratingToMovie, updateRatingToMovie } from "../../redux/actions/MovieDetailAction"
 
 
 export const UseDetail = () => {
+    const isUserLoggedIn = useSelector(state => state.AuthReducer.isUserLoggedIn)
+    let navigate = useNavigate()
+
     const [movieId, setMovieId] = useState(0)
     const [dropDown, setDropDown] = useState(false)
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -15,7 +18,7 @@ export const UseDetail = () => {
     const [savedRating, setSavedRating] = useState('')
     const [openRatingModal, setOpenRatingModal] = useState(false)
     const [openListModal, setOpenListModal] = useState(false)
-
+    const [reviewLike, setReviewLike] = useState(null)
     const width = UseWindowDimensions()
     const [loading, setLoading] = useState(false);
     let { imdb_id, id } = useParams();
@@ -54,12 +57,38 @@ export const UseDetail = () => {
         }
     }, [width])
 
-    const time_convert = (num) => {
+    let actors = [];
+    let writers = [];
+    let directors = [];
+    let producer = [];
+    const Roles = () => {
+        movieDetail?.celebrity_role?.map((role) => {
+            if (role?.writer === true) {
+                writers.push(role?.celebrity)
+            }
+            if (role?.director === true) {
+                directors.push(role?.celebrity)
+            }
+            if (role?.actor === true) {
+                actors.push(role?.celebrity)
+            }
+            if (role?.producer === true) {
+                producer.push(role?.celebrity)
+            }
+        })
+
+    }
+    Roles()
+
+    const time_convert = (num, top) => {
         var hours = Math.floor(num / 60);
         var minutes = num % 60;
+        if (top) {
+            return hours + ' h ' + minutes + ' m ';
+        }
         return hours + ' hours ' + minutes + ' minutes ';
-    }
 
+    }
     // var SavedRating = {};
     const CurrentMovieRating = (id) => {
         // if (userProfile?.user_rating?.length >= 0) {
@@ -108,12 +137,12 @@ export const UseDetail = () => {
             , 500)
     }
 
-
     return [
         {
             dropDown, setDropDown,
             drawerOpen, setDrawerOpen,
             rating, setRating,
+            reviewLike, setReviewLike,
             savedRating, setSavedRating,
             openRatingModal, setOpenRatingModal,
             openListModal, setOpenListModal,
@@ -125,6 +154,12 @@ export const UseDetail = () => {
             UpdateRating,
             userProfile,
             CurrentMovieRating,
+            actors,
+            writers,
+            directors,
+            producer,
+            isUserLoggedIn,
+            navigate
         }
     ]
 }

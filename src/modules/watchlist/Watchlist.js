@@ -13,7 +13,6 @@ import { UseWishlist } from './UseWatchlist';
 export default function Watchlist() {
     const Styles = useStyles();
     const [{ userProfile }] = UseWishlist()
-    console.log('userProfile at watchlist: ', userProfile);
 
     return (
         <Container style={{ backgroundColor: 'rgb(214, 215,209' }}>

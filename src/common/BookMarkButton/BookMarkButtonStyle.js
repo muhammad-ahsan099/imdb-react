@@ -58,9 +58,17 @@ export const useStyles = makeStyles((theme) => ({
         },
 
     },
+    smallIcon: {
+        marginTop: -1,
+        marginLeft: 0,
+    },
     loader: {
         color: '#fff',
         padding: '0px 10px'
+    },
+    smallLoader: {
+        color: '#fff',
+        padding: '0px 4px'
     },
     menuButton: {
         width: '100%',
@@ -84,6 +92,12 @@ export const useStyles = makeStyles((theme) => ({
             backgroundColor: 'rgba(235,235,235, 0.6)'
         },
     },
-
+    btnHEight: {
+        height: 50
+    },
+    smallBtn: {
+        height: 30,
+        width: 30,
+    },
 
 }))

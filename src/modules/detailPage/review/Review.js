@@ -13,16 +13,28 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Ratings from '../../../common/rating/Rating';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
+import { useDispatch } from 'react-redux';
+import { movieReview } from '../../../redux/actions/MovieDetailAction';
 export default function Review(props) {
 
-    const { drawerOpen, setDrawerOpen, title, poster } = props;
+    const { drawerOpen, setDrawerOpen, movieId, title, poster } = props;
     const classes = useStyles();
-    const [value, setValue] = React.useState('no');
+    const [value, setValue] = React.useState('');
     const [focusInput, setFocusInput] = useState(false)
     const [focusArea, setFocusArea] = useState(false)
     const [rating, setRating] = useState(0)
+    const [reviewTitle, setReviewTitle] = useState('')
+    const [reviewBody, setReviewBody] = useState('')
+    const [spoiler, setSpoiler] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [err, setErr] = useState(0)
+    const dispatch = useDispatch()
+
     const handleChange = (event) => {
         setValue(event.target.value);
+        setSpoiler(
+            () => event.target.value === 'No' ? setSpoiler(false) : setSpoiler(true)
+        )
     };
 
     const toggleDrawer = (open) => (event) => {
@@ -32,6 +44,31 @@ export default function Review(props) {
         setDrawerOpen(open)
 
     };
+
+    const submitReview = (id) => {
+        // if()
+        if (reviewTitle === '') {
+            setErr(1)
+        } else if (reviewBody === '') {
+            setErr(2)
+        } else if (value === '') {
+            setErr(3)
+        } else {
+            const creds = {
+                movie: id,
+                title: reviewTitle,
+                review_body: reviewBody,
+                is_spoiler: spoiler
+            }
+            dispatch(movieReview(setLoading, creds))
+            setReviewTitle('')
+            setReviewBody('')
+            setValue('')
+            setErr(0)
+        }
+
+    }
+
 
     const list = (anchor) => (
         <div
@@ -49,7 +86,7 @@ export default function Review(props) {
             </div>
 
             <div className={classes.header}>
-                <img src={poster}  alt={title}className={classes.img} />
+                <img src={poster} alt={title} className={classes.img} />
                 <h2 className={classes.heading} >{title ? title : 'Top Gun'}</h2>
             </div>
             <div className={classes.divider} />
@@ -77,11 +114,16 @@ export default function Review(props) {
                     style={{ outline: focusInput ? '2.5px solid #adfeff' : 'none' }}
                     onFocus={() => setFocusInput(true)}
                     onBlur={() => setFocusInput(false)}
+                    value={reviewTitle}
+                    onChange={(e) => setReviewTitle(e.target.value)}
                 />
-                <div className={classes.checkDiv}>
-                    <ErrorIcon fontSize='small' color='error' />
-                    <span className={classes.validateText}>A required field is missing.</span>
-                </div>
+                {
+                    err === 1 && reviewTitle === '' &&
+                    <div className={classes.checkDiv}>
+                        <ErrorIcon fontSize='small' color='error' />
+                        <span className={classes.validateText}>A required field is missing.</span>
+                    </div>
+                }
                 <textarea
                     rows="8"
                     cols="15"
@@ -91,12 +133,19 @@ export default function Review(props) {
                     className={classes.textArea}
                     onFocus={() => setFocusArea(true)}
                     onBlur={() => setFocusArea(false)}
+                    value={reviewBody}
+                    onChange={(e) => setReviewBody(e.target.value)}
+
                 >
                 </textarea>
-                <div className={classes.checkDiv}>
-                    <ErrorIcon fontSize='small' color='error' />
-                    <span className={classes.validateText}>A required field is missing.</span>
-                </div>
+                {
+                    err === 2 && reviewBody === '' &&
+
+                    <div className={classes.checkDiv}>
+                        <ErrorIcon fontSize='small' color='error' />
+                        <span className={classes.validateText}>A required field is missing.</span>
+                    </div>
+                }
 
                 <div className={classes.radioContainer}>
 
@@ -106,17 +155,24 @@ export default function Review(props) {
                         <FormControlLabel value="No" control={<Radio size='small' color='primary' />} label="No" />
                     </RadioGroup>
                 </div>
-                <div className={classes.checkDiv}>
-                    <ErrorIcon fontSize='small' color='error' />
-                    <span className={classes.validateText}>A required field is missing.</span>
-                </div>
+                {
+                    err === 3 && value === '' &&
+
+                    <div className={classes.checkDiv}>
+                        <ErrorIcon fontSize='small' color='error' />
+                        <span className={classes.validateText}>A required field is missing.</span>
+                    </div>
+                }
 
 
                 <Button
                     variant='outlined'
                     className={classes.submitBtn}
+                    onClick={() => submitReview(movieId)}
                 >
-                    Submit
+                    {
+                        loading ? 'loading...' : 'Submit'
+                    }
                 </Button>
 
             </div>

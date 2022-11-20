@@ -1,15 +1,13 @@
 import { Box, Container, Grid, IconButton, Paper, } from '@material-ui/core'
 import React from 'react'
-import { useStyles } from "./MostPopularMoviesStyle";
+import { useStyles } from "./SingleGenreStyle";
 import ShareIcon from '@material-ui/icons/Share';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
-import bookIcon from "../../assets/images/bookIcon.svg";
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
-import { UseMostPopularMovies } from './UseMostPopularMovies';
 import BookMarkButton from '../../common/BookMarkButton/BookMarkButton';
-import { BsFillBookmarkCheckFill, BsFillBookmarkPlusFill } from "react-icons/bs";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { UseSignleGenre } from './UseSingleGenre';
 
 
 const MoviesToShow = ({ items, index }) => {
@@ -54,14 +52,15 @@ const MoviesToShow = ({ items, index }) => {
     )
 }
 
-export default function MostPopularMovies() {
+export default function SingleGenre() {
     const Styles = useStyles();
     const [
         {
             loading,
-            mostPopularMovies,
+            title,
+            singleGenre,
         }
-    ] = UseMostPopularMovies()
+    ] = UseSignleGenre()
 
     return (
         <Container>
@@ -74,7 +73,7 @@ export default function MostPopularMovies() {
                             <div className={Styles.headingDiv}>
                                 <div>
                                     <span className={Styles.istHeading}>IMDb Charts</span> <br />
-                                    <span className={Styles.secondHeading}>Most Popular Movies</span> <br />
+                                    <span className={Styles.secondHeading}>Top {title} type Movies.</span> <br />
                                     <span className={Styles.secondHeadingDes}>As determined by IMDb Users</span>
                                 </div>
                                 <div>
@@ -92,7 +91,7 @@ export default function MostPopularMovies() {
                             {/* main content */}
                             <div className={Styles.mainContainer}>
                                 <div>
-                                    <span className={Styles.labelHeading}>Showing 100 Titles</span>
+                                    <span className={Styles.labelHeading}>Showing {singleGenre?.length} Titles</span>
                                 </div>
                                 <div>
                                     <label htmlFor="" className={Styles.labelHeading}>Sort by : </label>
@@ -126,7 +125,7 @@ export default function MostPopularMovies() {
                                 loading && <p>loading...</p>
                             }
                             {
-                                mostPopularMovies?.map((items, index) => {
+                                singleGenre?.map((items, index) => {
                                     return (
                                         <MoviesToShow items={items} index={index} />
                                     )

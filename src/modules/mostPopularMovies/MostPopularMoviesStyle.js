@@ -169,4 +169,8 @@ export const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
 
     },
+    link:{
+        textDecoration: 'none'
+    }
+
 }))

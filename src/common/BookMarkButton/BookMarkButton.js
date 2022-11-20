@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-export default function BookMarkButton({ movie_id, small_primary_btn, bgColor, end_icon, btn_text }) {
+export default function BookMarkButton({ movie_id, small_primary_btn, bgColor, end_icon, btn_text, btn_size, btn_height }) {
     const classes = useStyles()
     const isUserLoggedIn = useSelector(state => state.AuthReducer.isUserLoggedIn)
     const userProfile = useSelector(state => state.AuthReducer.userProfile)
@@ -86,7 +86,7 @@ export default function BookMarkButton({ movie_id, small_primary_btn, bgColor, e
                     <>
                         <Button
                             variant='outlined'
-                            className={clsx(classes.menuButton, bgColor && classes.bgButton)}
+                            className={clsx(classes.menuButton, bgColor && classes.bgButton, btn_height && classes.btnHEight)}
                             startIcon={
                                 !end_icon ?
                                     check ?
@@ -115,31 +115,31 @@ export default function BookMarkButton({ movie_id, small_primary_btn, bgColor, e
                     <>
                         {
                             check ?
-                                <div className={classes.iconActiveContainer}>
+                                <div className={clsx(classes.iconActiveContainer, btn_size === 'small' && classes.smallBtn)}>
                                     {
                                         loading ?
-                                            <div className={classes.loader}>
+                                            <div className={clsx(classes.loader, btn_size === 'small' && classes.smallLoader)}>
                                                 <ClapSpinner size={15} frontColor='#000000' />
                                             </div>
                                             :
-                                            <DoneIcon className={classes.activeWishListIcon} />
+                                            <DoneIcon className={clsx(classes.activeWishListIcon, btn_size === 'small' && classes.smallIcon)} />
                                     }
 
                                 </div>
                                 :
-                                <div className={classes.iconContainer}>
+                                <div className={clsx(classes.iconContainer, btn_size === 'small' && classes.smallBtn)}>
                                     {
                                         loading ?
-                                            <div className={classes.loader}>
+                                            <div className={clsx(classes.loader, btn_size === 'small' && classes.smallLoader)}>
                                                 <ClapSpinner size={15} frontColor='#ffffff' />
                                             </div>
                                             :
-                                            <AddOutlinedIcon className={classes.wishListIcon} />
+                                            <AddIcon className={clsx(classes.wishListIcon, btn_size === 'small' && classes.smallIcon)} />
                                     }
                                 </div>
                         }
                     </>
-                    
+
             }
 
         </div>

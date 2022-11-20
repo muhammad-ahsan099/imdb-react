@@ -29,6 +29,8 @@ export default function Searchbar() {
         }
     ] = UseSearchbar()
 
+    const [videos, setVideos] = useState([])
+
     return (
         <>
             <Hidden xsDown>
@@ -47,6 +49,7 @@ export default function Searchbar() {
                         }}
                         onBlur={() => {
                             setSearchActive(false);
+                            // setQuery('')
                             handleClose()
                         }}
                     />
@@ -90,7 +93,7 @@ export default function Searchbar() {
                 <Popper open={open} anchorEl={anchorEl} placement={'bottom-start'} transition disablePortal keepMounted={true} className={classes.Popper}>
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps} timeout={350}>
-                            <Paper>
+                            <Paper style={{maxHeight: 200, marginTop: 10}}>
                                 <ClickAwayListener onClickAway={handleClose}>
                                     <>
                                         {

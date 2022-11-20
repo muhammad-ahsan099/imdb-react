@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchGenreList } from "../../redux/actions/GenreAction";
 
 
-export const UseMostPopularCelebs = () => {
+export const UseGenreList = () => {
     const [loading, setLoading] = useState(false);
 
     const dispatch = useDispatch();

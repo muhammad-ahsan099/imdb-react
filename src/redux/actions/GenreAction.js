@@ -33,27 +33,28 @@ export const fetchGenreList = (setLoading) => async (dispatch) => {
 }
 
 
-export const fetchCelebrityBirthday = (setLoading,id) => async (dispatch) => {
+export const fetchSingleGenre = (setLoading,title) => async (dispatch) => {
     try {
         setLoading(true);
         let request = {
             method: 'get',
-            url: `${endPoint}actors/celebrities-today-dob/`,
+            url: `${endPoint}movies/search/title/?title__in=${title}`,
             headers: {
                 'Content-Type': 'application/json',
             }
         };
         let res = await axios(request);
+        console.log('Fetch single Genre: ', res.data);
 
         if (res.data) {
             dispatch({
                 type: SIGNLE_GENRE,
-                payload: res?.data?.data,
+                payload: res?.data,
             })
         }
     }
     catch (error) {
-        console.log('Error at Get Celebrities Birthday: ', error);
+        console.log('Error at Get Single Genre: ', error);
     }
     finally {
         setLoading(false)
