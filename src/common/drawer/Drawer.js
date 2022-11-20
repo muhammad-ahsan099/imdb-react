@@ -139,7 +139,7 @@ function DrawerComponent(props) {
 
             </div>
 
-
+            <div className={classes.space} />
             {/* <div style={{display: 'flex', alignItems: 'center'}}> */}
             <Searchbar />
             <div className={classes.smallDivider} />
