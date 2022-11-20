@@ -358,6 +358,15 @@ export const useStyles = makeStyles((theme) => ({
         fontSize: 16,
         marginLeft: 20,
     },
+    starNameOne:{
+        color: 'rgb(91,136,244)',
+        margin: 0,
+        fontWeight: '500',
+        fontSize: 16,
+        marginLeft: 20,
+        display: 'block',
+        paddingRight: 10
+    },
     imdbProText: {
         color: '#fff',
         margin: 0,
@@ -543,10 +552,19 @@ export const useStyles = makeStyles((theme) => ({
     likeIcon: {
         color: '#848484'
     },
+    activeLikeIcon: {
+        color: 'blue'
+    },
     helpful: {
         margin: 0,
         margin: '0px 8px',
-        fontSize: '500'
+        fontWeight: '500'
+    },
+    helpfulTwo:{
+        margin: 0,
+        margin: '0px 8px',
+        fontWeight: '800',
+        fontSize: 16,
     },
     trailerText: {
         margin: 0,

@@ -1,4 +1,4 @@
-import { MOVIE_DETAIL, MOST_POPULAR_MOVIES, TOP_250_MOVIES, ADD_RATING, UPDATE_RATING, DELETE_RATINGS, IMDB_ORIGINAL } from "../type/Type"
+import { MOVIE_DETAIL, MOST_POPULAR_MOVIES, TOP_250_MOVIES, ADD_RATING, UPDATE_RATING, DELETE_RATINGS, IMDB_ORIGINAL, MOVIE_REVIEW } from "../type/Type"
 import axios from "axios";
 import { endPoint } from '../endPoint/EndPoint';
 import { getToken } from "../../common/localStorage/LocalStorage";
@@ -15,7 +15,7 @@ export const fetchMovieDetail = (setLoading, id) => async (dispatch) => {
         };
         let res = await axios(request);
 
-        
+
         if (res.data?.success) {
             dispatch({
                 type: MOVIE_DETAIL,
@@ -43,7 +43,7 @@ export const fetchMostPopularMovies = (setLoading) => async (dispatch) => {
             }
         };
         let res = await axios(request);
-        
+
         if (res.data) {
             dispatch({
                 type: MOST_POPULAR_MOVIES,
@@ -70,7 +70,7 @@ export const fetchTop250Movies = (setLoading) => async (dispatch) => {
             }
         };
         let res = await axios(request);
-        
+
         if (res.data) {
             dispatch({
                 type: TOP_250_MOVIES,
@@ -89,7 +89,7 @@ export const fetchTop250Movies = (setLoading) => async (dispatch) => {
 export const ratingToMovie = (setLoading, creds) => async (dispatch) => {
     try {
         setLoading(true);
-        const {access_token} = getToken()
+        const { access_token } = getToken()
         let request = {
             method: 'post',
             url: `${endPoint}movies/rating/`,
@@ -100,7 +100,7 @@ export const ratingToMovie = (setLoading, creds) => async (dispatch) => {
             data: creds
         };
         let res = await axios(request);
-        
+
         if (res.data.success) {
             dispatch({
                 type: ADD_RATING,
@@ -119,7 +119,7 @@ export const ratingToMovie = (setLoading, creds) => async (dispatch) => {
 export const updateRatingToMovie = (setLoading, creds, id) => async (dispatch) => {
     try {
         setLoading(true);
-        const {access_token} = getToken()
+        const { access_token } = getToken()
         let request = {
             method: 'put',
             url: `${endPoint}movies/rating/${id}/`,
@@ -131,7 +131,7 @@ export const updateRatingToMovie = (setLoading, creds, id) => async (dispatch) =
         };
         let res = await axios(request);
         console.log('Res Update:', res.data);
-        
+
         if (res.data.success) {
             dispatch({
                 type: UPDATE_RATING,
@@ -147,10 +147,10 @@ export const updateRatingToMovie = (setLoading, creds, id) => async (dispatch) =
     }
 }
 
-export const deleteRatingToMovie = (setLoading,id) => async (dispatch) => {
+export const deleteRatingToMovie = (setLoading, id) => async (dispatch) => {
     try {
         setLoading(true);
-        const {access_token} = getToken()
+        const { access_token } = getToken()
         let request = {
             method: 'delete',
             url: `${endPoint}movies/rating/${id}/`,
@@ -161,7 +161,7 @@ export const deleteRatingToMovie = (setLoading,id) => async (dispatch) => {
         };
         let res = await axios(request);
         console.log('Del Rating Res:', res.data);
-        
+
         if (res.data.success) {
             dispatch({
                 type: DELETE_RATINGS,
@@ -188,7 +188,7 @@ export const imdbOriginal = (setLoading) => async (dispatch) => {
             }
         };
         let res = await axios(request);
-        
+
         if (res.data) {
             dispatch({
                 type: IMDB_ORIGINAL,
@@ -205,8 +205,33 @@ export const imdbOriginal = (setLoading) => async (dispatch) => {
 }
 
 
-
-
-
-
-
+export const movieReview = (setLoading, creds) => async (dispatch) => {
+    try {
+        setLoading(true);
+        const { access_token } = getToken()
+        let request = {
+            method: 'post',
+            url: `${endPoint}movies/review/`,
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${access_token}`,
+            },
+            data: creds
+        };
+        let res = await axios(request);
+        if (res.data.success) {
+            dispatch({
+                type: MOVIE_REVIEW,
+                payload: res?.data?.results,
+            })
+        }
+    }
+    catch (error) {
+        console.log('Error at Review Movies: ', error);
+    }
+    finally {
+        setTimeout(() =>
+        setLoading(false)
+        , 1000)
+    }
+}

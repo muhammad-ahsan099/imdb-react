@@ -84,7 +84,7 @@ function VideoPlayer({video_url}) {
   };
 
   const handleSeekChange = (e, newValue) => {
-    console.log({ newValue });
+    // console.log({ newValue });
     setState({ ...state, played: parseFloat(newValue / 100) });
   };
 

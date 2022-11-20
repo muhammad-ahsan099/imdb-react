@@ -33,6 +33,7 @@ export default function DetailPage() {
             dropDown, setDropDown,
             drawerOpen, setDrawerOpen,
             rating, setRating,
+            reviewLike, setReviewLike,
             savedRating, setSavedRating,
             openRatingModal, setOpenRatingModal,
             openListModal, setOpenListModal,
@@ -44,9 +45,14 @@ export default function DetailPage() {
             UpdateRating,
             userProfile,
             CurrentMovieRating,
+            actors,
+            writers,
+            directors,
+            producer,
+            isUserLoggedIn,
+            navigate,
         }
     ] = UseDetail()
-
 
     return (
         <>
@@ -54,9 +60,9 @@ export default function DetailPage() {
                 <div className={classes.topContainer}>
                     <div>
                         <h1 className={classes.h1}>{movieDetail?.title ? movieDetail?.title : 'Top Gun'}</h1>
-                        <span className={classes.year}>2022 </span>&nbsp;
+                        <span className={classes.year}>{movieDetail?.year ? movieDetail?.year : '2022'} </span>&nbsp;
                         <span className={classes.year}>.</span> &nbsp;
-                        <span className={classes.year}>1h 50m </span>
+                        <span className={classes.year}>{time_convert(movieDetail?.runtime, true)}</span>
                     </div>
 
                     <div className={classes.ratingContainer}>
@@ -121,11 +127,11 @@ export default function DetailPage() {
                     <div className={classes.rightGrid}>
                         <div className={classes.videos}>
                             <VideoLibraryIcon className={classes.icon} />
-                            <p className={classes.videoText}>15 VIDEOS</p>
+                            <p className={classes.videoText}>{movieDetail?.image_gallery?.length} VIDEOS</p>
                         </div>
                         <div className={classes.videos}>
                             <PermMediaIcon className={classes.icon} />
-                            <p className={classes.videoText}>99+ PHOTOS</p>
+                            <p className={classes.videoText}>{movieDetail?.video_gallery?.length} PHOTOS</p>
                         </div>
                     </div>
                 </Grid>
@@ -203,17 +209,57 @@ export default function DetailPage() {
                                 <div className={classes.divider} />
                                 <div className={classes.starsContainer}>
                                     <p className={classes.starText}>Director</p>
-                                    <p className={classes.starName}>Tony Scott</p>
+                                    {
+                                        directors.length > 0 ?
+                                            directors?.map((title, ind) => {
+                                                return (
+                                                    <p className={classes.starNameOne}>{title}{" "}</p>
+                                                )
+                                            })
+                                            :
+                                            <p className={classes.starNameOne}>Tony Scott</p>}
+
+                                </div>
+                                <div className={classes.divider} />
+                                <div className={classes.starsContainer}>
+                                    <p className={classes.starText}>Producer</p>
+                                    {
+                                        producer.length > 0 ?
+                                            producer?.map((title, ind) => {
+                                                return (
+                                                    <p className={classes.starNameOne}>{title}{" "}</p>
+                                                )
+                                            })
+                                            :
+                                            <p className={classes.starNameOne}>{'Metro Boomin'}</p>
+                                    }
                                 </div>
                                 <div className={classes.divider} />
                                 <div className={classes.starsContainer}>
                                     <p className={classes.starText}>Writers</p>
-                                    <p className={classes.starName}>Jim Cash</p>
+                                    {
+                                        writers.length > 0 ?
+                                            writers?.map((title, ind) => {
+                                                return (
+                                                    <p className={classes.starNameOne}>{title}{" "}</p>
+                                                )
+                                            })
+                                            :
+                                            <p className={classes.starNameOne}>Jim Cash</p>
+                                    }
                                 </div>
                                 <div className={classes.divider} />
                                 <div className={classes.starsContainer}>
                                     <p className={classes.starText}>Stars</p>
-                                    <p className={classes.starName}>Tom Cruise</p>
+                                    {
+                                        actors.length > 0 ?
+                                            actors?.map((title, ind) => {
+                                                return (
+                                                    <p className={classes.starNameOne}>{title}{" "}</p>
+                                                )
+                                            })
+                                            :
+                                            <p className={classes.starNameOne}>Tom Cruise</p>}
                                 </div>
                                 <div className={classes.divider} />
                                 <a className={classes.link} href='https://pro.imdb.com/title/tt0108052/?rf=cons_tt_atf&ref_=cons_tt_atf' target={'_blank'}>
@@ -315,7 +361,14 @@ export default function DetailPage() {
                             variant='outlined'
                             className={classes.reviewAddButton}
                             startIcon={<AddIcon />}
-                            onClick={() => setDrawerOpen(true)}
+                            onClick={() => {
+                                if (isUserLoggedIn) {
+                                    setDrawerOpen(true)
+                                }
+                                else {
+                                    navigate('/login')
+                                }
+                            }}
                         >
                             Review
                         </Button>
@@ -332,12 +385,28 @@ export default function DetailPage() {
                         </p>
 
                         <div className={classes.likesContainer}>
-                            <ThumbUpAltOutlinedIcon className={classes.likeIcon} />
-                            <p className={classes.helpful}>helpful</p>
-                            <div className={classes.dot} />
-                            <p className={classes.helpful}>15</p>
-                            <ThumbDownAltOutlinedIcon className={classes.likeIcon} />
-                            <p className={classes.helpful}>8</p>
+                            {
+                                reviewLike === true ?
+                                    <p className={classes.helpfulTwo}>You found this helpful</p>
+                                    : reviewLike === false ?
+                                        <p className={classes.helpfulTwo}>You found this not helpful</p>
+                                        : ''
+                            }
+                            {
+                                reviewLike === null &&
+                                <>
+                                    <IconButton size='medium' onClick={() => setReviewLike(true)}>
+                                        <ThumbUpAltOutlinedIcon className={classes.likeIcon} />
+                                    </IconButton>
+                                    <p className={classes.helpful}>helpful</p>
+                                    <div className={classes.dot} />
+                                    <p className={classes.helpful}>15</p>
+                                    <IconButton size='medium' onClick={() => setReviewLike(false)}>
+                                        <ThumbDownAltOutlinedIcon className={classes.likeIcon} />
+                                    </IconButton>
+                                    <p className={classes.helpful}>8</p>
+                                </>
+                            }
                         </div>
                     </div>
                 </div>
@@ -371,7 +440,7 @@ export default function DetailPage() {
                 </div>
                 <div className={classes.techSpecs}>
                     <p className={classes.starTextTwo}>Runtime</p>
-                    <p className={classes.specsText}>{time_convert(movieDetail?.runtime)}</p>
+                    <p className={classes.specsText}>{time_convert(movieDetail?.runtime, false)}</p>
                 </div>
 
                 <MoreLikes
@@ -385,6 +454,7 @@ export default function DetailPage() {
                 <Review
                     drawerOpen={drawerOpen}
                     setDrawerOpen={setDrawerOpen}
+                    movieId={movieDetail?.id}
                     title={movieDetail?.title}
                     poster={movieDetail?.poster_url}
                 />

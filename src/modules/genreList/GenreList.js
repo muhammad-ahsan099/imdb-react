@@ -31,7 +31,7 @@ export default function GenreList() {
                                                     <Box className={Styles.cardDiv}>
                                                         <Link to={`/genre/search/title/${item?.title}`}  className={Styles.link}>
                                                             <div className={Styles.bg} style={{ backgroundImage: `url("${item?.imageurl}")` }} >
-                                                                <p className={Styles.title}>{item?.title}</p>
+                                                                {/* <p className={Styles.title}>{item?.title}</p> */}
                                                             </div>
                                                         </Link>
                                                     </Box>

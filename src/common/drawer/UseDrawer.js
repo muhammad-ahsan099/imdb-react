@@ -21,8 +21,8 @@ export const UseDrawer = () => {
   // useEffect(()=> {
   // }, [userProfile])
 
-  console.log('userProfile', userProfile);
-  console.log('isUserLoggedIn', isUserLoggedIn)
+  // console.log('userProfile', userProfile);
+  // console.log('isUserLoggedIn', isUserLoggedIn)
 
   const menuItems = [
     {
