@@ -275,7 +275,7 @@ const useStyles = makeStyles((theme) => ({
         alginSelf: 'center',
         display: 'flex',
         alginItems: 'center',
-        // justifyContent: 'center',
+        justifyContent: 'center',
         flexDirection: 'column',
         [theme.breakpoints.down('sm')]: {
             width: '96%',
